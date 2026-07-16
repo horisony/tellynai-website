@@ -35,7 +35,7 @@ export function App() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Tellyn AI 首页"><Mark /><span>Tellyn</span><b>AI</b></a>
+        <a className="brand" href="#top" aria-label="图灵驭界 AI 首页"><Mark /><span>图灵驭界</span><b>AI</b></a>
         <nav aria-label="主导航">
           <a href="#services">业务</a><a href="#agents">数字员工</a><a href="#cases">案例</a><a href="#about">团队</a>
         </nav>
@@ -44,7 +44,7 @@ export function App() {
 
       <section className="hero section-shell" id="top">
         <div className="hero-copy">
-          <div className="eyebrow"><i />Tellyn · AI 咨询 × 培训 × 落地</div>
+          <div className="eyebrow"><i />AI 咨询 × 培训 × 落地</div>
           <h1>把 <em>会干活的 AI</em><br />装进你的业务</h1>
           <p>Tellyn 帮企业想清楚 AI 怎么用、教会团队怎么用，再把营销获客的活儿直接交给 AI 干。不是报告里的概念，是每天在岗的数字员工。</p>
           <div className="hero-actions"><a className="button dark" href="#contact">预约免费咨询</a><a className="button outline" href="#cases">看看它干过的活</a></div>
@@ -89,7 +89,7 @@ export function App() {
         {submitted ? <div className="success"><b>收到！</b><p>我们会在 1 个工作日内联系你，坐等好消息。</p><button type="button" onClick={() => setSubmitted(false)}>再提交一份需求</button></div> : <form onSubmit={submit}><label>怎么称呼你？<input required name="name" value={form.name} onChange={update} placeholder="例如：王先生" /></label><label>公司 / 行业<input name="company" value={form.company} onChange={update} placeholder="例如：跨境电商" /></label><label>微信 / 手机号<input required name="contact" value={form.contact} onChange={update} placeholder="方便联系你的方式" /></label><label>想用 AI 解决什么问题？<textarea name="need" value={form.need} onChange={update} placeholder="随便写两句" rows="3" /></label><button className="button yellow" type="submit">提交预约</button></form>}
       </section>
 
-      <footer><a className="brand" href="#top"><Mark /><span>Tellyn</span><b>AI</b></a><span>© 2026 Tellyn AI · 一个帮企业把 AI 用起来的团队</span><a href="mailto:hello@tellynai.com">hello@tellynai.com</a></footer>
+      <footer><a className="brand" href="#top"><Mark /><span>图灵驭界</span><b>AI</b></a><span>© 2026 图灵驭界 AI · 一个帮企业把 AI 用起来的团队</span><a href="mailto:hello@tellynai.com">hello@tellynai.com</a></footer>
     </main>
   )
 }
