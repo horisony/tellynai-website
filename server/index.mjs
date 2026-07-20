@@ -5,10 +5,11 @@ import { createServer } from 'node:http'
 import { readFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { extname, join, normalize, sep } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { handleContact } from './feishu-contact.mjs'
 
 const port = Number(process.env.PORT) || 3000
-const distDir = new URL('../dist/', import.meta.url).pathname
+const distDir = fileURLToPath(new URL('../dist/', import.meta.url)).replace(/\/+$/, '')
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
