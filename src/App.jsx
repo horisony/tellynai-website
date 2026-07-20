@@ -22,11 +22,29 @@ function TeamHero() {
 
 export function App() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const [form, setForm] = useState({ name: '', company: '', contact: '', need: '' })
   const update = (event) => setForm({ ...form, [event.target.name]: event.target.value })
-  const submit = (event) => {
+  const submit = async (event) => {
     event.preventDefault()
-    setSubmitted(true)
+    setSubmitting(true)
+    setSubmitError('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const result = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(result.message)
+      setSubmitted(true)
+    } catch (error) {
+      setSubmitError(error.message || '提交失败，请稍后重试。')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -84,7 +102,7 @@ export function App() {
       </section>
 
       <section className="section-shell contact" id="contact"><div className="contact-copy"><h2>联系我们</h2><p>留下联系方式，1 个工作日内回复。第一次沟通完全免费，至少带走一份可以执行的 AI 增长思路。</p><a href="mailto:baolyang@tellynai.com">baolyang@tellynai.com</a></div>
-        {submitted ? <div className="success"><b>收到！</b><p>我们会在 1 个工作日内联系你，坐等好消息。</p><button type="button" onClick={() => setSubmitted(false)}>再提交一份需求</button></div> : <form onSubmit={submit}><label>怎么称呼你？<input required name="name" value={form.name} onChange={update} placeholder="例如：王先生" /></label><label>公司 / 行业<input name="company" value={form.company} onChange={update} placeholder="例如：跨境电商" /></label><label>微信 / 手机号<input required name="contact" value={form.contact} onChange={update} placeholder="方便联系你的方式" /></label><label>你想通过 AI 解决什么问题？<textarea name="need" value={form.need} onChange={update} placeholder="例如：提高销售转化、梳理市场反馈" rows="3" /></label><button className="button yellow" type="submit">提交咨询</button></form>}
+        {submitted ? <div className="success"><b>收到！</b><p>我们会在 1 个工作日内联系你，坐等好消息。</p><button type="button" onClick={() => { setSubmitted(false); setForm({ name: '', company: '', contact: '', need: '' }) }}>再提交一份需求</button></div> : <form onSubmit={submit}><label>怎么称呼你？<input required name="name" value={form.name} onChange={update} placeholder="例如：王先生" /></label><label>公司 / 行业<input name="company" value={form.company} onChange={update} placeholder="例如：跨境电商" /></label><label>微信 / 手机号<input required name="contact" value={form.contact} onChange={update} placeholder="方便联系你的方式" /></label><label>你想通过 AI 解决什么问题？<textarea name="need" value={form.need} onChange={update} placeholder="例如：提高销售转化、梳理市场反馈" rows="3" /></label>{submitError && <p className="form-error" role="alert">{submitError}</p>}<button className="button yellow" type="submit" disabled={submitting}>{submitting ? '提交中…' : '提交咨询'}</button></form>}
       </section>
 
       <footer><a className="brand" href="#top"><Mark /><span>图灵驭界</span><b>AI</b></a><span>© 2026 图灵驭界 · 企业 AI 咨询与产品开发</span><a href="mailto:baolyang@tellynai.com">baolyang@tellynai.com</a></footer>
