@@ -52,7 +52,7 @@ export function App() {
       <header className="site-header">
         <a className="brand" href="#top" aria-label="图灵驭界 AI 首页"><Mark /><span>图灵驭界</span><b>AI</b></a>
         <nav aria-label="主导航">
-          <a href="#services">服务</a><a href="#cases">案例</a><a href="#tellyn">Tellyn</a><a href="#contact">联系</a>
+          <a href="#services">服务</a><a href="#cases">案例</a><a href="#sales-words">销售话术</a><a href="#tellyn">Tellyn</a><a href="#contact">联系</a>
         </nav>
         <a className="header-cta" href="#contact">联系我们</a>
       </header>
@@ -88,6 +88,14 @@ export function App() {
           <article className="case-card"><div className="case-title"><span>珠宝零售</span><b>企微话术智能体</b></div><p>接入企业微信，实时给导购递出下一句。把金牌销售的经验，变成每位新导购都用得上的标准动作。</p></article>
         </div>
       </div></section>
+
+      <section className="section-shell sales-words" id="sales-words">
+        <div className="section-heading"><h2>AI 销售话术提示，<br />让每位销售都像 <em>金牌</em>。</h2><p>输入产品与场景，AI 实时给出下一句怎么说、怎么接、怎么促单。把最好的销售经验，变成每个人随口就能用的能力。</p></div>
+        <a className="sales-words-link" href="https://sales-words-hifiaudio.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <img className="sales-words-shot" src="https://i.ibb.co/rRH2zPcJ/121212.webp" alt="AI 销售话术提示" loading="lazy" />
+          <span className="sales-words-cta">打开 AI 销售话术 · 新窗口 ↗</span>
+        </a>
+      </section>
 
       <section className="section-shell tellyn-product" id="tellyn">
         <div className="tellyn-copy"><h2><em>Tellyn</em>，把线下现场<br />变成可用的业务数据。</h2><p>Tellyn 用 AI 辅助企业收集线下销售、产品和市场的真实反馈，完成数据整理与分析，为管理者提供更贴近业务现场的决策辅助。</p><div className="tellyn-list"><span>收集真实反馈</span><span>AI 数据分析</span><span>辅助业务决策</span></div><a className="button dark" href="#contact">了解 Tellyn</a></div>
