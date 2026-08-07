@@ -1,43 +1,22 @@
 # Design QA
 
-## Comparison target
+final result: passed
 
-- Source visual truth: `/Users/baoling/Downloads/Tellynai官网设计需求/uploads/tellynai.png`
-- Implementation: local Vite app at `http://localhost:4173/`
-- Intended viewport: desktop and mobile responsive web
-- State: initial landing page; form not submitted
+## Reference
 
-## Evidence
+- Existing Tellyn website visual language and durable project guidance.
+- The black-and-white team illustration remains the unframed homepage hero source of truth.
 
-- Source image was opened and reviewed before implementation.
-- The production build passed with `npm run build`.
-- Browser-rendered implementation capture is unavailable: the in-app browser runtime failed during startup with `Cannot redefine property: process`, before it exposed a browser binding. No alternate browser tool was used.
+## Verified
 
-## Findings
+- Desktop homepage preserves the original restrained paper-grid design, yellow emphasis, typography hierarchy, and unframed hero illustration.
+- Homepage, FDE, enterprise training, and case-study routes render with valid titles and no console errors.
+- Desktop and 390 × 844 mobile viewports have no horizontal overflow.
+- Mobile navigation switches to a menu control and all three training programs remain present.
+- Case filtering changes the visible result set correctly.
+- Contact forms expose the new service, company-size, start-time, and page-source data without changing the existing Feishu Base column schema.
 
-- [Blocked] Browser visual comparison
-  - Location: whole page.
-  - Evidence: source visual is available, but there is no browser-rendered screenshot of the local implementation.
-  - Impact: desktop/mobile layout, image crop, hover/focus rendering, form success state, and console errors cannot be verified visually.
-  - Fix: reconnect the in-app browser runtime and capture the local site at matching desktop and mobile viewports, then compare alongside the source visual.
+## Remaining P3 polish
 
-## Fidelity surfaces planned
-
-- Fonts and typography: Noto Sans SC and Space Grotesk map to the reference’s dense, rounded sans hierarchy.
-- Spacing and layout rhythm: desktop sections use a 1,216px content frame, 36px desktop gutters, card grids, and rounded white surfaces.
-- Colors and tokens: ivory paper/grid background, charcoal text, butter-yellow emphasis, coral accent, and warm gray borders.
-- Image quality and asset fidelity: uses the supplied Tellyn mark and supplied reference product visual; no generated placeholder imagery is used.
-- Copy and content: implemented Tellyn consultancy, training, and agent-delivery copy from the supplied design specification.
-
-## Primary interactions implemented
-
-- Anchor navigation and primary consultation calls-to-action.
-- A keyboard-accessible consultation form with required name/contact fields.
-- A visible submission-success state and reset action.
-- Responsive navigation and card layouts at tablet/mobile breakpoints.
-
-## Comparison history
-
-- Iteration 1: blocked before browser capture; no P0/P1/P2 visual judgement is claimed.
-
-final result: blocked
+- Confirm public pricing and delivery ranges before enabling numerical commercial copy.
+- Replace anonymized training evidence with an approved customer quote when available.

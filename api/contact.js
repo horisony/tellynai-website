@@ -50,7 +50,15 @@ export default async function handler(req, res) {
 
   try {
     const form = await parseBody(req)
-    const values = [form.name, form.company, form.contact, form.need].map((v) => String(v ?? '').trim())
+    const details = [
+      `感兴趣的服务：${form.service || '未选择'}`,
+      `企业规模：${form.companySize || '未选择'}`,
+      `期望启动时间：${form.startTime || '未选择'}`,
+      `来源页面：${form.source || '未知'}`,
+      '',
+      String(form.need ?? '').trim(),
+    ].join('\n').trim()
+    const values = [form.name, form.company, form.contact, details].map((v) => String(v ?? '').trim())
 
     if (!values[0] || !values[2]) {
       res.statusCode = 400

@@ -56,7 +56,15 @@ export async function handleContact(request, response) {
   }
   try {
     const form = await readBody(request)
-    const values = [form.name, form.company, form.contact, form.need].map((value) => String(value ?? '').trim())
+    const details = [
+      `感兴趣的服务：${form.service || '未选择'}`,
+      `企业规模：${form.companySize || '未选择'}`,
+      `期望启动时间：${form.startTime || '未选择'}`,
+      `来源页面：${form.source || '未知'}`,
+      '',
+      String(form.need ?? '').trim(),
+    ].join('\n').trim()
+    const values = [form.name, form.company, form.contact, details].map((value) => String(value ?? '').trim())
 
     if (!values[0] || !values[2]) {
       send(response, 400, { message: '请填写称呼和联系方式。' })
