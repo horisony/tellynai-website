@@ -13,3 +13,11 @@ When implementing from a selected generated mock, treat that image as the source
 - Service copy should remain restrained and evidence-led: do not publish unverified ROI, delivery duration, or pricing figures.
 - The homepage presents SnapDesign as a product module directly after Tellyn, focused on quickly generating editable e-commerce, event, and product posters.
 - Do not use horizontal divider lines between major page sections; rely on spacing and background changes for separation.
+- Do not use grid-pattern backgrounds anywhere on the website; separate sections with whitespace and solid background colors.
+- The SnapDesign homepage module uses its YouTube product demo as an autoplaying, muted, looping embed with visible controls so visitors can enable sound.
+- Do not include a standalone "WHY TELLYN" capability section on the homepage; transition directly from the product modules to FAQ.
+- The homepage hero shows "核心团队来自" with company logos in this order: Tencent Cloud, NIO, ByteDance, Meituan; it replaces the previous text list of service categories below the hero CTAs.
+- Core-team company logos are grayscale by default and restore their brand colors on hover.
+- Do not expose a standalone `/cases` page; all case-study navigation should scroll to the homepage `SELECTED WORK` section.
+- Do not show eyebrow/capsule labels such as "ENTERPRISE AI DELIVERY" or "WHAT WE DO" anywhere on the homepage.
+- Do not include the five-step "一条跑得通、也能持续迭代的路径" delivery-method section on the homepage.
