@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { cases, fdeFaqs, homeFaqs, services, trainingFaqs, trainingPrograms } from './content'
 
-const clients = ['成都泉源堂', '上海赫本珠宝', '上海临床转化研究院', '宁波中工美']
+const clients = ['成都泉源堂', '上海赫本珠宝', '上海临床转化研究院', '宁波中工美', '福州跨境电商公司']
 
 function Mark() { return <img className="mark" src="/assets/tuling-logo.png" alt="图灵驭界 AI" /> }
 function Brand() { return <a className="brand" href="/" aria-label="图灵驭界 AI 首页"><Mark /><span>图灵驭界</span><b>AI</b></a> }
