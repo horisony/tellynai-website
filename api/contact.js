@@ -13,7 +13,7 @@
 
 const BASE_API = 'https://open.feishu.cn/open-apis'
 
-const FIELDS = ['怎么称呼你？', '公司 / 行业', '微信 / 手机号', '你想通过 AI 解决什么问题？']
+const pick = (v) => String(v ?? '').trim()
 
 function readJson(req) {
   return new Promise((resolve, reject) => {
@@ -50,22 +50,31 @@ export default async function handler(req, res) {
 
   try {
     const form = await parseBody(req)
-    const details = [
-      `感兴趣的服务：${form.service || '未选择'}`,
-      `企业规模：${form.companySize || '未选择'}`,
-      `期望启动时间：${form.startTime || '未选择'}`,
-      `来源页面：${form.source || '未知'}`,
-      '',
-      String(form.need ?? '').trim(),
-    ].join('\n').trim()
-    const values = [form.name, form.company, form.contact, details].map((v) => String(v ?? '').trim())
+    const name = pick(form.name)
+    const company = pick(form.company)
+    const contact = pick(form.contact)
+    const need = pick(form.need)
 
-    if (!values[0] || !values[2]) {
+    if (!name || !contact) {
       res.statusCode = 400
       res.setHeader('Content-Type', 'application/json; charset=utf-8')
       res.end(JSON.stringify({ message: '请填写称呼和联系方式。' }))
       return
     }
+
+    // 每个字段写入自己的列；select 字段只接受已有选项，空值按语义映射。
+    const fields = {
+      '怎么称呼你？': name,
+      '公司 / 行业': company,
+      '微信 / 手机号': contact,
+      '你想通过 AI 解决什么问题？': need,
+      '感兴趣的服务': pick(form.service) || '还不确定',
+      '期望什么时候启动？': pick(form.startTime) || '还不确定',
+    }
+    const companySize = pick(form.companySize)
+    const source = pick(form.source)
+    if (companySize) fields['企业规模'] = companySize
+    if (source) fields['来源页面'] = source
 
     const appId = process.env.FEISHU_APP_ID || 'cli_a9665e3c15389bef'
     const appSecret = process.env.FEISHU_APP_SECRET
@@ -96,7 +105,7 @@ export default async function handler(req, res) {
     const accessToken = tokenJson.tenant_access_token
 
     // 2) write record
-    const records = [{ fields: Object.fromEntries(FIELDS.map((f, i) => [f, values[i]])) }]
+    const records = [{ fields }]
     const createResp = await fetch(
       `${BASE_API}/bitable/v1/apps/${baseToken}/tables/${tableId}/records/batch_create`,
       {
