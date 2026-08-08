@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/fde{/}?", "destination": "/index.html" },
+    { "source": "/training{/}?", "destination": "/index.html" }
+  ]
+}
