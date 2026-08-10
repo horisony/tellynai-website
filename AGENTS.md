@@ -21,3 +21,8 @@ When implementing from a selected generated mock, treat that image as the source
 - Do not expose a standalone `/cases` page; all case-study navigation should scroll to the homepage `SELECTED WORK` section.
 - Do not show eyebrow/capsule labels such as "ENTERPRISE AI DELIVERY" or "WHAT WE DO" anywhere on the homepage.
 - Do not include the five-step "一条跑得通、也能持续迭代的路径" delivery-method section on the homepage.
+- The navigation includes a compact Chinese, English, and Arabic language switcher. Default language is inferred from visitor country when possible, manual choice persists locally, and Arabic uses RTL layout.
+- The language switcher is plain text with a small globe icon on the left and chevron on the right; it has no pill shape, white background, border, or red focus outline.
+- The entire language-switcher area—including the globe, current language, and chevron—is one clickable native-select target.
+- All public website copy and repeatable page content must be maintained through one structured content configuration with complete Chinese, English, and Arabic variants; adding, removing, or reordering a section must not require editing translation logic or relying on DOM text replacement.
+- Production builds must validate that every configured content key has Chinese, English, and Arabic values and fail clearly when a translation is missing.

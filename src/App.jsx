@@ -1,45 +1,1065 @@
-import { useEffect, useState } from 'react'
-import { cases, fdeFaqs, homeFaqs, services, trainingFaqs, trainingPrograms } from './content'
+import { createContext, useContext, useEffect, useState } from "react";
+import {
+  cases,
+  fdeFaqs,
+  homeFaqs,
+  services,
+  trainingFaqs,
+  trainingPrograms,
+} from "./content";
+import {
+  languageOptions,
+  localizeNode,
+  translateValue,
+  useLanguage,
+  usePageTranslation,
+} from "./i18n";
 
-const clients = ['成都泉源堂', '上海赫本珠宝', '上海临床转化研究院', '宁波中工美', '福州跨境电商公司']
+const LocaleContext = createContext({ language: "zh", setLanguage: () => {} });
 
-function Mark() { return <img className="mark" src="/assets/tuling-logo.png" alt="图灵驭界 AI" /> }
-function Brand() { return <a className="brand" href="/" aria-label="图灵驭界 AI 首页"><Mark /><span>图灵驭界</span><b>AI</b></a> }
+function Localized({ children }) {
+  const { language } = useContext(LocaleContext);
+  return localizeNode(children, language);
+}
+
+const clients = [
+  "成都泉源堂",
+  "上海赫本珠宝",
+  "上海临床转化研究院",
+  "宁波中工美",
+  "福州跨境电商公司",
+];
+
+function Mark() {
+  return (
+    <Localized>
+      <img className="mark" src="/assets/tuling-logo.png" alt="图灵驭界 AI" />
+    </Localized>
+  );
+}
+function Brand() {
+  return (
+    <Localized>
+      <a className="brand" href="/" aria-label="图灵驭界 AI 首页">
+        <Mark />
+        <span>图灵驭界</span>
+        <b>AI</b>
+      </a>
+    </Localized>
+  );
+}
 
 function Header() {
-  const [open, setOpen] = useState(false)
-  return <header className="site-header"><Brand /><button className="menu-button" type="button" onClick={() => setOpen(!open)} aria-expanded={open}>菜单</button><nav className={open ? 'open' : ''} aria-label="主导航"><a href="/#services">服务</a><a href="/fde">FDE 落地</a><a href="/training">企业内训</a><a href="/#cases">案例</a><a href="/#tellyn">Tellyn</a><a href="#contact">联系我们</a></nav><a className="header-cta" href="#contact">预约诊断</a></header>
+  const [open, setOpen] = useState(false);
+  const { language, setLanguage } = useContext(LocaleContext);
+  return (
+    <Localized>
+      <header className="site-header">
+        <Brand />
+        <button
+          className="menu-button"
+          type="button"
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+        >
+          菜单
+        </button>
+        <nav className={open ? "open" : ""} aria-label="主导航">
+          <a href="/#services">服务</a>
+          <a href="/fde">FDE 落地</a>
+          <a href="/training">企业内训</a>
+          <a href="/#cases">案例</a>
+          <a href="/tellyn">Tellyn</a>
+          <a href="#contact">联系我们</a>
+        </nav>
+        <label className="language-switch">
+          <svg
+            className="language-globe"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12s1.2 6.5 3.6 9" />
+          </svg>
+          <span className="language-current" aria-hidden="true">
+            {languageOptions.find(([code]) => code === language)?.[1]}
+          </span>
+          <svg
+            className="language-chevron"
+            viewBox="0 0 12 12"
+            aria-hidden="true"
+          >
+            <path d="m2.5 4.5 3.5 3 3.5-3" />
+          </svg>
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            aria-label="Language"
+          >
+            {languageOptions.map(([code, short, label]) => (
+              <option key={code} value={code} aria-label={label}>
+                {short}
+              </option>
+            ))}
+          </select>
+        </label>
+        <a className="header-cta" href="#contact">
+          预约诊断
+        </a>
+      </header>
+    </Localized>
+  );
 }
 
-function Footer() { return <footer><Brand /><span>© 2026 图灵驭界 · 企业 AI 落地伙伴</span><span className="address">上海市徐汇区漕河泾超级创业者社区</span><a href="mailto:baolyang@tellynai.com">baolyang@tellynai.com</a></footer> }
-
-function SectionTitle({ eyebrow, title, children }) { return <div className="section-heading"><span className="eyebrow"><i />{eyebrow}</span><h2 dangerouslySetInnerHTML={{ __html: title }} />{children && <p>{children}</p>}</div> }
-
-function Faq({ items }) { return <div className="faq-list">{items.map(([q, a]) => <details key={q}><summary>{q}<span>＋</span></summary><p>{a}</p></details>)}</div> }
-
-function Contact({ source = '首页', defaultService = '' }) {
-  const [submitted, setSubmitted] = useState(false)
-  const [submitting, setSubmitting] = useState(false)
-  const [submitError, setSubmitError] = useState('')
-  const [form, setForm] = useState({ name: '', company: '', contact: '', need: '', service: defaultService, companySize: '', startTime: '' })
-  const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
-  const submit = async (e) => { e.preventDefault(); setSubmitting(true); setSubmitError(''); try { const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...form, source }) }); const result = await response.json().catch(() => ({})); if (!response.ok) throw new Error(result.message); setSubmitted(true) } catch (error) { setSubmitError(error.message || '提交失败，请稍后重试。') } finally { setSubmitting(false) } }
-  return <section className="section-shell contact" id="contact"><div className="contact-copy"><span className="eyebrow inverse"><i />START SMALL</span><h2>先聊一个<br /><em>真实问题</em>。</h2><p>留下联系方式，我们会在 1 个工作日内回复。第一次沟通免费，先帮你判断什么值得做、什么可以暂时不做。</p><a href="mailto:baolyang@tellynai.com">baolyang@tellynai.com</a></div>{submitted ? <div className="success"><b>收到！</b><p>我们会在 1 个工作日内联系你。</p><button type="button" onClick={() => setSubmitted(false)}>再提交一份需求</button></div> : <form onSubmit={submit}><div className="form-row"><label>怎么称呼你？<input required name="name" value={form.name} onChange={update} placeholder="例如：王先生" /></label><label>公司 / 行业<input name="company" value={form.company} onChange={update} placeholder="例如：零售" /></label></div><label>微信 / 手机号<input required name="contact" value={form.contact} onChange={update} placeholder="方便联系你的方式" /></label><div className="form-row"><label>感兴趣的服务<select name="service" value={form.service} onChange={update}><option value="">还不确定</option><option>AI 业务诊断</option><option>企业 AI 内训</option><option>FDE 共创落地</option><option>AI 产品开发</option></select></label><label>企业规模<select name="companySize" value={form.companySize} onChange={update}><option value="">请选择</option><option>1–20 人</option><option>21–100 人</option><option>101–500 人</option><option>500 人以上</option></select></label></div><label>期望什么时候启动？<select name="startTime" value={form.startTime} onChange={update}><option value="">还不确定</option><option>一个月内</option><option>1–3 个月</option><option>3 个月以后</option></select></label><label>你想通过 AI 解决什么问题？<textarea name="need" value={form.need} onChange={update} placeholder="说说目前的流程、难点或想验证的方向" rows="3" /></label>{submitError && <p className="form-error">{submitError}</p>}<button className="button yellow" disabled={submitting}>{submitting ? '提交中…' : '预约一次免费诊断'}</button></form>}</section>
+function Footer() {
+  return (
+    <Localized>
+      <footer>
+        <Brand />
+        <span>© 2026 图灵驭界 · 企业 AI 落地伙伴</span>
+        <span className="address">上海市徐汇区漕河泾超级创业者社区</span>
+        <a href="mailto:baolyang@tellynai.com">baolyang@tellynai.com</a>
+      </footer>
+    </Localized>
+  );
 }
 
-function PageHero({ kicker, title, copy, tags = [], action = '预约一次 AI 场景诊断' }) { return <section className="inner-hero section-shell"><div><span className="eyebrow"><i />{kicker}</span><h1 dangerouslySetInnerHTML={{ __html: title }} /><p>{copy}</p><div className="hero-actions"><a className="button dark" href="#contact">{action}</a><a className="button outline" href="/#cases">查看交付案例</a></div></div><div className="principle-card"><small>我们的原则</small><strong>从一个真实场景开始，<br />让结果先发生。</strong><div>{tags.map(t => <span key={t}>{t}</span>)}</div></div></section> }
+function SectionTitle({ eyebrow, title, children }) {
+  return (
+    <Localized>
+      <div className="section-heading">
+        <span className="eyebrow">
+          <i />
+          {eyebrow}
+        </span>
+        <h2 dangerouslySetInnerHTML={{ __html: title }} />
+        {children && <p>{children}</p>}
+      </div>
+    </Localized>
+  );
+}
 
-function Home() { return <><Header /><section className="hero section-shell" id="top"><div className="hero-copy"><h1>让 AI 真正<br />进入你的 <em>增长链路</em></h1><p>从内容获客、线索培育到成交转化，我们不是把一套通用工具交给你，而是和管理层、一线团队一起，从业务诊断、企业内训到 FDE 共创，把 AI 做成每天有人用、能持续迭代的增长能力。</p><div className="hero-actions"><a className="button dark" href="#contact">预约免费诊断</a><a className="button outline" href="#cases">查看交付案例</a></div><div className="team-origin"><strong>核心团队来自</strong><div><img src="/assets/team-tencent-cloud.svg" alt="腾讯云" /><img src="/assets/team-nio.png" alt="NIO 蔚来" /><img src="/assets/team-bytedance.svg" alt="ByteDance 字节跳动" /><img src="/assets/team-meituan.png" alt="美团" /></div></div></div><div className="hero-visual"><img className="bao-hero" src="/assets/team-hero.png" alt="图灵驭界团队手绘插图" /></div></section>
-  <section className="client-section section-shell"><div className="client-label"><i />服务客户</div><div className="client-marquee"><div className="client-track">{clients.concat(clients).map((c, i) => <div className="client-logo" key={i}>{c}</div>)}</div></div></section>
-  <section className="section-shell block" id="services"><SectionTitle eyebrow="WHAT WE DO" title={'从想清楚，<br />到 <em>真的用起来</em>。'}>按企业当前阶段切入，不用先买一套大系统。</SectionTitle><div className="service-grid four">{services.map(s => <article className="service-card" key={s.id}><small>{s.number} · 服务</small><h3>{s.title}</h3><p>{s.summary}</p><div className="card-meta"><span>适合：{s.fit}</span><b>{s.deliverable}</b></div><a href={s.href}>了解这项服务 →</a></article>)}</div></section>
-  <section className="tinted"><div className="section-shell block"><SectionTitle eyebrow="HOW TO CHOOSE" title={'你在哪一步，<br />就从 <em>哪一步开始</em>。'}>没有固定套餐绑架，先把最重要的业务问题说清楚。</SectionTitle><div className="choice-grid">{services.map(s => <a href={s.href} key={s.id}><small>{s.number}</small><p>{s.fit}</p><strong>{s.title} →</strong></a>)}</div></div></section>
-  <section className="tinted" id="cases"><div className="section-shell block"><SectionTitle eyebrow="SELECTED WORK" title={'做过的项目，<br />经得起 <em>业务现场</em>。'}>不展示虚构数字，只讲真实问题、做法和已经发生的改变。</SectionTitle><div className="case-preview-grid">{cases.slice(0,3).map(c => <article key={c.slug}><img src={c.image} alt="" /><div><span>{c.industry} · {c.service}</span><h3>{c.title}</h3><p><b>问题</b>{c.challenge}</p><p><b>交付</b>{c.action}</p><p><b>结果</b>{c.result}</p><a href="#contact">咨询类似项目 →</a></div></article>)}</div></div></section>
-  <section className="section-shell tellyn-product" id="tellyn"><div className="tellyn-copy"><span className="eyebrow"><i />OUR PRODUCT</span><h2><em>Tellyn</em>，把线下现场<br />变成可用的业务数据。</h2><p>Tellyn 用 AI 收集销售、产品和市场的一线反馈，整理为可以被管理者理解、被团队执行的业务洞察。</p><div className="tellyn-list"><span>收集真实反馈</span><span>AI 数据分析</span><span>辅助业务决策</span></div><a className="button dark" href="#contact">了解 Tellyn</a></div><img className="product-shot" src="/assets/tellyn-dashboard.png" alt="Tellyn 产品界面" /></section>
-  <section className="section-shell tellyn-product snapdesign-product" id="snapdesign"><div className="product-video"><iframe src="https://www.youtube.com/embed/WMDGoGlz3vI?autoplay=1&mute=1&loop=1&playlist=WMDGoGlz3vI&controls=1&playsinline=1&rel=0" title="SnapDesign 快速生成设计海报演示" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /></div><div className="tellyn-copy"><span className="eyebrow"><i />DESIGN WITH AI</span><h2><em>SnapDesign</em>，快速生成<br />各类设计海报。</h2><p>上传产品图片，描述想要的内容和风格，SnapDesign 就能快速生成可继续编辑的视觉设计，覆盖电商海报、活动海报等常见场景。</p><div className="tellyn-list"><span>电商海报</span><span>活动海报</span><span>产品视觉</span><span>快速生成</span></div><a className="button dark" href="https://www.snapdesign.app/" target="_blank" rel="noopener noreferrer">打开 SnapDesign ↗</a></div></section>
-  <section className="section-shell block faq-section"><SectionTitle eyebrow="FAQ" title={'开始之前，<br /><em>你可能想问</em>。'} /><Faq items={homeFaqs} /></section><Contact /><Footer /></> }
+function Faq({ items }) {
+  return (
+    <Localized>
+      <div className="faq-list">
+        {items.map(([q, a]) => (
+          <details key={q}>
+            <summary>
+              {q}
+              <span>＋</span>
+            </summary>
+            <p>{a}</p>
+          </details>
+        ))}
+      </div>
+    </Localized>
+  );
+}
 
-function FdePage() { const stages = [['01','业务访谈与机会评估','进入真实流程，梳理角色、数据、系统与业务目标。'],['02','优先级与方案设计','用业务价值、实现难度和风险选出首个试点。'],['03','与业务骨干共创试点','快速做出可运行版本，在真实任务中验证。'],['04','上线陪跑与持续优化','接入工作流，建立评测、反馈和迭代机制。']]; return <><Header /><PageHero kicker="FDE · FORWARD DEPLOYED" title={'不是交一份方案，<br />而是一起把 AI <em>做进业务</em>。'} copy="FDE 同时理解业务和工程，进入真实流程，和你的团队共同完成诊断、试点、上线与迭代。" tags={['诊断', '共创', '陪跑']} /><section className="tinted"><div className="section-shell block"><SectionTitle eyebrow="WHEN TO START" title={'出现这些信号，<br />就值得启动 <em>FDE</em>。'} /><div className="signal-grid">{['有大量重复流程，但一直靠人工衔接','尝试过 AI 工具，却无法进入生产环境','业务与技术团队之间缺少翻译者','希望沉淀企业自己的 AI 能力'].map((x,i)=><article key={x}><span>0{i+1}</span><h3>{x}</h3></article>)}</div></div></section><section className="section-shell block"><SectionTitle eyebrow="HOW WE DELIVER" title={'四个阶段，<br />每一步都有 <em>明确产出</em>。'} /><div className="stage-list">{stages.map(([n,t,c])=><article key={n}><span>{n}</span><div><h3>{t}</h3><p>{c}</p></div></article>)}</div></section><section className="tinted"><div className="section-shell block"><SectionTitle eyebrow="DELIVERABLES" title={'项目结束时，<br />留下的不只是 <em>一个 Demo</em>。'} /><div className="deliverable-grid">{['AI 场景地图','场景优先级评分','业务流程与产品方案','可运行的业务试点','知识与技能资产','评测指标和迭代路线图'].map(x=><div key={x}>{x}</div>)}</div><div className="commercial-note"><b>典型合作方式</b><p>先进行 1–2 周诊断，再根据试点范围制定交付周期。项目制报价，正式方案确认后提供起步范围，不在网站展示未经确认的数字。</p></div></div></section><section className="section-shell block faq-section"><SectionTitle eyebrow="FDE FAQ" title={'合作之前，<br /><em>把边界说清楚</em>。'} /><Faq items={fdeFaqs} /></section><Contact source="FDE 落地页" defaultService="FDE 共创落地" /><Footer /></> }
+function Contact({ source = "首页", defaultService = "" }) {
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    company: "",
+    contact: "",
+    need: "",
+    service: defaultService,
+    companySize: "",
+    startTime: "",
+  });
+  const update = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const submit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, source }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.message);
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(error.message || "提交失败，请稍后重试。");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+  return (
+    <Localized>
+      <section className="section-shell contact" id="contact">
+        <div className="contact-copy">
+          <span className="eyebrow inverse">
+            <i />
+            START SMALL
+          </span>
+          <h2>
+            先聊一个
+            <br />
+            <em>真实问题</em>。
+          </h2>
+          <p>
+            留下联系方式，我们会在 1
+            个工作日内回复。第一次沟通免费，先帮你判断什么值得做、什么可以暂时不做。
+          </p>
+          <a href="mailto:baolyang@tellynai.com">baolyang@tellynai.com</a>
+        </div>
+        {submitted ? (
+          <div className="success">
+            <b>收到！</b>
+            <p>我们会在 1 个工作日内联系你。</p>
+            <button type="button" onClick={() => setSubmitted(false)}>
+              再提交一份需求
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={submit}>
+            <div className="form-row">
+              <label>
+                怎么称呼你？
+                <input
+                  required
+                  name="name"
+                  value={form.name}
+                  onChange={update}
+                  placeholder="例如：王先生"
+                />
+              </label>
+              <label>
+                公司 / 行业
+                <input
+                  name="company"
+                  value={form.company}
+                  onChange={update}
+                  placeholder="例如：零售"
+                />
+              </label>
+            </div>
+            <label>
+              微信 / 手机号
+              <input
+                required
+                name="contact"
+                value={form.contact}
+                onChange={update}
+                placeholder="方便联系你的方式"
+              />
+            </label>
+            <div className="form-row">
+              <label>
+                感兴趣的服务
+                <select name="service" value={form.service} onChange={update}>
+                  <option value="">还不确定</option>
+                  <option>AI 业务诊断</option>
+                  <option>企业 AI 内训</option>
+                  <option>FDE 共创落地</option>
+                  <option>AI 产品开发</option>
+                </select>
+              </label>
+              <label>
+                企业规模
+                <select
+                  name="companySize"
+                  value={form.companySize}
+                  onChange={update}
+                >
+                  <option value="">请选择</option>
+                  <option>1–20 人</option>
+                  <option>21–100 人</option>
+                  <option>101–500 人</option>
+                  <option>500 人以上</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              期望什么时候启动？
+              <select name="startTime" value={form.startTime} onChange={update}>
+                <option value="">还不确定</option>
+                <option>一个月内</option>
+                <option>1–3 个月</option>
+                <option>3 个月以后</option>
+              </select>
+            </label>
+            <label>
+              你想通过 AI 解决什么问题？
+              <textarea
+                name="need"
+                value={form.need}
+                onChange={update}
+                placeholder="说说目前的流程、难点或想验证的方向"
+                rows="3"
+              />
+            </label>
+            {submitError && <p className="form-error">{submitError}</p>}
+            <button className="button yellow" disabled={submitting}>
+              {submitting ? "提交中…" : "预约一次免费诊断"}
+            </button>
+          </form>
+        )}
+      </section>
+    </Localized>
+  );
+}
 
-function TrainingPage() { return <><Header /><PageHero kicker="ENTERPRISE AI TRAINING" title={'不只学工具，<br />而是带走 <em>下一步行动</em>。'} copy="让管理层形成判断，让业务骨干围绕真实流程完成场景共创，培训结束就能进入试点。" tags={['管理共识','业务实战','场景产出']} action="预约企业内训沟通" /><section className="section-shell block"><SectionTitle eyebrow="TWO LEARNING PATHS" title={'不同角色，<br />学习 <em>不同的事</em>。'} /><div className="path-grid"><article><small>管理层路径</small><h3>建立判断，而不是追热点</h3><ul>{['AI 能力边界','业务机会判断','投入优先级','组织协作与风险'].map(x=><li key={x}>{x}</li>)}</ul></article><article><small>业务骨干路径</small><h3>围绕真实工作，做出试点</h3><ul>{['工作流拆解','提示与智能体实践','真实场景共创','试点方案设计'].map(x=><li key={x}>{x}</li>)}</ul></article></div></section><section className="tinted"><div className="section-shell block"><SectionTitle eyebrow="PROGRAMS" title={'三种方式，<br />匹配团队的 <em>真实阶段</em>。'} /><div className="program-grid">{trainingPrograms.map((p,i)=><article key={p.title}><span>0{i+1}</span><h3>{p.title}</h3><p>{p.audience}</p><dl><div><dt>形式</dt><dd>{p.format}</dd></div><div><dt>规模</dt><dd>{p.size}</dd></div></dl><ul>{p.modules.map(x=><li key={x}>{x}</li>)}</ul><strong>最终产出：{p.output}</strong></article>)}</div><div className="commercial-note"><b>关于周期与报价</b><p>标准课程提供明确周期，定制训练营根据人数、行业场景和陪跑深度报价。正式金额确认后再公开，不以虚构低价吸引咨询。</p></div></div></section><section className="section-shell block outcome"><SectionTitle eyebrow="WHAT REMAINS" title={'课件会过期，<br />企业能力要 <em>留下来</em>。'} /><div><b>01</b><span>一份企业 AI 场景地图</span><b>02</b><span>若干可执行的试点方案</span><b>03</b><span>首批内部 AI 推动者</span></div></section><section className="section-shell block faq-section"><SectionTitle eyebrow="TRAINING FAQ" title={'安排课程前，<br /><em>你可能想问</em>。'} /><Faq items={trainingFaqs} /></section><Contact source="企业内训页" defaultService="企业 AI 内训" /><Footer /></> }
+function PageHero({
+  kicker,
+  title,
+  copy,
+  tags = [],
+  action = "预约一次 AI 场景诊断",
+}) {
+  return (
+    <Localized>
+      <section className="inner-hero section-shell">
+        <div>
+          <span className="eyebrow">
+            <i />
+            {kicker}
+          </span>
+          <h1 dangerouslySetInnerHTML={{ __html: title }} />
+          <p>{copy}</p>
+          <div className="hero-actions">
+            <a className="button dark" href="#contact">
+              {action}
+            </a>
+            <a className="button outline" href="/#cases">
+              查看交付案例
+            </a>
+          </div>
+        </div>
+        <div className="principle-card">
+          <small>我们的原则</small>
+          <strong>
+            从一个真实场景开始，
+            <br />
+            让结果先发生。
+          </strong>
+          <div>
+            {tags.map((t) => (
+              <span key={t}>{t}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+    </Localized>
+  );
+}
 
-export function App() { const path=window.location.pathname.replace(/\/$/,'')||'/'; useEffect(()=>{ const titles={ '/':'图灵驭界｜企业 AI 落地伙伴','/fde':'FDE 共创落地｜图灵驭界','/training':'企业 AI 内训｜图灵驭界' }; document.title=titles[path]||titles['/']; if(window.location.hash){ requestAnimationFrame(()=>document.querySelector(window.location.hash)?.scrollIntoView()) }else{ window.scrollTo(0,0) }},[path]); if(path==='/fde')return <FdePage/>; if(path==='/training')return <TrainingPage/>; return <Home/> }
+function Home() {
+  return (
+    <Localized>
+      <>
+        <Header />
+        <section className="hero section-shell" id="top">
+          <div className="hero-copy">
+            <h1>
+              让 AI 真正
+              <br />
+              进入你的 <em>增长链路</em>
+            </h1>
+            <p>
+              从内容获客、线索培育到成交转化，我们不是把一套通用工具交给你，而是和管理层、一线团队一起，从业务诊断、企业内训到
+              FDE 共创，把 AI 做成每天有人用、能持续迭代的增长能力。
+            </p>
+            <div className="hero-actions">
+              <a className="button dark" href="#contact">
+                预约免费诊断
+              </a>
+              <a className="button outline" href="#cases">
+                查看交付案例
+              </a>
+            </div>
+            <div className="team-origin">
+              <strong>核心团队来自</strong>
+              <div>
+                <img src="/assets/team-tencent-cloud.svg" alt="腾讯云" />
+                <img src="/assets/team-nio.png" alt="NIO 蔚来" />
+                <img
+                  src="/assets/team-bytedance.svg"
+                  alt="ByteDance 字节跳动"
+                />
+                <img src="/assets/team-meituan.png" alt="美团" />
+              </div>
+            </div>
+          </div>
+          <div className="hero-visual">
+            <img
+              className="bao-hero"
+              src="/assets/team-hero.png"
+              alt="图灵驭界团队手绘插图"
+            />
+          </div>
+        </section>
+        <section className="client-section section-shell">
+          <div className="client-label">
+            <i />
+            服务客户
+          </div>
+          <div className="client-marquee">
+            <div className="client-track">
+              {clients.concat(clients).map((c, i) => (
+                <div className="client-logo" key={i}>
+                  {c}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="section-shell block" id="services">
+          <SectionTitle
+            eyebrow="WHAT WE DO"
+            title={"从想清楚，<br />到 <em>真的用起来</em>。"}
+          >
+            按企业当前阶段切入，不用先买一套大系统。
+          </SectionTitle>
+          <div className="service-grid four">
+            {services.map((s) => (
+              <article className="service-card" key={s.id}>
+                <small>{s.number} · 服务</small>
+                <h3>{s.title}</h3>
+                <p>{s.summary}</p>
+                <div className="card-meta">
+                  <span>适合：{s.fit}</span>
+                  <b>{s.deliverable}</b>
+                </div>
+                <a href={s.href}>了解这项服务 →</a>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section className="tinted">
+          <div className="section-shell block">
+            <SectionTitle
+              eyebrow="HOW TO CHOOSE"
+              title={"你在哪一步，<br />就从 <em>哪一步开始</em>。"}
+            >
+              没有固定套餐绑架，先把最重要的业务问题说清楚。
+            </SectionTitle>
+            <div className="choice-grid">
+              {services.map((s) => (
+                <a href={s.href} key={s.id}>
+                  <small>{s.number}</small>
+                  <p>{s.fit}</p>
+                  <strong>{s.title} →</strong>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="tinted" id="cases">
+          <div className="section-shell block">
+            <SectionTitle
+              eyebrow="SELECTED WORK"
+              title={"做过的项目，<br />经得起 <em>业务现场</em>。"}
+            >
+              不展示虚构数字，只讲真实问题、做法和已经发生的改变。
+            </SectionTitle>
+            <div className="case-preview-grid">
+              {cases.slice(0, 3).map((c) => (
+                <article key={c.slug}>
+                  <img src={c.image} alt="" />
+                  <div>
+                    <span>
+                      {c.industry} · {c.service}
+                    </span>
+                    <h3>{c.title}</h3>
+                    <p>
+                      <b>问题</b>
+                      {c.challenge}
+                    </p>
+                    <p>
+                      <b>交付</b>
+                      {c.action}
+                    </p>
+                    <p>
+                      <b>结果</b>
+                      {c.result}
+                    </p>
+                    <a href="#contact">咨询类似项目 →</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="section-shell tellyn-product" id="tellyn">
+          <div className="tellyn-copy">
+            <span className="eyebrow">
+              <i />
+              OUR PRODUCT
+            </span>
+            <h2>
+              <em>Tellyn</em>，把线下现场
+              <br />
+              变成可用的业务数据。
+            </h2>
+            <p>
+              Tellyn 用 AI
+              收集销售、产品和市场的一线反馈，整理为可以被管理者理解、被团队执行的业务洞察。
+            </p>
+            <div className="tellyn-list">
+              <span>收集真实反馈</span>
+              <span>AI 数据分析</span>
+              <span>辅助业务决策</span>
+            </div>
+            <a className="button dark" href="/tellyn">
+              了解 Tellyn
+            </a>
+          </div>
+          <img
+            className="product-shot"
+            src="/assets/tellyn-dashboard.png"
+            alt="Tellyn 产品界面"
+          />
+        </section>
+        <section
+          className="section-shell tellyn-product snapdesign-product"
+          id="snapdesign"
+        >
+          <div className="product-video">
+            <iframe
+              src="https://www.youtube.com/embed/WMDGoGlz3vI?autoplay=1&mute=1&loop=1&playlist=WMDGoGlz3vI&controls=1&playsinline=1&rel=0"
+              title="SnapDesign 快速生成设计海报演示"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <div className="tellyn-copy">
+            <span className="eyebrow">
+              <i />
+              DESIGN WITH AI
+            </span>
+            <h2>
+              <em>SnapDesign</em>，快速生成
+              <br />
+              各类设计海报。
+            </h2>
+            <p>
+              上传产品图片，描述想要的内容和风格，SnapDesign
+              就能快速生成可继续编辑的视觉设计，覆盖电商海报、活动海报等常见场景。
+            </p>
+            <div className="tellyn-list">
+              <span>电商海报</span>
+              <span>活动海报</span>
+              <span>产品视觉</span>
+              <span>快速生成</span>
+            </div>
+            <a
+              className="button dark"
+              href="https://www.snapdesign.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              打开 SnapDesign ↗
+            </a>
+          </div>
+        </section>
+        <section className="section-shell block faq-section">
+          <SectionTitle
+            eyebrow="FAQ"
+            title={"开始之前，<br /><em>你可能想问</em>。"}
+          />
+          <Faq items={homeFaqs} />
+        </section>
+        <Contact />
+        <Footer />
+      </>
+    </Localized>
+  );
+}
+
+function TellynPage() {
+  const industries = [
+    {
+      number: "01",
+      title: "医疗与医疗器械",
+      lead: "一次专业沟通，不能只留在销售的记忆里。",
+      scene:
+        "医生、科室与采购关心的问题不同，产品信息专业，决策链长，复盘往往依赖销售手写笔记。",
+      value: [
+        "还原产品问题与临床关注点",
+        "区分使用顾虑、采购条件与关键人",
+        "生成准确的会后摘要与内部协同事项",
+      ],
+    },
+    {
+      number: "02",
+      title: "汽车销售",
+      lead: "试驾结束后，真正的销售工作才刚开始。",
+      scene:
+        "预算、车型偏好、旧车置换、家庭意见和竞品比较散落在一段长对话里，跟进很容易只剩一句“再考虑”。",
+      value: [
+        "提取车型偏好、预算与购买时点",
+        "识别价格、配置与竞品异议",
+        "给销售清晰的下一次触达建议",
+      ],
+    },
+    {
+      number: "03",
+      title: "房产销售",
+      lead: "每次带看，都应该让下一套推荐更准确。",
+      scene:
+        "客户会在通勤、学区、户型、楼层、付款安排之间反复权衡，多次带看的信息难以被团队完整接续。",
+      value: [
+        "沉淀显性需求与未说出口的顾虑",
+        "整理决策人、时间线和资金安排",
+        "帮助经纪人准备更贴合的房源与话术",
+      ],
+    },
+  ];
+  const capabilities = [
+    [
+      "CAPTURE",
+      "收好每一次对话",
+      "在获得客户同意的前提下记录沟通，让关键信息不再散落在录音、聊天和个人笔记中。",
+    ],
+    [
+      "UNDERSTAND",
+      "理解客户真正关心什么",
+      "自动整理需求、问题、异议、购买信号和待确认事项，还原完整决策语境。",
+    ],
+    [
+      "ACT",
+      "把洞察变成下一步动作",
+      "生成跟进摘要、建议与协同任务，让销售知道接下来该联系谁、说什么、准备什么。",
+    ],
+    [
+      "LEARN",
+      "让一线经验成为团队资产",
+      "把高质量问法、常见异议与有效跟进持续沉淀，帮助新人更快进入状态。",
+    ],
+  ];
+  return (
+    <Localized>
+      <>
+      <Header />
+      <main className="tellyn-page">
+        <section className="tellyn-hero section-shell">
+          <div className="tellyn-hero-copy">
+            <div className="tellyn-lockup">
+              <img src="/assets/tellyn-mark.png" alt="Tellyn" />
+              <strong>Tellyn</strong>
+              <span>AI Sales Copilot</span>
+            </div>
+            <h1>
+              让每一次销售对话，
+              <br />
+              都推动客户走向<em>下一步</em>。
+            </h1>
+            <p>
+              面向医疗、汽车、房产等高客单价、长决策链的销售团队。Tellyn
+              记录客户怎么说，理解他们真正关心什么，并把关键洞察变成可执行的跟进建议。
+            </p>
+            <div className="hero-actions">
+              <a className="button dark" href="#contact">
+                预约产品演示
+              </a>
+              <a className="button outline" href="#industries">
+                看看适合哪些场景
+              </a>
+            </div>
+            <div className="tellyn-promise">
+              <span>客户对话</span>
+              <b>→</b>
+              <span>需求与异议</span>
+              <b>→</b>
+              <span>跟进动作</span>
+              <b>→</b>
+              <span>团队知识</span>
+            </div>
+          </div>
+          <div className="tellyn-hero-art">
+            <img
+              src="/assets/team-hero.png"
+              alt="销售团队围绕客户洞察协作的手绘插图"
+            />
+            <div>
+              <small>AI 整理完成</small>
+              <strong>3 个购买信号</strong>
+              <span>2 项待跟进事项</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="tellyn-problem">
+          <div className="section-shell">
+            <p>销售团队真正缺的，往往不是更多客户数据。</p>
+            <h2>
+              而是把散落在对话里的需求、异议和承诺，
+              <br />
+              变成每个人都能接住的<em>下一步行动</em>。
+            </h2>
+          </div>
+        </section>
+
+        <section className="section-shell tellyn-industries" id="industries">
+          <div className="tellyn-section-head">
+            <span>BUILT FOR HIGH-VALUE SALES</span>
+            <h2>
+              越复杂的成交，
+              <br />
+              越需要把客户<em>听明白</em>。
+            </h2>
+            <p>
+              同样是“客户再考虑”，背后可能是专业风险、家庭意见、预算安排或竞品比较。Tellyn
+              帮销售团队保留语境，而不只是记下几个关键词。
+            </p>
+          </div>
+          <div className="industry-grid">
+            {industries.map((item) => (
+              <article key={item.number}>
+                <small>{item.number}</small>
+                <h3>{item.title}</h3>
+                <strong>{item.lead}</strong>
+                <p>{item.scene}</p>
+                <ul>
+                  {item.value.map((x) => (
+                    <li key={x}>{x}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="tellyn-flow">
+          <div className="section-shell">
+            <div className="tellyn-section-head">
+              <span>FROM CONVERSATION TO ACTION</span>
+              <h2>
+                不是一份冷冰冰的转写，
+                <br />
+                而是一套<em>跟进闭环</em>。
+              </h2>
+            </div>
+            <div className="capability-list">
+              {capabilities.map(([tag, title, copy], i) => (
+                <article key={tag}>
+                  <span>0{i + 1}</span>
+                  <div>
+                    <small>{tag}</small>
+                    <h3>{title}</h3>
+                    <p>{copy}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section-shell tellyn-product-proof">
+          <div className="tellyn-section-head">
+            <span>ONE SHARED VIEW</span>
+            <h2>
+              管理者看见共性，
+              <br />
+              一线得到<em>具体帮助</em>。
+            </h2>
+            <p>
+              单次对话服务于跟进，跨门店与跨团队的对话则帮助管理者发现反复出现的客户问题、产品反馈与流程阻塞。
+            </p>
+          </div>
+          <div className="dashboard-frame">
+            <img
+              src="/assets/tellyn-dashboard.png"
+              alt="Tellyn 销售洞察与经营总览界面"
+            />
+          </div>
+          <div className="proof-grid tellyn-proof-grid">
+            <article>
+              <b>对销售</b>
+              <p>更少整理时间，更清楚的客户上下文和下一步。</p>
+            </article>
+            <article>
+              <b>对主管</b>
+              <p>看见团队共性问题，辅导不再只凭结果猜原因。</p>
+            </article>
+            <article>
+              <b>对业务</b>
+              <p>让客户之声持续进入产品、市场与经营决策。</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="section-shell tellyn-trust">
+          <div>
+            <span>START WITH ONE REAL SCENARIO</span>
+            <h2>
+              先从一支团队、
+              <br />
+              一种对话开始。
+            </h2>
+          </div>
+          <div>
+            <p>
+              我们会先了解你的销售流程、客户决策链和已有工具，再一起选择最值得验证的沟通场景。是否适合、怎么接入、哪些信息需要保护，都会在演示与诊断中说清楚。
+            </p>
+            <a className="button yellow" href="#contact">
+              带一个真实销售场景来聊
+            </a>
+          </div>
+        </section>
+      </main>
+      <Contact source="Tellyn 产品页" defaultService="AI 产品开发" />
+      <Footer />
+      </>
+    </Localized>
+  );
+}
+
+function FdePage() {
+  const stages = [
+    [
+      "01",
+      "业务访谈与机会评估",
+      "进入真实流程，梳理角色、数据、系统与业务目标。",
+    ],
+    ["02", "优先级与方案设计", "用业务价值、实现难度和风险选出首个试点。"],
+    ["03", "与业务骨干共创试点", "快速做出可运行版本，在真实任务中验证。"],
+    ["04", "上线陪跑与持续优化", "接入工作流，建立评测、反馈和迭代机制。"],
+  ];
+  return (
+    <Localized>
+      <>
+        <Header />
+        <PageHero
+          kicker="FDE · FORWARD DEPLOYED"
+          title={"不是交一份方案，<br />而是一起把 AI <em>做进业务</em>。"}
+          copy="FDE 同时理解业务和工程，进入真实流程，和你的团队共同完成诊断、试点、上线与迭代。"
+          tags={["诊断", "共创", "陪跑"]}
+        />
+        <section className="tinted">
+          <div className="section-shell block">
+            <SectionTitle
+              eyebrow="WHEN TO START"
+              title={"出现这些信号，<br />就值得启动 <em>FDE</em>。"}
+            />
+            <div className="signal-grid">
+              {[
+                "有大量重复流程，但一直靠人工衔接",
+                "尝试过 AI 工具，却无法进入生产环境",
+                "业务与技术团队之间缺少翻译者",
+                "希望沉淀企业自己的 AI 能力",
+              ].map((x, i) => (
+                <article key={x}>
+                  <span>0{i + 1}</span>
+                  <h3>{x}</h3>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="section-shell block">
+          <SectionTitle
+            eyebrow="HOW WE DELIVER"
+            title={"四个阶段，<br />每一步都有 <em>明确产出</em>。"}
+          />
+          <div className="stage-list">
+            {stages.map(([n, t, c]) => (
+              <article key={n}>
+                <span>{n}</span>
+                <div>
+                  <h3>{t}</h3>
+                  <p>{c}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section className="tinted">
+          <div className="section-shell block">
+            <SectionTitle
+              eyebrow="DELIVERABLES"
+              title={"项目结束时，<br />留下的不只是 <em>一个 Demo</em>。"}
+            />
+            <div className="deliverable-grid">
+              {[
+                "AI 场景地图",
+                "场景优先级评分",
+                "业务流程与产品方案",
+                "可运行的业务试点",
+                "知识与技能资产",
+                "评测指标和迭代路线图",
+              ].map((x) => (
+                <div key={x}>{x}</div>
+              ))}
+            </div>
+            <div className="commercial-note">
+              <b>典型合作方式</b>
+              <p>
+                先进行 1–2
+                周诊断，再根据试点范围制定交付周期。项目制报价，正式方案确认后提供起步范围，不在网站展示未经确认的数字。
+              </p>
+            </div>
+          </div>
+        </section>
+        <section className="section-shell block faq-section">
+          <SectionTitle
+            eyebrow="FDE FAQ"
+            title={"合作之前，<br /><em>把边界说清楚</em>。"}
+          />
+          <Faq items={fdeFaqs} />
+        </section>
+        <Contact source="FDE 落地页" defaultService="FDE 共创落地" />
+        <Footer />
+      </>
+    </Localized>
+  );
+}
+
+function TrainingPage() {
+  return (
+    <Localized>
+      <>
+        <Header />
+        <PageHero
+          kicker="ENTERPRISE AI TRAINING"
+          title={"不只学工具，<br />而是带走 <em>下一步行动</em>。"}
+          copy="让管理层形成判断，让业务骨干围绕真实流程完成场景共创，培训结束就能进入试点。"
+          tags={["管理共识", "业务实战", "场景产出"]}
+          action="预约企业内训沟通"
+        />
+        <section className="section-shell block">
+          <SectionTitle
+            eyebrow="TWO LEARNING PATHS"
+            title={"不同角色，<br />学习 <em>不同的事</em>。"}
+          />
+          <div className="path-grid">
+            <article>
+              <small>管理层路径</small>
+              <h3>建立判断，而不是追热点</h3>
+              <ul>
+                {[
+                  "AI 能力边界",
+                  "业务机会判断",
+                  "投入优先级",
+                  "组织协作与风险",
+                ].map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+            </article>
+            <article>
+              <small>业务骨干路径</small>
+              <h3>围绕真实工作，做出试点</h3>
+              <ul>
+                {[
+                  "工作流拆解",
+                  "提示与智能体实践",
+                  "真实场景共创",
+                  "试点方案设计",
+                ].map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </section>
+        <section className="tinted">
+          <div className="section-shell block">
+            <SectionTitle
+              eyebrow="PROGRAMS"
+              title={"三种方式，<br />匹配团队的 <em>真实阶段</em>。"}
+            />
+            <div className="program-grid">
+              {trainingPrograms.map((p, i) => (
+                <article key={p.title}>
+                  <span>0{i + 1}</span>
+                  <h3>{p.title}</h3>
+                  <p>{p.audience}</p>
+                  <dl>
+                    <div>
+                      <dt>形式</dt>
+                      <dd>{p.format}</dd>
+                    </div>
+                    <div>
+                      <dt>规模</dt>
+                      <dd>{p.size}</dd>
+                    </div>
+                  </dl>
+                  <ul>
+                    {p.modules.map((x) => (
+                      <li key={x}>{x}</li>
+                    ))}
+                  </ul>
+                  <strong>最终产出：{p.output}</strong>
+                </article>
+              ))}
+            </div>
+            <div className="commercial-note">
+              <b>关于周期与报价</b>
+              <p>
+                标准课程提供明确周期，定制训练营根据人数、行业场景和陪跑深度报价。正式金额确认后再公开，不以虚构低价吸引咨询。
+              </p>
+            </div>
+          </div>
+        </section>
+        <section className="section-shell block outcome">
+          <SectionTitle
+            eyebrow="WHAT REMAINS"
+            title={"课件会过期，<br />企业能力要 <em>留下来</em>。"}
+          />
+          <div>
+            <b>01</b>
+            <span>一份企业 AI 场景地图</span>
+            <b>02</b>
+            <span>若干可执行的试点方案</span>
+            <b>03</b>
+            <span>首批内部 AI 推动者</span>
+          </div>
+        </section>
+        <section className="section-shell block faq-section">
+          <SectionTitle
+            eyebrow="TRAINING FAQ"
+            title={"安排课程前，<br /><em>你可能想问</em>。"}
+          />
+          <Faq items={trainingFaqs} />
+        </section>
+        <Contact source="企业内训页" defaultService="企业 AI 内训" />
+        <Footer />
+      </>
+    </Localized>
+  );
+}
+
+export function App() {
+  const [language, setLanguage] = useLanguage();
+  usePageTranslation(language);
+  const path = window.location.pathname.replace(/\/$/, "") || "/";
+  useEffect(() => {
+    const titles = {
+      "/": "图灵驭界｜企业 AI 落地伙伴",
+      "/fde": "FDE 共创落地｜图灵驭界",
+      "/training": "企业 AI 内训｜图灵驭界",
+      "/tellyn": "Tellyn｜高价值销售团队的 AI Copilot",
+    };
+    document.title = translateValue(titles[path] || titles["/"], language);
+    if (window.location.hash) {
+      requestAnimationFrame(() =>
+        document.querySelector(window.location.hash)?.scrollIntoView(),
+      );
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [path, language]);
+  const page =
+    path === "/fde" ? (
+      <FdePage />
+    ) : path === "/training" ? (
+      <TrainingPage />
+    ) : path === "/tellyn" ? (
+      <TellynPage />
+    ) : (
+      <Home />
+    );
+  return (
+    <LocaleContext.Provider value={{ language, setLanguage }}>
+      {page}
+    </LocaleContext.Provider>
+  );
+}
