@@ -1604,7 +1604,7 @@ html[dir="rtl"] .commercial-note {
   margin-top: 54px;
 }
 .industry-grid article {
-  min-height: 505px;
+  min-height: 680px;
   padding: 31px 28px;
   border: 1px solid #d7d1c4;
   border-radius: 22px;
@@ -1625,7 +1625,19 @@ html[dir="rtl"] .commercial-note {
 }
 .industry-grid h3 {
   font-size: 25px;
-  margin-top: 25px;
+  margin-top: 18px;
+}
+.industry-illustration {
+  height: 190px;
+  margin: 4px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.industry-illustration img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .industry-grid > article > strong {
   font-size: 15px;
@@ -1770,6 +1782,9 @@ html[dir="rtl"] .commercial-note {
   .industry-grid article {
     min-height: 0;
   }
+  .industry-illustration {
+    height: 230px;
+  }
   .industry-grid ul {
     margin-top: 25px;
   }
@@ -1833,6 +1848,9 @@ html[dir="rtl"] .commercial-note {
   }
   .industry-grid article {
     padding: 26px 22px;
+  }
+  .industry-illustration {
+    height: 190px;
   }
   .capability-list {
     margin-top: 38px;

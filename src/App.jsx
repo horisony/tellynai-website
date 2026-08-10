@@ -577,6 +577,7 @@ function TellynPage() {
   const industries = [
     {
       number: "01",
+      image: "/assets/tellyn-healthcare.png",
       title: "医疗与医疗器械",
       lead: "一次专业沟通，不能只留在销售的记忆里。",
       scene:
@@ -589,6 +590,7 @@ function TellynPage() {
     },
     {
       number: "02",
+      image: "/assets/tellyn-real-estate.png",
       title: "汽车销售",
       lead: "试驾结束后，真正的销售工作才刚开始。",
       scene:
@@ -601,6 +603,7 @@ function TellynPage() {
     },
     {
       number: "03",
+      image: "/assets/tellyn-automotive.png",
       title: "房产销售",
       lead: "每次带看，都应该让下一套推荐更准确。",
       scene:
@@ -714,6 +717,9 @@ function TellynPage() {
             {industries.map((item) => (
               <article key={item.number}>
                 <small>{item.number}</small>
+                <div className="industry-illustration" aria-hidden="true">
+                  <img src={item.image} alt="" />
+                </div>
                 <h3>{item.title}</h3>
                 <strong>{item.lead}</strong>
                 <p>{item.scene}</p>
