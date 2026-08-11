@@ -33,3 +33,4 @@ When implementing from a selected generated mock, treat that image as the source
 - On English pages, inline emphasized phrases must retain a visible word space before the `<em>` text; adjacent translated text must never render as joined words.
 - The homepage places a clickable WeCom sales-analysis showcase immediately above the Tellyn product module, using `/assets/wecom-sales-assistant.webp` and linking to the dedicated experience page.
 - The TellWin product page should tell a detailed dual-audience story for enterprise buyers and investors: customer pain, product architecture, cross-department value, target industries, timing, business model, differentiation, growth flywheel, paid validation, and product proof. Keep planned or extrapolated metrics clearly separated from verified facts.
+- The public homepage product-section anchor is `#tellwin`; do not publish or link to the legacy `#tellyn` hash.

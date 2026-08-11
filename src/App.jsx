@@ -510,7 +510,7 @@ function Home() {
             <span className="wecom-sales-cta">体验企微销售分析 ↗</span>
           </a>
         </section>
-        <section className="section-shell tellyn-product" id="tellyn">
+        <section className="section-shell tellyn-product" id="tellwin">
           <div className="tellyn-copy">
             <span className="eyebrow">
               <i />
