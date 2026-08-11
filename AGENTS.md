@@ -8,7 +8,7 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable Design Decisions
 
-- All public-facing brand and product copy uses the spelling “TellWin”; the public product route is `/tellwin`, while legacy `/tellyn` requests redirect to it. Technical identifiers, asset filenames, and email domains may remain unchanged for compatibility.
+- All public-facing brand and product copy uses the spelling “TellWin”; the canonical public product experience is `/#tellwin`, while legacy `/tellwin` and `/tellyn` requests redirect to it. Technical identifiers, asset filenames, and email domains may remain unchanged for compatibility.
 - The homepage hero uses a black-and-white hand-drawn team illustration, displayed without a surrounding card or frame.
 - The company website positions Tellyn as an enterprise AI implementation partner, with a service journey of diagnosis, enterprise training, FDE co-delivery, and continuous iteration.
 - Service copy should remain restrained and evidence-led: do not publish unverified ROI, delivery duration, or pricing figures.
@@ -33,5 +33,5 @@ When implementing from a selected generated mock, treat that image as the source
 - On English pages, inline emphasized phrases must retain a visible word space before the `<em>` text; adjacent translated text must never render as joined words.
 - The homepage places a clickable WeCom sales-analysis showcase immediately above the Tellyn product module, using `/assets/wecom-sales-assistant.webp` and linking to the dedicated experience page.
 - The TellWin product page should tell a detailed dual-audience story for enterprise buyers and investors: customer pain, product architecture, cross-department value, target industries, timing, business model, differentiation, growth flywheel, paid validation, and product proof. Keep planned or extrapolated metrics clearly separated from verified facts.
-- The public homepage product-section anchor is `#tellwin`; do not publish or link to the legacy `#tellyn` hash.
+- The full TellWin product experience is hash-routed at `/#tellwin`, including prefixed internal anchors such as `#tellwin-industries` and `#tellwin-contact`. The homepage’s compact TellWin product module uses `#tellwin1` so the two destinations remain distinct.
 - On the TellWin product page, keep the large headings in the first two viewport-height sections restrained: the hero and dark problem-statement headings should be visibly smaller than the original oversized treatment on both desktop and mobile.

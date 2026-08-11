@@ -49,7 +49,7 @@ function Brand() {
   );
 }
 
-function Header() {
+function Header({ contactHref = "#contact" }) {
   const [open, setOpen] = useState(false);
   const { language, setLanguage } = useContext(LocaleContext);
   return (
@@ -69,8 +69,8 @@ function Header() {
           <a href="/fde">FDE 落地</a>
           <a href="/training">企业内训</a>
           <a href="/#cases">案例</a>
-          <a href="/tellwin">TellWin</a>
-          <a href="#contact">联系我们</a>
+          <a href="/#tellwin">TellWin</a>
+          <a href={contactHref}>联系我们</a>
         </nav>
         <label className="language-switch">
           <svg
@@ -157,7 +157,7 @@ function Faq({ items }) {
   );
 }
 
-function Contact({ source = "首页", defaultService = "" }) {
+function Contact({ source = "首页", defaultService = "", id = "contact" }) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -192,7 +192,7 @@ function Contact({ source = "首页", defaultService = "" }) {
   };
   return (
     <Localized>
-      <section className="section-shell contact" id="contact">
+      <section className="section-shell contact" id={id}>
         <div className="contact-copy">
           <span className="eyebrow inverse">
             <i />
@@ -510,7 +510,7 @@ function Home() {
             <span className="wecom-sales-cta">体验企微销售分析 ↗</span>
           </a>
         </section>
-        <section className="section-shell tellyn-product" id="tellwin">
+        <section className="section-shell tellyn-product" id="tellwin1">
           <div className="tellyn-copy">
             <span className="eyebrow">
               <i />
@@ -530,7 +530,7 @@ function Home() {
               <span>AI 数据分析</span>
               <span>辅助业务决策</span>
             </div>
-            <a className="button dark" href="/tellwin">
+            <a className="button dark" href="/#tellwin">
               了解 TellWin
             </a>
           </div>
@@ -673,7 +673,7 @@ function TellynPage() {
   return (
     <Localized>
       <>
-      <Header />
+      <Header contactHref="#tellwin-contact" />
       <main className="tellyn-page">
         <section className="tellyn-hero section-shell">
           <div className="tellyn-hero-copy">
@@ -692,10 +692,10 @@ function TellynPage() {
               录音硬件与行业化 SaaS，把散落在现场和私域里的客户对话，整理成企业可掌握、团队可执行、持续可积累的业务资产。
             </p>
             <div className="hero-actions">
-              <a className="button dark" href="#contact">
+              <a className="button dark" href="#tellwin-contact">
                 预约产品演示
               </a>
-              <a className="button outline" href="#industries">
+              <a className="button outline" href="#tellwin-industries">
                 了解产品如何工作
               </a>
             </div>
@@ -742,7 +742,7 @@ function TellynPage() {
           </div>
         </section>
 
-        <section className="section-shell tellyn-system" id="industries">
+        <section className="section-shell tellyn-system" id="tellwin-industries">
           <div className="tellyn-section-head">
             <span>HOW TELLWIN WORKS</span>
             <h2>销售正常接待客户，<br />TellWin 完成<em>剩下的工作</em>。</h2>
@@ -920,7 +920,7 @@ function TellynPage() {
         </section>
 
       </main>
-      <Contact source="TellWin 产品页" defaultService="AI 产品开发" />
+      <Contact source="TellWin 产品页" defaultService="AI 产品开发" id="tellwin-contact" />
       <Footer />
       </>
     </Localized>
@@ -1144,8 +1144,18 @@ function TrainingPage() {
 
 export function App() {
   const [language, setLanguage] = useLanguage();
+  const [hash, setHash] = useState(() => window.location.hash);
   usePageTranslation(language);
   const path = window.location.pathname.replace(/\/$/, "") || "/";
+  const isTellWinHash =
+    path === "/" && (hash === "#tellwin" || hash.startsWith("#tellwin-"));
+  const isTellWinPage =
+    path === "/tellwin" || path === "/tellyn" || isTellWinHash;
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, []);
   useEffect(() => {
     const titles = {
       "/": "图灵驭界｜企业 AI 落地伙伴",
@@ -1154,21 +1164,24 @@ export function App() {
       "/tellwin": "TellWin｜高价值销售团队的 AI Copilot",
       "/tellyn": "TellWin｜高价值销售团队的 AI Copilot",
     };
-    document.title = translateValue(titles[path] || titles["/"], language);
-    if (window.location.hash) {
+    const title = isTellWinPage ? titles["/tellwin"] : titles[path] || titles["/"];
+    document.title = translateValue(title, language);
+    if (hash === "#tellwin") {
+      window.scrollTo(0, 0);
+    } else if (hash) {
       requestAnimationFrame(() =>
-        document.querySelector(window.location.hash)?.scrollIntoView(),
+        document.querySelector(hash)?.scrollIntoView(),
       );
     } else {
       window.scrollTo(0, 0);
     }
-  }, [path, language]);
+  }, [path, hash, language, isTellWinPage]);
   const page =
     path === "/fde" ? (
       <FdePage />
     ) : path === "/training" ? (
       <TrainingPage />
-    ) : path === "/tellwin" || path === "/tellyn" ? (
+    ) : isTellWinPage ? (
       <TellynPage />
     ) : (
       <Home />
