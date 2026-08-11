@@ -487,6 +487,29 @@ function Home() {
             </div>
           </div>
         </section>
+        <section className="section-shell wecom-sales" id="wecom-sales">
+          <SectionTitle
+            eyebrow="WECOM SALES ANALYSIS"
+            title={"企微销售分析，<br />让客户对话变成 <em>可行动的洞察</em>。"}
+          >
+            汇总企微里的真实沟通，识别客户意向、销售表现和待跟进事项，帮助团队更及时地复盘与行动。
+          </SectionTitle>
+          <a
+            className="wecom-sales-link"
+            href="https://sales-words-hifiaudio.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="打开企微销售分析体验页面"
+          >
+            <img
+              className="wecom-sales-shot"
+              src="/assets/wecom-sales-assistant.webp"
+              alt="企微销售分析界面"
+              loading="lazy"
+            />
+            <span className="wecom-sales-cta">体验企微销售分析 ↗</span>
+          </a>
+        </section>
         <section className="section-shell tellyn-product" id="tellyn">
           <div className="tellyn-copy">
             <span className="eyebrow">
@@ -678,8 +701,8 @@ function TellynPage() {
           </div>
           <div className="tellyn-hero-art">
             <img
-              src="/assets/team-hero.png"
-              alt="销售团队围绕客户洞察协作的手绘插图"
+              src="/assets/tellyn-hero-sales.png"
+              alt="汽车销售向客户介绍车辆的手绘插图"
             />
             <div>
               <small>AI 整理完成</small>
@@ -792,24 +815,6 @@ function TellynPage() {
           </div>
         </section>
 
-        <section className="section-shell tellyn-trust">
-          <div>
-            <span>START WITH ONE REAL SCENARIO</span>
-            <h2>
-              先从一支团队、
-              <br />
-              一种对话开始。
-            </h2>
-          </div>
-          <div>
-            <p>
-              我们会先了解你的销售流程、客户决策链和已有工具，再一起选择最值得验证的沟通场景。是否适合、怎么接入、哪些信息需要保护，都会在演示与诊断中说清楚。
-            </p>
-            <a className="button yellow" href="#contact">
-              带一个真实销售场景来聊
-            </a>
-          </div>
-        </section>
       </main>
       <Contact source="Tellyn 产品页" defaultService="AI 产品开发" />
       <Footer />

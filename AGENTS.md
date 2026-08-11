@@ -26,3 +26,8 @@ When implementing from a selected generated mock, treat that image as the source
 - The entire language-switcher area—including the globe, current language, and chevron—is one clickable native-select target.
 - All public website copy and repeatable page content must be maintained through one structured content configuration with complete Chinese, English, and Arabic variants; adding, removing, or reordering a section must not require editing translation logic or relying on DOM text replacement.
 - Production builds must validate that every configured content key has Chinese, English, and Arabic values and fail clearly when a translation is missing.
+- On the Tellyn product page, the emphasized “下一步行动” text in the dark problem statement section must remain white for legibility.
+- Do not include the standalone “START WITH ONE REAL SCENARIO” CTA section on the Tellyn product page; transition directly from the proof section to the contact form.
+- The Tellyn product-page hero uses the transparent black-and-white car-sales illustration stored at `/assets/tellyn-hero-sales.png`.
+- On English pages, inline emphasized phrases must retain a visible word space before the `<em>` text; adjacent translated text must never render as joined words.
+- The homepage places a clickable WeCom sales-analysis showcase immediately above the Tellyn product module, using `/assets/wecom-sales-assistant.webp` and linking to the dedicated experience page.

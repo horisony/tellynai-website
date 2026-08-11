@@ -462,6 +462,55 @@ h2 em {
   font-weight: 800;
   margin-top: 20px;
 }
+.wecom-sales {
+  padding-top: 105px;
+  padding-bottom: 0;
+}
+.wecom-sales .section-heading {
+  max-width: 720px;
+}
+.wecom-sales-link {
+  display: block;
+  position: relative;
+  margin-top: 42px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 18px 40px rgba(34, 30, 23, 0.09);
+  transition:
+    transform 0.18s,
+    box-shadow 0.18s;
+}
+.wecom-sales-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 46px rgba(34, 30, 23, 0.13);
+}
+.wecom-sales-link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+.wecom-sales-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.wecom-sales-cta {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 9px 15px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  pointer-events: none;
+  transition: background 0.18s;
+}
+.wecom-sales-link:hover .wecom-sales-cta {
+  background: var(--coral);
+}
 .tellyn-product {
   padding-top: 105px;
   padding-bottom: 105px;
@@ -1133,6 +1182,18 @@ footer > a:last-child {
     padding-top: 70px;
     padding-bottom: 70px;
   }
+  .wecom-sales {
+    padding-top: 70px;
+  }
+  .wecom-sales-link {
+    margin-top: 32px;
+  }
+  .wecom-sales-cta {
+    right: 12px;
+    bottom: 12px;
+    padding: 7px 12px;
+    font-size: 11px;
+  }
   .proof-grid {
     grid-template-columns: 1fr;
   }
@@ -1571,7 +1632,7 @@ html[dir="rtl"] .commercial-note {
   line-height: 1.35;
 }
 .tellyn-problem h2 em {
-  color: var(--ink);
+  color: #fff;
 }
 .tellyn-industries {
   padding-top: 118px;
@@ -1580,8 +1641,7 @@ html[dir="rtl"] .commercial-note {
 .tellyn-section-head {
   max-width: 760px;
 }
-.tellyn-section-head > span,
-.tellyn-trust span {
+.tellyn-section-head > span {
   font:
     500 10px "DM Mono",
     monospace;
@@ -1742,29 +1802,6 @@ html[dir="rtl"] .commercial-note {
 .tellyn-proof-grid article {
   min-height: 150px;
 }
-.tellyn-trust {
-  margin-bottom: 70px;
-  padding-top: 72px;
-  padding-bottom: 72px;
-  border-radius: 26px;
-  background: var(--ink);
-  color: #fff;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-}
-.tellyn-trust h2 {
-  margin-top: 18px;
-}
-.tellyn-trust > div:last-child {
-  align-self: end;
-}
-.tellyn-trust p {
-  color: #bbb4a8;
-  font-size: 14px;
-  line-height: 1.85;
-  margin-bottom: 28px;
-}
 .tellyn-page + section.contact {
   margin-top: 0;
 }
@@ -1793,12 +1830,6 @@ html[dir="rtl"] .commercial-note {
   }
   .capability-list p {
     grid-column: 2;
-  }
-  .tellyn-trust {
-    grid-template-columns: 1fr;
-    gap: 35px;
-    margin-left: 18px;
-    margin-right: 18px;
   }
 }
 @media (max-width: 600px) {
@@ -1877,12 +1908,5 @@ html[dir="rtl"] .commercial-note {
   .dashboard-frame img {
     width: 150%;
     max-width: none;
-  }
-  .tellyn-trust {
-    padding: 48px 24px;
-    border-radius: 20px;
-  }
-  .tellyn-trust .button {
-    width: 100%;
   }
 }
