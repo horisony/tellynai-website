@@ -1,7 +1,10 @@
 {
+  "redirects": [
+    { "source": "/tellyn/:path*", "destination": "/tellwin/:path*", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/fde{/}?", "destination": "/index.html" },
     { "source": "/training{/}?", "destination": "/index.html" },
-    { "source": "/tellyn{/}?", "destination": "/index.html" }
+    { "source": "/tellwin{/}?", "destination": "/index.html" }
   ]
 }

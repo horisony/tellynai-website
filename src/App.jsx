@@ -69,7 +69,7 @@ function Header() {
           <a href="/fde">FDE 落地</a>
           <a href="/training">企业内训</a>
           <a href="/#cases">案例</a>
-          <a href="/tellyn">TellWin</a>
+          <a href="/tellwin">TellWin</a>
           <a href="#contact">联系我们</a>
         </nav>
         <label className="language-switch">
@@ -530,7 +530,7 @@ function Home() {
               <span>AI 数据分析</span>
               <span>辅助业务决策</span>
             </div>
-            <a className="button dark" href="/tellyn">
+            <a className="button dark" href="/tellwin">
               了解 TellWin
             </a>
           </div>
@@ -1151,6 +1151,7 @@ export function App() {
       "/": "图灵驭界｜企业 AI 落地伙伴",
       "/fde": "FDE 共创落地｜图灵驭界",
       "/training": "企业 AI 内训｜图灵驭界",
+      "/tellwin": "TellWin｜高价值销售团队的 AI Copilot",
       "/tellyn": "TellWin｜高价值销售团队的 AI Copilot",
     };
     document.title = translateValue(titles[path] || titles["/"], language);
@@ -1167,7 +1168,7 @@ export function App() {
       <FdePage />
     ) : path === "/training" ? (
       <TrainingPage />
-    ) : path === "/tellyn" ? (
+    ) : path === "/tellwin" || path === "/tellyn" ? (
       <TellynPage />
     ) : (
       <Home />

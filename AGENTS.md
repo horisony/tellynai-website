@@ -8,7 +8,7 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable Design Decisions
 
-- All public-facing brand and product copy uses the spelling “TellWin”; legacy `/tellyn` routes, technical identifiers, asset filenames, and email domains may remain unchanged for compatibility.
+- All public-facing brand and product copy uses the spelling “TellWin”; the public product route is `/tellwin`, while legacy `/tellyn` requests redirect to it. Technical identifiers, asset filenames, and email domains may remain unchanged for compatibility.
 - The homepage hero uses a black-and-white hand-drawn team illustration, displayed without a surrounding card or frame.
 - The company website positions Tellyn as an enterprise AI implementation partner, with a service journey of diagnosis, enterprise training, FDE co-delivery, and continuous iteration.
 - Service copy should remain restrained and evidence-led: do not publish unverified ROI, delivery duration, or pricing figures.
