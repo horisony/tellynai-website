@@ -8,6 +8,7 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable Design Decisions
 
+- All public-facing brand and product copy uses the spelling “TellWin”; legacy `/tellyn` routes, technical identifiers, asset filenames, and email domains may remain unchanged for compatibility.
 - The homepage hero uses a black-and-white hand-drawn team illustration, displayed without a surrounding card or frame.
 - The company website positions Tellyn as an enterprise AI implementation partner, with a service journey of diagnosis, enterprise training, FDE co-delivery, and continuous iteration.
 - Service copy should remain restrained and evidence-led: do not publish unverified ROI, delivery duration, or pricing figures.
@@ -31,3 +32,4 @@ When implementing from a selected generated mock, treat that image as the source
 - The Tellyn product-page hero uses the transparent black-and-white car-sales illustration stored at `/assets/tellyn-hero-sales.png`.
 - On English pages, inline emphasized phrases must retain a visible word space before the `<em>` text; adjacent translated text must never render as joined words.
 - The homepage places a clickable WeCom sales-analysis showcase immediately above the Tellyn product module, using `/assets/wecom-sales-assistant.webp` and linking to the dedicated experience page.
+- The TellWin product page should tell a detailed dual-audience story for enterprise buyers and investors: customer pain, product architecture, cross-department value, target industries, timing, business model, differentiation, growth flywheel, paid validation, and product proof. Keep planned or extrapolated metrics clearly separated from verified facts.

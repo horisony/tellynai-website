@@ -1634,6 +1634,102 @@ html[dir="rtl"] .commercial-note {
 .tellyn-problem h2 em {
   color: #fff;
 }
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 58px;
+}
+.problem-grid article {
+  min-height: 210px;
+  padding: 26px;
+  border-radius: 18px;
+  background: #272522;
+}
+.problem-grid small,
+.system-layers small,
+.business-grid small,
+.why-now-grid small,
+.department-grid small {
+  font: 500 10px "DM Mono", monospace;
+  color: #9d968b;
+}
+.problem-grid h3 {
+  margin-top: 34px;
+  font-size: 20px;
+}
+.problem-grid p {
+  margin-top: 12px;
+  color: #c9c3b9;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.tellyn-system,
+.tellyn-business,
+.tellyn-flywheel {
+  padding-top: 118px;
+  padding-bottom: 125px;
+}
+.system-layers,
+.business-grid,
+.department-grid,
+.why-now-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 54px;
+}
+.system-layers article,
+.business-grid article,
+.department-grid article,
+.why-now-grid article {
+  min-height: 285px;
+  padding: 30px 28px;
+  border: 1px solid #d7d1c4;
+  border-radius: 20px;
+  background: #fffdfa;
+}
+.system-layers h3,
+.business-grid h3,
+.department-grid h3,
+.why-now-grid h3 {
+  margin-top: 46px;
+  font-size: 23px;
+}
+.system-layers p,
+.business-grid p,
+.department-grid p,
+.why-now-grid p {
+  margin-top: 14px;
+  color: #6f695f;
+  font-size: 13px;
+  line-height: 1.85;
+}
+.system-output {
+  margin-top: 18px;
+  padding: 20px 24px;
+  border-radius: 15px;
+  background: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
+.system-output b { font-size: 18px; }
+.tellyn-departments {
+  padding: 120px 0;
+  background: #ede9df;
+}
+.department-grid article { background: #f8f5ed; }
+.department-grid strong {
+  display: block;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+}
 .tellyn-industries {
   padding-top: 118px;
   padding-bottom: 125px;
@@ -1737,9 +1833,137 @@ html[dir="rtl"] .commercial-note {
   font-size: 10px;
   font-weight: 900;
 }
+.industry-band {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-top: 18px;
+}
+.industry-band span {
+  min-height: 62px;
+  padding: 12px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: #e8e3d8;
+  color: #544f47;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
 .tellyn-flow {
   padding: 120px 0;
   background: #ede9df;
+}
+.why-now-grid article {
+  min-height: 250px;
+  background: #f7f3ea;
+}
+.tellyn-business { background: #f8f5ed; }
+.business-grid article:nth-child(2) {
+  background: var(--yellow);
+  border-color: #d8c12d;
+}
+.business-grid article:nth-child(2) small,
+.business-grid article:nth-child(2) p { color: #4f493c; }
+.tellyn-compare {
+  padding: 120px 0;
+  background: var(--ink);
+  color: #fff;
+}
+.tellyn-compare .tellyn-section-head > span { color: #9e978d; }
+.tellyn-compare .tellyn-section-head > p { color: #bcb5aa; }
+.comparison-table {
+  margin-top: 55px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #3a3834;
+}
+.comparison-row {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr 1fr 1.4fr;
+  background: #211f1d;
+}
+.comparison-row > * {
+  min-width: 0;
+  padding: 18px 16px;
+  border-right: 1px solid #3a3834;
+  border-bottom: 1px solid #3a3834;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.comparison-row > *:last-child { border-right: 0; color: #fff3a8; }
+.comparison-row:last-child > * { border-bottom: 0; }
+.comparison-head { background: #2c2926; }
+.comparison-head > * { color: #bbb4aa; font-size: 11px; }
+.flywheel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 54px;
+}
+.flywheel-grid article {
+  position: relative;
+  min-height: 235px;
+  padding: 28px 24px;
+  border-radius: 18px;
+  background: #e9e4d9;
+}
+.flywheel-grid article:not(:last-child):after {
+  content: "→";
+  position: absolute;
+  z-index: 2;
+  right: -18px;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+}
+.flywheel-grid span { font: 500 11px "DM Mono", monospace; color: #8a8379; }
+.flywheel-grid h3 { margin-top: 70px; font-size: 21px; }
+.flywheel-grid p { margin-top: 10px; color: #6d675e; font-size: 12px; line-height: 1.75; }
+.tellyn-validation {
+  padding: 118px 0;
+  background: var(--yellow);
+}
+.validation-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 70px;
+  align-items: center;
+}
+.validation-layout > div > span {
+  font: 500 10px "DM Mono", monospace;
+  letter-spacing: 1px;
+}
+.validation-layout h2 { margin-top: 20px; }
+.validation-layout p { margin-top: 22px; color: #544e43; line-height: 1.9; }
+.validation-layout a {
+  display: block;
+  padding: 10px;
+  border: 1px solid var(--ink);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 12px 12px 0 var(--ink);
+  transition: .18s;
+}
+.validation-layout a:hover { transform: translate(-3px, -3px); box-shadow: 15px 15px 0 var(--ink); }
+.validation-layout img { display: block; width: 100%; border-radius: 12px; }
+.validation-points { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; }
+.validation-points span { padding: 8px 11px; border: 1px solid rgba(23,22,20,.5); border-radius: 99px; font-size: 11px; font-weight: 700; }
+.proof-note {
+  margin-top: 18px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: #ebe6dc;
+  color: #6e685e;
+  font-size: 11px;
+  line-height: 1.7;
 }
 .capability-list {
   margin-top: 58px;
@@ -1816,6 +2040,15 @@ html[dir="rtl"] .commercial-note {
   .industry-grid {
     grid-template-columns: 1fr;
   }
+  .problem-grid,
+  .system-layers,
+  .department-grid,
+  .business-grid,
+  .why-now-grid,
+  .validation-layout { grid-template-columns: 1fr; }
+  .industry-band { grid-template-columns: repeat(3, 1fr); }
+  .flywheel-grid { grid-template-columns: repeat(2, 1fr); }
+  .flywheel-grid article:nth-child(2):after { display: none; }
   .industry-grid article {
     min-height: 0;
   }
@@ -1867,13 +2100,43 @@ html[dir="rtl"] .commercial-note {
     padding: 68px 0;
   }
   .tellyn-industries,
-  .tellyn-product-proof {
+  .tellyn-product-proof,
+  .tellyn-system,
+  .tellyn-business,
+  .tellyn-flywheel {
     padding-top: 78px;
     padding-bottom: 78px;
   }
-  .tellyn-flow {
+  .tellyn-flow,
+  .tellyn-departments,
+  .tellyn-compare,
+  .tellyn-validation {
     padding: 78px 0;
   }
+  .problem-grid,
+  .system-layers,
+  .department-grid,
+  .business-grid,
+  .why-now-grid { margin-top: 36px; }
+  .problem-grid article,
+  .system-layers article,
+  .department-grid article,
+  .business-grid article,
+  .why-now-grid article { min-height: 0; }
+  .system-output { overflow-x: auto; justify-content: flex-start; white-space: nowrap; }
+  .industry-band { grid-template-columns: repeat(2, 1fr); }
+  .comparison-table { overflow-x: auto; }
+  .comparison-row { min-width: 720px; }
+  .flywheel-grid { grid-template-columns: 1fr; }
+  .flywheel-grid article:not(:last-child):after {
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: -18px;
+    transform: translateX(-50%) rotate(90deg);
+  }
+  .flywheel-grid article:nth-child(2):after { display: grid; }
+  .validation-layout { gap: 40px; }
   .industry-grid {
     margin-top: 38px;
   }

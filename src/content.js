@@ -16,7 +16,7 @@ export const deliverySteps = [
 export const cases = [
   { slug: 'flydirector', industry: '跨境电商', service: '智能体开发', title: 'FlyDirector 脚本智能体', challenge: '短视频团队每天需要大量脚本，创意质量依赖少数资深人员。', action: '把钩子、卖点、口播和分镜的拆解方法装进脚本智能体。', result: '从零散灵感变成可复用的脚本生产流程，支持团队持续产出。', next: '继续基于实际拍摄反馈优化脚本评价标准。', image: 'https://i.ibb.co/RGttcyWt/positive-girl-bright-blouse-trousers-holds-like-from-intagram-pink-wall-shows-ok-sign-197531-14242.avif', publicNote: '经授权公开项目功能与交付过程。' },
   { slug: 'retail-sales', industry: '珠宝零售', service: 'FDE 共创', title: '企微销售话术智能体', challenge: '优秀销售经验难复制，新导购面对不同顾客时缺少及时支持。', action: '与业务团队梳理典型异议和推进动作，接入企业微信工作场景。', result: '把金牌销售经验变成一线人员随时可调用的下一句建议。', next: '结合一线使用反馈持续补充知识与场景。', image: 'https://i.ibb.co/xSzqm249/Frame-111.png', publicNote: '客户名称与敏感经营信息已匿名。' },
-  { slug: 'tellyn-insight', industry: '线下零售', service: 'AI 产品', title: 'Tellyn 现场反馈洞察', challenge: '线下销售、产品和市场反馈分散，管理层难以持续看见真实现场。', action: '采集一线交流，经 AI 整理销售话术、产品评价、竞品反馈与改进建议。', result: '形成从现场记录到业务洞察，再到部门行动的闭环。', next: '让更多业务角色参与反馈与复盘。', image: '/assets/tellyn-dashboard.png', publicNote: '自研产品，展示内容为当前可公开能力。' },
+  { slug: 'tellyn-insight', industry: '线下零售', service: 'AI 产品', title: 'TellWin 现场反馈洞察', challenge: '线下销售、产品和市场反馈分散，管理层难以持续看见真实现场。', action: '采集一线交流，经 AI 整理销售话术、产品评价、竞品反馈与改进建议。', result: '形成从现场记录到业务洞察，再到部门行动的闭环。', next: '让更多业务角色参与反馈与复盘。', image: '/assets/tellyn-dashboard.png', publicNote: '自研产品，展示内容为当前可公开能力。' },
   { slug: 'ai-workshop', industry: '企业服务', service: '企业内训', title: '管理层 AI 场景工作坊', challenge: '团队对 AI 的理解不一致，想法很多，但缺少投入顺序。', action: '围绕真实流程共创场景，使用价值、数据和可行性框架进行筛选。', result: '形成一份可讨论、可分工的 AI 场景地图和首批试点方向。', next: '以优先场景进入小范围验证。', image: '/assets/team-hero.png', publicNote: '示例采用匿名方式呈现，不披露客户内部信息。' },
 ]
 

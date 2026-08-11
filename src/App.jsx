@@ -69,7 +69,7 @@ function Header() {
           <a href="/fde">FDE 落地</a>
           <a href="/training">企业内训</a>
           <a href="/#cases">案例</a>
-          <a href="/tellyn">Tellyn</a>
+          <a href="/tellyn">TellWin</a>
           <a href="#contact">联系我们</a>
         </nav>
         <label className="language-switch">
@@ -517,12 +517,12 @@ function Home() {
               OUR PRODUCT
             </span>
             <h2>
-              <em>Tellyn</em>，把线下现场
+              <em>TellWin</em>，把线下现场
               <br />
               变成可用的业务数据。
             </h2>
             <p>
-              Tellyn 用 AI
+              TellWin 用 AI
               收集销售、产品和市场的一线反馈，整理为可以被管理者理解、被团队执行的业务洞察。
             </p>
             <div className="tellyn-list">
@@ -531,13 +531,13 @@ function Home() {
               <span>辅助业务决策</span>
             </div>
             <a className="button dark" href="/tellyn">
-              了解 Tellyn
+              了解 TellWin
             </a>
           </div>
           <img
             className="product-shot"
             src="/assets/tellyn-dashboard.png"
-            alt="Tellyn 产品界面"
+            alt="TellWin 产品界面"
           />
         </section>
         <section
@@ -597,6 +597,21 @@ function Home() {
 }
 
 function TellynPage() {
+  const problems = [
+    ["01", "客户资产跟着销售流动", "客户偏好、沟通历史与关键关系分散在个人设备和记忆里，人员变化时，企业很难完整接续。"],
+    ["02", "优秀经验无法规模复制", "成交方法藏在少数人的表达与判断里，新人缺少真实语料，主管也难以定位辅导重点。"],
+    ["03", "决策层听不到客户原声", "产品需求、竞品比较和真实异议经过层层转述，最终很难进入产品、营销与经营决策。"],
+  ];
+  const systemLayers = [
+    ["01 · CAPTURE", "无感采集", "线下面对面沟通由录音终端采集，线上私域可对接企业微信；在获得客户同意与明确数据边界的前提下，让关键对话持续进入企业。"],
+    ["02 · STRUCTURE", "对话变成客户档案", "AI 自动识别诉求、预算、决策人、异议、竞品提及与待办，并可写入飞书多维表格或现有 CRM，减少销售手工整理。"],
+    ["03 · ACT", "洞察进入业务动作", "围绕销售策略、客户需求、产品反馈、市场反馈与竞品动态形成角色看板和经营报告，让不同团队看到各自的下一步。"],
+  ];
+  const departmentValue = [
+    ["销售团队", "让每次沟通更接近成交", "对比成交与流失对话，沉淀有效问法和异议处理；为一线生成客户摘要、跟进建议和协同事项。"],
+    ["产品团队", "让产品定义回到客户原声", "持续聚类需求、抱怨与竞品反馈，保留原始语境，为功能、定价与优先级判断提供一手材料。"],
+    ["市场团队", "让传播语言贴近成交语言", "从真实客户表达中发现高频问题、内容主题和有效说法，让投放素材与门店成交语境保持一致。"],
+  ];
   const industries = [
     {
       number: "01",
@@ -638,27 +653,22 @@ function TellynPage() {
       ],
     },
   ];
-  const capabilities = [
-    [
-      "CAPTURE",
-      "收好每一次对话",
-      "在获得客户同意的前提下记录沟通，让关键信息不再散落在录音、聊天和个人笔记中。",
-    ],
-    [
-      "UNDERSTAND",
-      "理解客户真正关心什么",
-      "自动整理需求、问题、异议、购买信号和待确认事项，还原完整决策语境。",
-    ],
-    [
-      "ACT",
-      "把洞察变成下一步动作",
-      "生成跟进摘要、建议与协同任务，让销售知道接下来该联系谁、说什么、准备什么。",
-    ],
-    [
-      "LEARN",
-      "让一线经验成为团队资产",
-      "把高质量问法、常见异议与有效跟进持续沉淀，帮助新人更快进入状态。",
-    ],
+  const comparison = [
+    ["采集场景", "个人随手记录", "通用会议", "线下销售 + 线上私域"],
+    ["核心产出", "转写与摘要", "会议纪要", "结构化客户档案与行动建议"],
+    ["服务对象", "个人", "参会者", "销售、产品、市场与管理层"],
+    ["行业能力", "通用", "通用", "随真实交付持续沉淀行业模板"],
+  ];
+  const businessModel = [
+    ["硬件入口", "让面对面销售对话稳定进入系统，降低一线使用门槛。硬件承担采集入口，不作为唯一价值来源。"],
+    ["SaaS 订阅", "以客户档案、分析看板、团队知识与经营报告承接持续价值，是标准产品的长期收入基础。"],
+    ["FDE 共创", "围绕标杆客户做业务调研、系统接入和智能体定制，把真实交付经验沉淀为可复用的行业模板。"],
+  ];
+  const flywheel = [
+    ["01", "深度交付", "进入真实销售现场，找到高价值问题"],
+    ["02", "模板沉淀", "形成行业热词、分析框架与成功方法"],
+    ["03", "产品复制", "把经验注入 SaaS，降低下一次交付成本"],
+    ["04", "数据增强", "更多真实反馈让行业理解持续变准"],
   ];
   return (
     <Localized>
@@ -668,35 +678,35 @@ function TellynPage() {
         <section className="tellyn-hero section-shell">
           <div className="tellyn-hero-copy">
             <div className="tellyn-lockup">
-              <img src="/assets/tellyn-mark.png" alt="Tellyn" />
-              <strong>Tellyn</strong>
+              <img src="/assets/tellyn-mark.png" alt="TellWin" />
+              <strong>TellWin</strong>
               <span>AI Sales Copilot</span>
             </div>
             <h1>
-              让每一次销售对话，
+              把每一次销售对话，
               <br />
-              都推动客户走向<em>下一步</em>。
+              变成企业的<em>客户情报资产</em>。
             </h1>
             <p>
-              面向医疗、汽车、房产等高客单价、长决策链的销售团队。Tellyn
-              记录客户怎么说，理解他们真正关心什么，并把关键洞察变成可执行的跟进建议。
+              TellWin 面向汽车、珠宝、家装、医疗等高客单、长决策链行业，通过 AI
+              录音硬件与行业化 SaaS，把散落在现场和私域里的客户对话，整理成企业可掌握、团队可执行、持续可积累的业务资产。
             </p>
             <div className="hero-actions">
               <a className="button dark" href="#contact">
                 预约产品演示
               </a>
               <a className="button outline" href="#industries">
-                看看适合哪些场景
+                了解产品如何工作
               </a>
             </div>
             <div className="tellyn-promise">
               <span>客户对话</span>
               <b>→</b>
-              <span>需求与异议</span>
+              <span>结构化档案</span>
               <b>→</b>
-              <span>跟进动作</span>
+              <span>业务洞察</span>
               <b>→</b>
-              <span>团队知识</span>
+              <span>组织资产</span>
             </div>
           </div>
           <div className="tellyn-hero-art">
@@ -714,26 +724,74 @@ function TellynPage() {
 
         <section className="tellyn-problem">
           <div className="section-shell">
-            <p>销售团队真正缺的，往往不是更多客户数据。</p>
+            <p>高客单生意真正稀缺的，不是更多表格，而是完整的客户语境。</p>
             <h2>
-              而是把散落在对话里的需求、异议和承诺，
+              当对话结束，最有价值的需求、异议与承诺，
               <br />
-              变成每个人都能接住的<em>下一步行动</em>。
+              不该继续锁在销售的<em>脑子和手机里</em>。
             </h2>
+            <div className="problem-grid">
+              {problems.map(([number, title, copy]) => (
+                <article key={number}>
+                  <small>{number}</small>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="section-shell tellyn-industries" id="industries">
+        <section className="section-shell tellyn-system" id="industries">
+          <div className="tellyn-section-head">
+            <span>HOW TELLWIN WORKS</span>
+            <h2>销售正常接待客户，<br />TellWin 完成<em>剩下的工作</em>。</h2>
+            <p>两条数据管道汇入同一套分析引擎：线下对话通过录音终端采集，线上沟通通过企业微信等业务系统接入，再由 AI 完成结构化、分析与分发。</p>
+          </div>
+          <div className="system-layers">
+            {systemLayers.map(([tag, title, copy]) => (
+              <article key={tag}>
+                <small>{tag}</small>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+          <div className="system-output">
+            <span>面对面录音</span><b>＋</b><span>企业微信</span><b>→</b><span>客户档案</span><b>→</b><span>角色看板与经营报告</span>
+          </div>
+        </section>
+
+        <section className="tellyn-departments">
+          <div className="section-shell">
+            <div className="tellyn-section-head">
+              <span>ONE ASSET, THREE TEAMS</span>
+              <h2>一份客户情报资产，<br />同时服务<em>三个部门</em>。</h2>
+              <p>TellWin 不止缩短整理时间，更让客户原声从销售现场进入产品与市场决策。这是它与单纯录音、转写和会议纪要工具的本质区别。</p>
+            </div>
+            <div className="department-grid">
+              {departmentValue.map(([title, lead, copy], index) => (
+                <article key={title}>
+                  <small>0{index + 1}</small>
+                  <h3>{title}</h3>
+                  <strong>{lead}</strong>
+                  <p>{copy}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section-shell tellyn-industries">
           <div className="tellyn-section-head">
             <span>BUILT FOR HIGH-VALUE SALES</span>
             <h2>
-              越复杂的成交，
+              同一套客户情报引擎，
               <br />
-              越需要把客户<em>听明白</em>。
+              适配不同的<em>高价值销售现场</em>。
             </h2>
             <p>
-              同样是“客户再考虑”，背后可能是专业风险、家庭意见、预算安排或竞品比较。Tellyn
-              帮销售团队保留语境，而不只是记下几个关键词。
+              我们优先服务万元级客单、依赖深度沟通成交、客户资产容易随人员流动的行业。底层能力保持一致，按行业补充热词、档案字段和分析模板。
             </p>
           </div>
           <div className="industry-grid">
@@ -754,30 +812,75 @@ function TellynPage() {
               </article>
             ))}
           </div>
+          <div className="industry-band" aria-label="更多适用行业">
+            {['珠宝与奢侈品', '家装与定制家居', '保险与财富管理', '留学与移民服务', 'B2B 设备销售', '高端专业服务'].map((item) => <span key={item}>{item}</span>)}
+          </div>
         </section>
 
         <section className="tellyn-flow">
           <div className="section-shell">
             <div className="tellyn-section-head">
-              <span>FROM CONVERSATION TO ACTION</span>
+              <span>WHY NOW</span>
               <h2>
-                不是一份冷冰冰的转写，
+                现在，客户对话第一次能够
                 <br />
-                而是一套<em>跟进闭环</em>。
+                以可持续成本成为<em>结构化数据</em>。
               </h2>
+              <p>大模型显著降低了长对话理解与结构化的成本；线下录音硬件与 AI 订阅模式逐渐被市场接受；当流量红利减弱，企业也更需要经营已经发生的每一次客户接触。</p>
             </div>
-            <div className="capability-list">
-              {capabilities.map(([tag, title, copy], i) => (
-                <article key={tag}>
-                  <span>0{i + 1}</span>
-                  <div>
-                    <small>{tag}</small>
-                    <h3>{title}</h3>
-                    <p>{copy}</p>
-                  </div>
-                </article>
-              ))}
+            <div className="why-now-grid">
+              <article><small>TECHNOLOGY</small><h3>对话理解走向可用</h3><p>从逐字稿进一步提取角色、意图、异议和行动，复杂销售语境开始能够被稳定整理。</p></article>
+              <article><small>BEHAVIOR</small><h3>采集入口正在成熟</h3><p>硬件与私域系统共同覆盖面对面和线上沟通，让数据采集不再依赖销售额外填写。</p></article>
+              <article><small>BUSINESS</small><h3>企业转向经营存量</h3><p>获客越来越难，企业必须提升已有线索的转化质量，并保护长期积累的客户关系。</p></article>
             </div>
+          </div>
+        </section>
+
+        <section className="section-shell tellyn-business">
+          <div className="tellyn-section-head">
+            <span>BUSINESS MODEL</span>
+            <h2>硬件打开现场，SaaS 承接价值，<br />FDE 让产品<em>持续进化</em>。</h2>
+            <p>商业模式围绕同一份客户情报资产展开：既能从单团队切入，也能随门店、角色与系统接入逐步扩展。</p>
+          </div>
+          <div className="business-grid">
+            {businessModel.map(([title, copy], index) => <article key={title}><small>0{index + 1}</small><h3>{title}</h3><p>{copy}</p></article>)}
+          </div>
+        </section>
+
+        <section className="tellyn-compare">
+          <div className="section-shell compare-layout">
+            <div className="tellyn-section-head">
+              <span>POSITIONING</span>
+              <h2>不是更聪明的录音笔，<br />而是企业的<em>客户情报基础设施</em>。</h2>
+              <p>通用工具解决“记下来”，TellWin 解决“归企业、能分析、可行动、会积累”。行业模板与客户成功方法来自持续交付，并反过来提高标准产品的适配度。</p>
+            </div>
+            <div className="comparison-table" role="table" aria-label="TellWin 与通用工具对比">
+              <div className="comparison-row comparison-head" role="row"><b>能力维度</b><b>个人效率工具</b><b>通用会议 AI</b><b>TellWin</b></div>
+              {comparison.map((row) => <div className="comparison-row" role="row" key={row[0]}>{row.map((cell, index) => index === 0 ? <b key={`${row[0]}-${index}`}>{cell}</b> : <span key={`${row[0]}-${index}`}>{cell}</span>)}</div>)}
+            </div>
+          </div>
+        </section>
+
+        <section className="section-shell tellyn-flywheel">
+          <div className="tellyn-section-head">
+            <span>COMPOUNDING ADVANTAGE</span>
+            <h2>每一次真实交付，<br />都在加深<em>下一次复制的壁垒</em>。</h2>
+            <p>TellWin 用 FDE 保持对行业现场的理解，再把行业知识沉淀到模板、产品和数据中，形成从服务到软件的增强循环。</p>
+          </div>
+          <div className="flywheel-grid">
+            {flywheel.map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}
+          </div>
+        </section>
+
+        <section className="tellyn-validation">
+          <div className="section-shell validation-layout">
+            <div>
+              <span>PAID VALIDATION</span>
+              <h2>已经有人为真实的<br /><em>销售对话分析</em>买单。</h2>
+              <p>在上海高端珠宝定制场景中，我们围绕企业微信真实成交记录构建销售知识库与话术分析能力，为一线提供更一致的回复建议。该项目已完成付费交付，验证了客户对“把对话变成团队能力”的明确需求。</p>
+              <div className="validation-points"><span>高客单定制场景</span><span>企业微信真实语料</span><span>已完成付费交付</span></div>
+            </div>
+            <a href="/#wecom-showcase" aria-label="查看企微销售分析案例"><img src="/assets/wecom-sales-assistant.webp" alt="企微销售分析界面" /></a>
           </div>
         </section>
 
@@ -796,7 +899,7 @@ function TellynPage() {
           <div className="dashboard-frame">
             <img
               src="/assets/tellyn-dashboard.png"
-              alt="Tellyn 销售洞察与经营总览界面"
+              alt="TellWin 销售洞察与经营总览界面"
             />
           </div>
           <div className="proof-grid tellyn-proof-grid">
@@ -809,14 +912,15 @@ function TellynPage() {
               <p>看见团队共性问题，辅导不再只凭结果猜原因。</p>
             </article>
             <article>
-              <b>对业务</b>
+              <b>对产品与市场</b>
               <p>让客户之声持续进入产品、市场与经营决策。</p>
             </article>
           </div>
+          <div className="proof-note">当前页面展示已公开能力与交付方向。具体效果取决于行业、数据基础与团队使用方式，将在试点中逐项验证。</div>
         </section>
 
       </main>
-      <Contact source="Tellyn 产品页" defaultService="AI 产品开发" />
+      <Contact source="TellWin 产品页" defaultService="AI 产品开发" />
       <Footer />
       </>
     </Localized>
@@ -1047,7 +1151,7 @@ export function App() {
       "/": "图灵驭界｜企业 AI 落地伙伴",
       "/fde": "FDE 共创落地｜图灵驭界",
       "/training": "企业 AI 内训｜图灵驭界",
-      "/tellyn": "Tellyn｜高价值销售团队的 AI Copilot",
+      "/tellyn": "TellWin｜高价值销售团队的 AI Copilot",
     };
     document.title = translateValue(titles[path] || titles["/"], language);
     if (window.location.hash) {
