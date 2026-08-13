@@ -70,6 +70,7 @@ function Header({ contactHref = "#contact" }) {
           <a href="/training">企业内训</a>
           <a href="/#cases">案例</a>
           <a href="/#tellwin">TellWin</a>
+          <a href="/#qixiao">启晓</a>
           <a href={contactHref}>联系我们</a>
         </nav>
         <label className="language-switch">
@@ -582,6 +583,24 @@ function Home() {
             </a>
           </div>
         </section>
+        <section className="qixiao-home" id="qixiao1">
+          <div className="section-shell tellyn-product qixiao-product">
+            <img
+              className="product-shot"
+              src="/assets/qixiao-dashboard.png"
+              alt="启晓 AI 公关工作系统总览"
+            />
+            <div className="tellyn-copy">
+              <span className="eyebrow"><i />AI PR WORK SYSTEM</span>
+              <h2><em>启晓</em>，把全网舆情<br />变成可执行的<em>公关判断</em>。</h2>
+              <p>启晓以企业专属模型、知识库与智能体重构舆情工作流，从全网发现、事件研判到行动建议和复盘沉淀，帮助公关团队更早看见真正的风险。</p>
+              <div className="tellyn-list">
+                <span>语义理解</span><span>事件研判</span><span>行动建议</span><span>持续学习</span>
+              </div>
+              <a className="button dark" href="/#qixiao">了解启晓</a>
+            </div>
+          </div>
+        </section>
         <section className="section-shell block faq-section">
           <SectionTitle
             eyebrow="FAQ"
@@ -590,6 +609,102 @@ function Home() {
           <Faq items={homeFaqs} />
         </section>
         <Contact />
+        <Footer />
+      </>
+    </Localized>
+  );
+}
+
+function QixiaoPage() {
+  const problems = [
+    ["01", "关键词命中，不等于真实风险", "玩梗、反讽、二创与搬运会制造大量噪声。企业需要理解讨论对象、语气、意图和语境，而不只是看词有没有出现。"],
+    ["02", "声量高低，不等于舆情伤害", "一条高传播切片可能比大量低互动链接更值得优先处理，需要结合账号权重、传播速度与跨平台扩散判断影响。"],
+    ["03", "静态报告，赶不上风险变化", "新梗、新账号和新议题不断出现，固定规则与项目制排期很难持续跟上公关团队的判断节奏。"],
+  ];
+  const workflow = [
+    ["01 · DISCOVER", "全网发现", "汇聚公开媒体、社交平台与长尾社区信息，清洗多源内容，并把零散线索聚合成可持续跟踪的话题与事件。"],
+    ["02 · UNDERSTAND", "语义理解", "结合品牌语境判断相关性、情绪、意图、反讽与二次传播，过滤无效命中，把注意力留给真正的品牌风险。"],
+    ["03 · DECIDE", "事件研判", "综合原文证据、账号影响、传播链路与历史参考，给出风险等级、判断依据和置信度，关键结论由负责人复核。"],
+    ["04 · ACT", "行动建议", "围绕事件生成处置策略、回应口径与执行清单，并通过飞书群、微信群等现有协作渠道推送给相关团队。"],
+    ["05 · LEARN", "复盘沉淀", "团队的确认、排除、改标签与处置反馈回到专属知识库，让同类事件的下一次判断更快、更贴近品牌标准。"],
+  ];
+  const capabilities = [
+    ["01", "话题监控", "把长期议题的持续观察与突发事件的主动侦察放在同一视图，按影响力而不是简单声量排序。"],
+    ["02", "事件情报", "将零散帖子合并为事件，识别首发源头、关键节点，以及原始内容、二创切片与搬运扩散之间的关系。"],
+    ["03", "水军雷达", "通过企业专属风险标签辅助识别可疑账号与营销号，持续追踪其活跃话题和平台。"],
+    ["04", "多平台热搜", "聚合不同平台的相关热点与榜单，帮助团队及时看见议题是否发生跨平台迁移。"],
+    ["05", "分析报告", "以结论先行的结构化报告呈现趋势、风险判断和行动建议，并可按企业模板与品牌视觉配置。"],
+    ["06", "舆情专家 Agent", "通过对话导入内容、调整关注重点和发起追踪任务；智能体持续汇总、优先推送并形成每日总结。"],
+  ];
+  const fit = [
+    ["内容与社区平台", "同时面对用户生态、内容合规、商业化争议与跨圈层传播，需要理解平台黑话、二创和社区语境。"],
+    ["上市公司与硬科技", "需要共同观察媒体、投资者社区、监管口径和行业观点，并保留完整证据支持审慎判断。"],
+    ["高关注消费品牌", "产品安全、服务体验与社交内容容易相互放大，需要尽早识别隐性风险与跨平台扩散。"],
+  ];
+  return (
+    <Localized>
+      <>
+        <Header contactHref="#qixiao-contact" />
+        <main className="tellyn-page qixiao-page">
+          <section className="tellyn-hero qixiao-hero section-shell">
+            <div className="tellyn-hero-copy">
+              <div className="tellyn-lockup"><strong>启晓</strong><span>AI PR Work System</span></div>
+              <h1>不只看见舆情，<br />更早形成<em>可执行的判断</em>。</h1>
+              <p>启晓是面向企业与品牌定制的 AI 公关工作系统。它以专属模型、企业知识库和 Agent 工作流，连接发现、研判、响应与复盘，让公关团队从信息汇总走向决策协同。</p>
+              <div className="hero-actions">
+                <a className="button dark" href="#qixiao-contact">预约产品演示</a>
+                <a className="button outline" href="#qixiao-workflow">了解工作闭环</a>
+              </div>
+              <div className="tellyn-promise"><span>发现</span><b>→</b><span>理解</span><b>→</b><span>研判</span><b>→</b><span>行动</span><b>→</b><span>复盘</span></div>
+            </div>
+            <div className="qixiao-hero-screen"><img src="/assets/qixiao-dashboard.png" alt="启晓 AI 公关工作系统总览" /></div>
+          </section>
+
+          <section className="tellyn-problem">
+            <div className="section-shell">
+              <p>传统舆情工具的问题，不在于能不能监测，而在于能不能快速理解、判断和迭代。</p>
+              <h2>当风险进入语境、圈层与传播链路，<br />只看关键词和声量，已经<em>不够了</em>。</h2>
+              <div className="problem-grid">{problems.map(([n,t,c]) => <article key={n}><small>{n}</small><h3>{t}</h3><p>{c}</p></article>)}</div>
+            </div>
+          </section>
+
+          <section className="section-shell qixiao-workflow" id="qixiao-workflow">
+            <div className="tellyn-section-head"><span>THE PR DECISION LOOP</span><h2>从“看见信息”，<br />走到<em>处理与复盘</em>。</h2><p>AI 负责发现、聚合、研判与报告起草，团队聚焦事实确认、策略选择与最终对外口径。高风险结论始终保留原文证据、判断依据和人工复核。</p></div>
+            <div className="qixiao-step-grid">{workflow.map(([tag,title,copy]) => <article key={tag}><small>{tag}</small><h3>{title}</h3><p>{copy}</p></article>)}</div>
+          </section>
+
+          <section className="qixiao-proof-band">
+            <div className="section-shell qixiao-proof-layout">
+              <div className="tellyn-section-head"><span>ONE SHARED CONTROL CENTER</span><h2>零散帖子变成事件，<br />事件进入<em>同一个工作台</em>。</h2><p>总览、话题、事件、可疑账号、多平台热搜与分析报告共享上下文，公关团队不必在不同工具间重复拼接判断。</p></div>
+              <div className="dashboard-frame"><img src="/assets/qixiao-dashboard.png" alt="启晓舆情监测与智能管控中心" /></div>
+            </div>
+          </section>
+
+          <section className="section-shell qixiao-capabilities">
+            <div className="tellyn-section-head"><span>CORE CAPABILITIES</span><h2>不是一张大屏，<br />而是一套会<em>完成任务</em>的系统。</h2></div>
+            <div className="capability-list">{capabilities.map(([n,t,c]) => <article key={n}><span>{n}</span><div><h3>{t}</h3><p>{c}</p></div></article>)}</div>
+          </section>
+
+          <section className="qixiao-agent-section">
+            <div className="section-shell validation-layout">
+              <div><span>AGENT + KNOWLEDGE</span><h2>每一次人工判断，<br />都成为品牌自己的<em>公关资产</em>。</h2><p>启晓将历史事件、品牌口径、合规红线与团队反馈沉淀到企业专属知识库。系统不是固定交付后停止变化，而是在明确的人机边界内持续吸收判断力。</p><div className="validation-points"><span>品牌专属模型</span><span>客户知识库</span><span>Agent 工作流</span><span>持续反馈</span></div></div>
+              <img src="/assets/qixiao-agent-workflow.png" alt="启晓舆情专家 Agent 工作流程" />
+            </div>
+          </section>
+
+          <section className="section-shell qixiao-fit">
+            <div className="tellyn-section-head"><span>BUILT FOR COMPLEX REPUTATION RISK</span><h2>适合风险语境复杂、<br />需要跨团队协同的<em>企业与品牌</em>。</h2></div>
+            <div className="department-grid">{fit.map(([t,lead],i) => <article key={t}><small>0{i+1}</small><h3>{t}</h3><p>{lead}</p></article>)}</div>
+          </section>
+
+          <section className="qixiao-report-section">
+            <div className="section-shell validation-layout">
+              <div><span>DECISION-READY REPORTING</span><h2>不止告诉你发生了什么，<br />更把<em>下一步依据</em>说清楚。</h2><p>报告以多维分析、传播演化和风险评估为基础，结构化呈现证据、重点与建议。模板和视觉可按企业需要配置，便于管理层快速阅读与团队协同。</p></div>
+              <img src="/assets/qixiao-report.png" alt="启晓舆情分析报告示例" />
+            </div>
+          </section>
+        </main>
+        <Contact source="启晓产品页" defaultService="AI 产品开发" id="qixiao-contact" />
         <Footer />
       </>
     </Localized>
@@ -1151,6 +1266,8 @@ export function App() {
     path === "/" && (hash === "#tellwin" || hash.startsWith("#tellwin-"));
   const isTellWinPage =
     path === "/tellwin" || path === "/tellyn" || isTellWinHash;
+  const isQixiaoHash = path === "/" && (hash === "#qixiao" || hash.startsWith("#qixiao-"));
+  const isQixiaoPage = path === "/qixiao" || isQixiaoHash;
   useEffect(() => {
     const syncHash = () => setHash(window.location.hash);
     window.addEventListener("hashchange", syncHash);
@@ -1163,10 +1280,11 @@ export function App() {
       "/training": "企业 AI 内训｜图灵驭界",
       "/tellwin": "TellWin｜高价值销售团队的 AI Copilot",
       "/tellyn": "TellWin｜高价值销售团队的 AI Copilot",
+      "/qixiao": "启晓｜AI 公关舆情工作系统",
     };
-    const title = isTellWinPage ? titles["/tellwin"] : titles[path] || titles["/"];
+    const title = isTellWinPage ? titles["/tellwin"] : isQixiaoPage ? titles["/qixiao"] : titles[path] || titles["/"];
     document.title = translateValue(title, language);
-    if (hash === "#tellwin") {
+    if (hash === "#tellwin" || hash === "#qixiao") {
       window.scrollTo(0, 0);
     } else if (hash) {
       requestAnimationFrame(() =>
@@ -1175,7 +1293,7 @@ export function App() {
     } else {
       window.scrollTo(0, 0);
     }
-  }, [path, hash, language, isTellWinPage]);
+  }, [path, hash, language, isTellWinPage, isQixiaoPage]);
   const page =
     path === "/fde" ? (
       <FdePage />
@@ -1183,6 +1301,8 @@ export function App() {
       <TrainingPage />
     ) : isTellWinPage ? (
       <TellynPage />
+    ) : isQixiaoPage ? (
+      <QixiaoPage />
     ) : (
       <Home />
     );

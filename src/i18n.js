@@ -1,6 +1,7 @@
 import { cloneElement, isValidElement, useEffect, useLayoutEffect, useState } from 'react'
 import generated from './translations.generated.json' with { type: 'json' }
 import { launchCopy } from './launch-content.js'
+import { qixiaoCopy } from './qixiao-content.js'
 
 export const languageOptions = [
   ['zh', '中', '中文'], ['en', 'EN', 'English'], ['ar', 'ع', 'العربية'],
@@ -43,7 +44,7 @@ const legacyCopy = Object.fromEntries(
     ar: dictionaries.ar[source],
   })]),
 )
-export const copyConfig = Object.freeze({ ...legacyCopy, ...launchCopy })
+export const copyConfig = Object.freeze({ ...legacyCopy, ...launchCopy, ...qixiaoCopy })
 
 function translateText(source, language) {
   if (typeof source !== 'string' || language === 'zh') return source

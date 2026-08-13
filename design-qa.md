@@ -1,46 +1,41 @@
-# Tellyn Product Page — Design QA
+# Qixiao Product Page Design QA
 
-- Source visual truth: `/Users/baoling/Desktop/Tellyn1-2.png` (primary content and art-direction reference), supported by `/Users/baoling/Desktop/Tellyn1-1.png`.
-- Implementation: `http://localhost:4173/tellyn`
-- Desktop evidence: `/Users/baoling/Documents/tellyn-website/tellyn-implementation-desktop.png`
-- Mobile evidence: `/Users/baoling/Documents/tellyn-website/tellyn-implementation-mobile.png`
-- Desktop viewport / capture: 1440 × 1000 CSS px, device scale factor 1, 1440 × 1000 px screenshot.
-- Mobile viewport / capture: 390 × 844 CSS px, device scale factor 1, 390 × 844 px screenshot.
-- Source dimensions: 1055 × 1491 px. The source is a poster-style content reference rather than a same-viewport webpage comp, so comparison is normalized by visual language, hierarchy, section anatomy, and content rather than pixel position.
-- State: English, default page state. Chinese and Arabic content were also checked; Arabic rendered RTL without horizontal overflow.
+- Source visual truth: existing TellWin product experience at `/#tellwin`, grounded by the source product material `/Users/baoling/图灵驭界/宇舟启晓-启晓公关舆情平台.pdf`
+- Implementation: `http://localhost:4173/#qixiao`
+- Comparison image: `/Users/baoling/Documents/tellyn-website/qixiao-design-comparison.png`
+- Implementation screenshots: `/Users/baoling/Documents/tellyn-website/qixiao-implementation-desktop.png`, `/Users/baoling/Documents/tellyn-website/qixiao-implementation-mobile.png`
+- Desktop viewport / pixels: 1280 × 720 CSS px, 1280 × 720 image px, device scale 1
+- Mobile viewport / pixels: 390 × 844 CSS px, 390 × 844 image px, device scale 1
+- States checked: desktop Arabic RTL hero, mobile English hero, mobile Arabic RTL DOM, homepage product entry, Qixiao route and internal anchors
 
-## Findings
+**Findings**
 
-No actionable P0, P1, or P2 differences remain.
+- No actionable P0/P1/P2 differences remain. The implementation reuses TellWin’s restrained product-page hierarchy, display typography, section rhythm, rounded controls, dark problem statement, warm paper surfaces, and yellow emphasis, while retaining real Qixiao platform imagery from the supplied PDF.
+- Fonts and typography: same Space Grotesk / Noto Sans SC / DM Mono hierarchy as the source product system; desktop and mobile headings wrap without clipping. Arabic uses the site’s existing fallback and RTL direction correctly.
+- Spacing and layout rhythm: desktop two-column hero matches the established product anatomy; mobile collapses to one column at 390 px with no document overflow. Section padding and card density remain consistent with TellWin.
+- Colors and tokens: core ink, warm paper, yellow emphasis, borders, and radii align with the original website. Blue is confined to authentic UI content inside the supplied screenshots and is not used as a page-level theme.
+- Image quality and asset fidelity: three raster assets were rendered directly from the supplied product PDF. They remain sharp at their displayed sizes and are contained without cropping or stretching.
+- Copy and content: Chinese, English, and Arabic variants are complete and production validation passes. Customer identities, third-party contacts, and unverified projections from the sales deck are intentionally excluded.
 
-- Fonts and typography: heavy grotesk display hierarchy, compact supporting copy, yellow underline emphasis, and clear card headings preserve the source's character. The responsive hero wraps cleanly at 390 px.
-- Spacing and layout rhythm: desktop uses a two-column hero and three-column industry story; mobile collapses to one column with no horizontal page overflow. Section spacing replaces divider lines, consistent with the site's durable design rules.
-- Colors and visual tokens: warm off-white, black, restrained gray, and yellow emphasis match the reference. No grid-pattern backgrounds or major-section divider rules were introduced.
-- Image quality and asset fidelity: the supplied Tellyn mark, existing hand-drawn team illustration, and real Tellyn dashboard image are sharp and correctly scaled. No placeholder illustrations or custom CSS/SVG drawings were used.
-- Copy and content: healthcare, automotive, and real-estate stories each explain the sales situation, why information gets lost, and the concrete follow-up value. Claims remain evidence-led and avoid unverified ROI, pricing, or delivery-time figures.
+**Focused Comparison**
 
-## Interaction and responsive evidence
+- Above-the-fold hero was compared side by side because it carries the key fidelity surfaces: lockup, typography, CTA anatomy, process strip, image scale, and two-column balance.
+- Product-dashboard and report details use the source PDF images directly, so no separate approximation comparison was required.
 
-- Homepage “Explore/Learn about Tellyn” entry navigates to `/tellyn`.
-- “Book a product demo” scrolls to `#contact`.
-- Language selector works for Chinese, English, and Arabic; Arabic switches the document to RTL.
-- Desktop and 390 px mobile layouts have no horizontal document overflow.
-- Browser console checked after the final reload: no new errors.
+**Primary Interactions Tested**
 
-## Comparison history
+- `/#qixiao` route opens the Qixiao product page and resets to the top.
+- Header Qixiao link and homepage “了解启晓” link target the product route.
+- Product demo and workflow buttons target the contact and workflow anchors.
+- Language selector switches the rendered page to Arabic and applies `dir="rtl"`.
+- Browser console checked: no errors or warnings.
 
-1. Initial mobile pass found the hero grid's intrinsic width could clip long English display copy. Added `min-width: 0`, constrained the promise strip, and enabled safe display-text wrapping.
-2. Post-fix evidence at 390 × 844 shows the full heading inside a 354 px content width with document `scrollWidth === innerWidth`.
-3. The localization tree initially emitted React key warnings. Localized array children now receive stable fallback keys; the final browser pass produced no new console errors.
+**Comparison History**
 
-## Focused region comparison
+- Initial desktop and mobile captures found no layout mismatch. Following stakeholder feedback, the page-level blue-gray palette was replaced with the established warm yellow system; browser inspection confirmed warm paper surfaces, yellow hero shadow and report band, and a black Agent section with no console errors.
 
-The hero and industry-card regions were compared because they carry the primary fidelity burden: logo lockup, bold headline, yellow emphasis, black-and-white illustration, rounded cards, and healthcare / automotive / real-estate content. The implementation intentionally extends the poster reference into a complete conversion page with workflow, dashboard, trust, and contact sections.
+**Follow-up Polish**
 
-## Follow-up polish
-
-- P3: if dedicated industry illustrations become available, each industry card could gain its own black-and-white spot illustration, as in the source poster. The current cards prioritize specific, readable customer scenarios.
-
-## Final result
+- P3: a future iteration could replace the PDF-derived overview slide with an export of the underlying dashboard at native UI resolution if that source becomes available.
 
 final result: passed
