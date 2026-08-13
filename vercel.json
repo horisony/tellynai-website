@@ -8,6 +8,14 @@
     { "source": "/qixiao/", "destination": "/#qixiao", "permanent": true }
   ],
   "rewrites": [
+    {
+      "source": "/customer",
+      "destination": "https://sales-words-hifiaudio.vercel.app/"
+    },
+    {
+      "source": "/customer/:path*",
+      "destination": "https://sales-words-hifiaudio.vercel.app/:path*"
+    },
     { "source": "/fde{/}?", "destination": "/index.html" },
     { "source": "/training{/}?", "destination": "/index.html" }
   ]
