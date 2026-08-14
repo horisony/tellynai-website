@@ -10,19 +10,31 @@
   "rewrites": [
     {
       "source": "/customer",
-      "destination": "https://sales-words-hifiaudio.vercel.app/"
+      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/"
     },
     {
       "source": "/customer/:path*",
-      "destination": "https://sales-words-hifiaudio.vercel.app/:path*"
+      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/:path*"
     },
     {
       "source": "/demo.css",
-      "destination": "https://sales-words-hifiaudio.vercel.app/demo.css"
+      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/demo.css"
     },
     {
       "source": "/demo.js",
-      "destination": "https://sales-words-hifiaudio.vercel.app/demo.js"
+      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/demo.js"
+    },
+    {
+      "source": "/agent-payload",
+      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/agent-payload"
+    },
+    {
+      "source": "/suggest",
+      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/suggest"
+    },
+    {
+      "source": "/customer-reply",
+      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/customer-reply"
     },
     { "source": "/fde{/}?", "destination": "/index.html" },
     { "source": "/training{/}?", "destination": "/index.html" }
