@@ -2,6 +2,7 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { SEO_LANGUAGES, SEO_PAGES, SITE_ORIGIN, seoForRoute, seoPath } from '../src/seo.js'
+import { seoLandingContent } from '../src/seo-content.js'
 
 const root = new URL('../', import.meta.url)
 const distDir = new URL('../dist/', import.meta.url)
@@ -60,14 +61,34 @@ function structuredData(seo) {
       url: seo.canonical,
       provider: { '@id': `${SITE_ORIGIN}/#organization` },
     })
-  } else if (seo.key === 'fde' || seo.key === 'training') {
+  } else if (['fde', 'training', 'salesIntelligence', 'realEstate'].includes(seo.key)) {
     graph.push({
       '@type': 'Service',
       name: seo.localizedTitle.split('｜')[0].split('|')[0].trim(),
       description: seo.localizedDescription,
       url: seo.canonical,
       provider: { '@id': `${SITE_ORIGIN}/#organization` },
-      areaServed: ['CN', 'AE'],
+      areaServed: seo.key === 'realEstate' ? ['AE'] : ['CN', 'AE'],
+    })
+  }
+  const landingCopy = seoLandingContent[seo.key]?.[seo.language]
+  if (landingCopy) {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${seo.canonical}#faq`,
+      mainEntity: landingCopy.faqs.map(([question, answer]) => ({
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: { '@type': 'Answer', text: answer },
+      })),
+    })
+    graph.push({
+      '@type': 'BreadcrumbList',
+      '@id': `${seo.canonical}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'TellWin AI', item: `${SITE_ORIGIN}/${seo.language}/` },
+        { '@type': 'ListItem', position: 2, name: seo.localizedTitle, item: seo.canonical },
+      ],
     })
   }
   return { '@context': 'https://schema.org', '@graph': graph }
@@ -88,7 +109,12 @@ function buildHtml(seo, appHtml, { canonicalOverride = '' } = {}) {
     <meta property="og:url" content="${canonical}" />
     <meta property="og:site_name" content="TellWin AI" />
     <meta property="og:locale" content="${seo.language === 'zh' ? 'zh_CN' : seo.language === 'ar' ? 'ar_AE' : 'en_US'}" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="${SITE_ORIGIN}/og.png" />
+    <meta property="og:image:width" content="1731" />
+    <meta property="og:image:height" content="909" />
+    <meta property="og:image:alt" content="TellWin AI — Enterprise Sales Intelligence" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="${SITE_ORIGIN}/og.png" />
     <script type="application/ld+json">${jsonLd(structuredData({ ...seo, canonical }))}</script>`
 
   return template

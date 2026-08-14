@@ -14,6 +14,7 @@ import {
   usePageTranslation,
 } from "./i18n";
 import { seoForRoute } from "./seo";
+import { seoLandingContent, seoLandingUi } from "./seo-content";
 
 const LocaleContext = createContext({ language: "zh", setLanguage: () => {} });
 
@@ -551,9 +552,14 @@ function Home() {
               <span>AI 数据分析</span>
               <span>辅助业务决策</span>
             </div>
-            <a className="button dark" href={localeHref(language, "tellwin")}>
-              了解 TellWin
-            </a>
+            <div className="product-actions">
+              <a className="button dark" href={localeHref(language, "tellwin")}>
+                了解 TellWin
+              </a>
+              <a className="product-text-link" href={localeHref(language, "solutions/sales-conversation-intelligence")}>
+                {{ zh: "了解销售对话分析 →", en: "Explore conversation intelligence →", ar: "استكشف ذكاء المحادثات ←" }[language]}
+              </a>
+            </div>
           </div>
           <img
             className="product-shot"
@@ -728,6 +734,95 @@ function QixiaoPage() {
         <Footer />
       </>
     </Localized>
+  );
+}
+
+function SeoLandingPage({ pageKey }) {
+  const { language } = useContext(LocaleContext);
+  const copy = seoLandingContent[pageKey][language];
+  const ui = seoLandingUi[language];
+  const isRealEstate = pageKey === "realEstate";
+  const splitTitle = copy.title.split("\n");
+  const sourceHref = isRealEstate
+    ? "https://dubailand.gov.ae/en/open-data/research/annual-report-real-estate-sector-performance-2024/"
+    : "";
+  return (
+    <>
+      <Header />
+      <main className="seo-landing-page">
+        <section className="section-shell seo-landing-hero">
+          <div>
+            <span className="eyebrow"><i />{copy.kicker}</span>
+            <h1>{splitTitle[0]}<br /><em>{splitTitle[1]}</em></h1>
+            <p>{copy.intro}</p>
+            <div className="hero-actions">
+              <a className="button dark" href="#contact">{copy.primaryAction}</a>
+              <a className="button outline" href={isRealEstate ? localeHref(language, "solutions/sales-conversation-intelligence") : localeHref(language, "tellwin")}>{copy.secondaryAction}</a>
+            </div>
+          </div>
+          <aside className="seo-signal-card" aria-label={copy.valueTitle}>
+            {copy.value.map(([title, body], index) => (
+              <div key={title}><small>0{index + 1}</small><strong>{title}</strong><span>{body}</span></div>
+            ))}
+          </aside>
+        </section>
+
+        <section className="seo-dark-band">
+          <div className="section-shell seo-copy-head">
+            <span>{ui.businessGap}</span>
+            <h2>{copy.problemsTitle}</h2>
+            <p>{copy.problemsIntro}</p>
+          </div>
+          <div className="section-shell seo-three-grid">
+            {copy.problems.map(([title, body], index) => (
+              <article key={title}><small>0{index + 1}</small><h3>{title}</h3><p>{body}</p></article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-shell seo-process-section">
+          <div className="seo-copy-head">
+            <span>{ui.conversationToAction}</span>
+            <h2>{copy.processTitle}</h2>
+            <p>{copy.processIntro}</p>
+          </div>
+          <div className="seo-process-grid">
+            {copy.process.map(([number, title, body]) => (
+              <article key={number}><small>{number}</small><h3>{title}</h3><p>{body}</p></article>
+            ))}
+          </div>
+        </section>
+
+        <section className="seo-value-band">
+          <div className="section-shell">
+            <div className="seo-copy-head"><span>{ui.whoGetsValue}</span><h2>{copy.valueTitle}</h2></div>
+            <div className="proof-grid seo-value-grid">
+              {copy.value.map(([title, body]) => <article key={title}><b>{title}</b><p>{body}</p></article>)}
+            </div>
+          </div>
+        </section>
+
+        <section className="section-shell seo-fit-section">
+          <div className="seo-copy-head"><span>{ui.rightTeam}</span><h2>{copy.fitTitle}</h2></div>
+          <ul>{copy.fit.map((item) => <li key={item}>{item}</li>)}</ul>
+        </section>
+
+        <section className="section-shell block faq-section seo-faq-section">
+          <div className="seo-copy-head"><span>FAQ</span><h2>{copy.faqTitle}</h2></div>
+          <Faq items={copy.faqs} />
+          <p className="seo-proof-note">{copy.proofNote}</p>
+          {sourceHref && <a className="seo-source-link" href={sourceHref} target="_blank" rel="noopener noreferrer">{ui.dubaiSource}</a>}
+        </section>
+
+        <section className="section-shell seo-related-links" aria-label={ui.related}>
+          <a href={localeHref(language, "tellwin")}>{ui.tellwinLink}</a>
+          <a href={localeHref(language, "fde")}>{ui.fdeLink}</a>
+          {!isRealEstate && <a href={localeHref(language, "industries/real-estate-sales-ai")}>{ui.realEstateLink}</a>}
+        </section>
+      </main>
+      <Contact source={isRealEstate ? "房地产销售 AI SEO 页" : "销售对话智能 SEO 页"} defaultService="AI 产品开发" />
+      <Footer />
+    </>
   );
 }
 
@@ -1300,7 +1395,7 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
     return () => window.removeEventListener("hashchange", syncHash);
   }, []);
   useEffect(() => {
-    const pageKey = isTellWinPage ? "tellwin" : isQixiaoPage ? "qixiao" : path === "/fde" ? "fde" : path === "/training" ? "training" : "home";
+    const pageKey = isTellWinPage ? "tellwin" : isQixiaoPage ? "qixiao" : path === "/fde" ? "fde" : path === "/training" ? "training" : path === "/solutions/sales-conversation-intelligence" ? "salesIntelligence" : path === "/industries/real-estate-sales-ai" ? "realEstate" : "home";
     document.title = seoForRoute(language, pageKey).localizedTitle;
     if (path === "/" && hash.startsWith("#tellwin")) {
       const anchor = hash === "#tellwin" ? "" : hash;
@@ -1325,6 +1420,10 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
       <TellynPage />
     ) : isQixiaoPage ? (
       <QixiaoPage />
+    ) : path === "/solutions/sales-conversation-intelligence" ? (
+      <SeoLandingPage pageKey="salesIntelligence" />
+    ) : path === "/industries/real-estate-sales-ai" ? (
+      <SeoLandingPage pageKey="realEstate" />
     ) : (
       <Home />
     );

@@ -11,6 +11,8 @@ When implementing from a selected generated mock, treat that image as the source
 - The canonical company website domain remains `tellynai.com`; do not migrate public URLs to `tellwinai.com`.
 - Public SEO pages use crawlable language-prefixed routes (`/zh/`, `/en/`, `/ar/`) with real path-based product and service URLs. Legacy unprefixed and hash-based product links remain compatible through permanent redirects or client-side compatibility handling.
 - The English-facing company brand is “TellWin AI”; keep the existing `tellynai.com` domain for continuity.
+- SEO positioning leads with TellWin as enterprise sales conversation intelligence for high-value, long-cycle sales teams; FDE is the implementation method rather than a separate generic technology claim.
+- The first international SEO industry focus is Dubai real estate sales, with complete Chinese, English, and Arabic pages. Copy must distinguish target workflow and planned evaluation from capabilities already verified in production.
 - All public-facing brand and product copy uses the spelling “TellWin”; canonical product experiences use language-prefixed routes such as `/zh/tellwin/`, while legacy `/tellwin`, `/tellyn`, and `/#tellwin` requests remain compatible. Technical identifiers, asset filenames, and email domains may remain unchanged for compatibility.
 - The homepage hero uses a black-and-white hand-drawn team illustration, displayed without a surrounding card or frame.
 - The company website positions Tellyn as an enterprise AI implementation partner, with a service journey of diagnosis, enterprise training, FDE co-delivery, and continuous iteration.

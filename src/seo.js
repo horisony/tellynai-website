@@ -67,6 +67,32 @@ const pages = {
       ar: 'تربط Qixiao الاكتشاف والفهم الدلالي وتقييم المخاطر وإرشاد الاستجابة والمراجعة لقرارات علاقات عامة مدعومة بالأدلة.',
     },
   },
+  salesIntelligence: {
+    path: 'solutions/sales-conversation-intelligence',
+    title: {
+      zh: '销售对话分析｜AI 销售助手与客户声音洞察',
+      en: 'Sales Conversation Intelligence | AI Sales Copilot',
+      ar: 'ذكاء محادثات المبيعات | مساعد مبيعات بالذكاء الاصطناعي',
+    },
+    description: {
+      zh: 'TellWin 将面对面沟通、企业微信等渠道的销售对话整理为客户档案、购买信号、异议、跟进建议和跨团队客户声音洞察。',
+      en: 'Turn sales conversations into customer records, buying signals, follow-up actions, coaching evidence and cross-team customer intelligence with TellWin.',
+      ar: 'حوّل محادثات المبيعات إلى ملفات عملاء وإشارات شراء وإجراءات متابعة وأدلة تدريب ومعلومات مشتركة مع TellWin.',
+    },
+  },
+  realEstate: {
+    path: 'industries/real-estate-sales-ai',
+    title: {
+      zh: '房地产销售 AI｜客户对话分析与跟进助手',
+      en: 'AI Sales Copilot for Dubai Real Estate | TellWin',
+      ar: 'مساعد مبيعات ذكي لعقارات دبي | TellWin',
+    },
+    description: {
+      zh: '面向迪拜及高价值房地产销售团队的 AI 销售助手，整理客户预算、区域偏好、户型需求、购买动机、异议和下一步。',
+      en: 'AI sales copilot for Dubai real estate teams that structures buyer budget, location preferences, property needs, motivation, objections and next actions.',
+      ar: 'مساعد مبيعات ذكي لفرق عقارات دبي ينظم ميزانية المشتري والمناطق المفضلة ومتطلبات العقار والدوافع والاعتراضات والخطوات التالية.',
+    },
+  },
 }
 
 export const SEO_PAGES = Object.entries(pages).map(([key, value]) => ({ key, ...value }))
