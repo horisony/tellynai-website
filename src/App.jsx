@@ -497,7 +497,7 @@ function Home() {
           </SectionTitle>
           <a
             className="wecom-sales-link"
-            href="https://tellynai.com/customer"
+            href="https://sales-words-hifiaudio.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="打开企微销售分析体验页面"
