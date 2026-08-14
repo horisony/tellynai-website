@@ -10,19 +10,7 @@
   "rewrites": [
     {
       "source": "/customer",
-      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/"
-    },
-    {
-      "source": "/customer/:path*",
-      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/:path*"
-    },
-    {
-      "source": "/demo.css",
-      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/demo.css"
-    },
-    {
-      "source": "/demo.js",
-      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/demo.js"
+      "destination": "/customer/index.html"
     },
     {
       "source": "/agent-payload",
