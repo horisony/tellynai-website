@@ -19,7 +19,11 @@ const MIME = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.svg': 'image/svg+xml',
+  '.webp': 'image/webp',
+  '.avif': 'image/avif',
   '.json': 'application/json',
+  '.xml': 'application/xml; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8',
   '.ico': 'image/x-icon',
   '.woff2': 'font/woff2',
 }
@@ -34,6 +38,7 @@ const server = createServer(async (req, res) => {
 
   // Static file serving from dist/ with SPA fallback to index.html
   let relative = urlPath === '/' ? '/index.html' : urlPath
+  if (relative.endsWith('/')) relative += 'index.html'
   const filePath = normalize(join(distDir, relative))
   if (!filePath.startsWith(distDir + sep) && filePath !== distDir) {
     res.statusCode = 403

@@ -10,12 +10,25 @@ import {
 import {
   languageOptions,
   localizeNode,
-  translateValue,
   useLanguage,
   usePageTranslation,
 } from "./i18n";
+import { seoForRoute } from "./seo";
 
 const LocaleContext = createContext({ language: "zh", setLanguage: () => {} });
+
+const localeHref = (language, path = "/") => {
+  const clean = path === "/" ? "" : `/${path.replace(/^\/+|\/+$/g, "")}`;
+  return `/${language}${clean}/`;
+};
+
+const localizedCurrentPath = (language) => {
+  if (typeof window === "undefined") return localeHref(language);
+  let suffix = window.location.pathname.replace(/^\/(zh|en|ar)(?=\/|$)/, "");
+  if (["/tellwin", "/tellyn"].includes(suffix.replace(/\/$/, "")) || window.location.hash.startsWith("#tellwin")) suffix = "/tellwin";
+  if (window.location.hash.startsWith("#qixiao")) suffix = "/qixiao";
+  return localeHref(language, suffix || "/");
+};
 
 function Localized({ children }) {
   const { language } = useContext(LocaleContext);
@@ -38,9 +51,10 @@ function Mark() {
   );
 }
 function Brand() {
+  const { language } = useContext(LocaleContext);
   return (
     <Localized>
-      <a className="brand" href="/" aria-label="图灵驭界 AI 首页">
+      <a className="brand" href={localeHref(language)} aria-label="图灵驭界 AI 首页">
         <Mark />
         <span>图灵驭界</span>
         <b>AI</b>
@@ -65,12 +79,12 @@ function Header({ contactHref = "#contact" }) {
           菜单
         </button>
         <nav className={open ? "open" : ""} aria-label="主导航">
-          <a href="/#services">服务</a>
-          <a href="/fde">FDE 落地</a>
-          <a href="/training">企业内训</a>
-          <a href="/#cases">案例</a>
-          <a href="/#tellwin">TellWin</a>
-          <a href="/#qixiao">启晓</a>
+          <a href={`${localeHref(language)}#services`}>服务</a>
+          <a href={localeHref(language, "fde")}>FDE 落地</a>
+          <a href={localeHref(language, "training")}>企业内训</a>
+          <a href={`${localeHref(language)}#cases`}>案例</a>
+          <a href={localeHref(language, "tellwin")}>TellWin</a>
+          <a href={localeHref(language, "qixiao")}>启晓</a>
           <a href={contactHref}>联系我们</a>
         </nav>
         <label className="language-switch">
@@ -94,7 +108,11 @@ function Header({ contactHref = "#contact" }) {
           </svg>
           <select
             value={language}
-            onChange={(e) => setLanguage(e.target.value)}
+            onChange={(e) => {
+              const next = e.target.value;
+              setLanguage(next);
+              window.location.assign(localizedCurrentPath(next));
+            }}
             aria-label="Language"
           >
             {languageOptions.map(([code, short, label]) => (
@@ -314,6 +332,7 @@ function PageHero({
   tags = [],
   action = "预约一次 AI 场景诊断",
 }) {
+  const { language } = useContext(LocaleContext);
   return (
     <Localized>
       <section className="inner-hero section-shell">
@@ -328,7 +347,7 @@ function PageHero({
             <a className="button dark" href="#contact">
               {action}
             </a>
-            <a className="button outline" href="/#cases">
+            <a className="button outline" href={`${localeHref(language)}#cases`}>
               查看交付案例
             </a>
           </div>
@@ -352,6 +371,7 @@ function PageHero({
 }
 
 function Home() {
+  const { language } = useContext(LocaleContext);
   return (
     <Localized>
       <>
@@ -428,7 +448,7 @@ function Home() {
                   <span>适合：{s.fit}</span>
                   <b>{s.deliverable}</b>
                 </div>
-                <a href={s.href}>了解这项服务 →</a>
+                <a href={s.id === "training" || s.id === "fde" ? localeHref(language, s.id) : "#contact"}>了解这项服务 →</a>
               </article>
             ))}
           </div>
@@ -443,7 +463,7 @@ function Home() {
             </SectionTitle>
             <div className="choice-grid">
               {services.map((s) => (
-                <a href={s.href} key={s.id}>
+                <a href={s.id === "training" || s.id === "fde" ? localeHref(language, s.id) : "#contact"} key={s.id}>
                   <small>{s.number}</small>
                   <p>{s.fit}</p>
                   <strong>{s.title} →</strong>
@@ -531,7 +551,7 @@ function Home() {
               <span>AI 数据分析</span>
               <span>辅助业务决策</span>
             </div>
-            <a className="button dark" href="/#tellwin">
+            <a className="button dark" href={localeHref(language, "tellwin")}>
               了解 TellWin
             </a>
           </div>
@@ -597,7 +617,7 @@ function Home() {
               <div className="tellyn-list">
                 <span>语义理解</span><span>事件研判</span><span>行动建议</span><span>持续学习</span>
               </div>
-              <a className="button dark" href="/#qixiao">了解启晓</a>
+              <a className="button dark" href={localeHref(language, "qixiao")}>了解启晓</a>
             </div>
           </div>
         </section>
@@ -1257,11 +1277,16 @@ function TrainingPage() {
   );
 }
 
-export function App() {
-  const [language, setLanguage] = useLanguage();
-  const [hash, setHash] = useState(() => window.location.hash);
+export function App({ initialPath = "", initialLanguage = "" } = {}) {
+  const browserPath = typeof window !== "undefined" ? window.location.pathname : initialPath;
+  const browserHash = typeof window !== "undefined" ? window.location.hash : "";
+  const localeMatch = browserPath.match(/^\/(zh|en|ar)(?=\/|$)/);
+  const routeLanguage = initialLanguage || localeMatch?.[1] || "";
+  const [language, setLanguage] = useLanguage(routeLanguage);
+  const [hash, setHash] = useState(() => browserHash);
   usePageTranslation(language);
-  const path = window.location.pathname.replace(/\/$/, "") || "/";
+  const localizedPath = browserPath.replace(/^\/(zh|en|ar)(?=\/|$)/, "");
+  const path = localizedPath.replace(/\/$/, "") || "/";
   const isTellWinHash =
     path === "/" && (hash === "#tellwin" || hash.startsWith("#tellwin-"));
   const isTellWinPage =
@@ -1269,23 +1294,20 @@ export function App() {
   const isQixiaoHash = path === "/" && (hash === "#qixiao" || hash.startsWith("#qixiao-"));
   const isQixiaoPage = path === "/qixiao" || isQixiaoHash;
   useEffect(() => {
+    if (typeof window === "undefined") return undefined;
     const syncHash = () => setHash(window.location.hash);
     window.addEventListener("hashchange", syncHash);
     return () => window.removeEventListener("hashchange", syncHash);
   }, []);
   useEffect(() => {
-    const titles = {
-      "/": "图灵驭界｜企业 AI 落地伙伴",
-      "/fde": "FDE 共创落地｜图灵驭界",
-      "/training": "企业 AI 内训｜图灵驭界",
-      "/tellwin": "TellWin｜高价值销售团队的 AI Copilot",
-      "/tellyn": "TellWin｜高价值销售团队的 AI Copilot",
-      "/qixiao": "启晓｜AI 公关舆情工作系统",
-    };
-    const title = isTellWinPage ? titles["/tellwin"] : isQixiaoPage ? titles["/qixiao"] : titles[path] || titles["/"];
-    document.title = translateValue(title, language);
-    if (hash === "#tellwin" || hash === "#qixiao") {
-      window.scrollTo(0, 0);
+    const pageKey = isTellWinPage ? "tellwin" : isQixiaoPage ? "qixiao" : path === "/fde" ? "fde" : path === "/training" ? "training" : "home";
+    document.title = seoForRoute(language, pageKey).localizedTitle;
+    if (path === "/" && hash.startsWith("#tellwin")) {
+      const anchor = hash === "#tellwin" ? "" : hash;
+      window.location.replace(`${localeHref(language, "tellwin")}${anchor}`);
+    } else if (path === "/" && hash.startsWith("#qixiao")) {
+      const anchor = hash === "#qixiao" ? "" : hash;
+      window.location.replace(`${localeHref(language, "qixiao")}${anchor}`);
     } else if (hash) {
       requestAnimationFrame(() =>
         document.querySelector(hash)?.scrollIntoView(),

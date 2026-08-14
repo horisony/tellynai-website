@@ -1,30 +1,42 @@
 {
   "redirects": [
-    { "source": "/tellyn", "destination": "/#tellwin", "permanent": true },
-    { "source": "/tellyn/", "destination": "/#tellwin", "permanent": true },
-    { "source": "/tellwin", "destination": "/#tellwin", "permanent": true },
-    { "source": "/tellwin/", "destination": "/#tellwin", "permanent": true },
-    { "source": "/qixiao", "destination": "/#qixiao", "permanent": true },
-    { "source": "/qixiao/", "destination": "/#qixiao", "permanent": true }
+    { "source": "/tellyn", "destination": "/zh/tellwin/", "permanent": true },
+    { "source": "/tellyn/", "destination": "/zh/tellwin/", "permanent": true },
+    { "source": "/tellwin", "destination": "/zh/tellwin/", "permanent": true },
+    { "source": "/tellwin/", "destination": "/zh/tellwin/", "permanent": true },
+    { "source": "/fde", "destination": "/zh/fde/", "permanent": true },
+    { "source": "/fde/", "destination": "/zh/fde/", "permanent": true },
+    { "source": "/training", "destination": "/zh/training/", "permanent": true },
+    { "source": "/training/", "destination": "/zh/training/", "permanent": true },
+    { "source": "/qixiao", "destination": "/zh/qixiao/", "permanent": true },
+    { "source": "/qixiao/", "destination": "/zh/qixiao/", "permanent": true }
   ],
   "rewrites": [
     {
       "source": "/customer",
-      "destination": "https://sales-words-hifiaudio.vercel.app/"
+      "destination": "/customer/index.html"
     },
+    {
+      "source": "/agent-payload",
+      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/agent-payload"
+    },
+    {
+      "source": "/suggest",
+      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/suggest"
+    },
+    {
+      "source": "/customer-reply",
+      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/customer-reply"
+    }
+  ],
+  "headers": [
     {
       "source": "/customer/:path*",
-      "destination": "https://sales-words-hifiaudio.vercel.app/:path*"
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     },
     {
-      "source": "/demo.css",
-      "destination": "https://sales-words-hifiaudio.vercel.app/demo.css"
-    },
-    {
-      "source": "/demo.js",
-      "destination": "https://sales-words-hifiaudio.vercel.app/demo.js"
-    },
-    { "source": "/fde{/}?", "destination": "/index.html" },
-    { "source": "/training{/}?", "destination": "/index.html" }
+      "source": "/sitemap.xml",
+      "headers": [{ "key": "Content-Type", "value": "application/xml; charset=utf-8" }]
+    }
   ]
 }

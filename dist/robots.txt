@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /customer/
+
+Sitemap: https://tellynai.com/sitemap.xml
