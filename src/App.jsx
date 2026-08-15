@@ -742,6 +742,13 @@ function SeoLandingPage({ pageKey }) {
   const copy = seoLandingContent[pageKey][language];
   const ui = seoLandingUi[language];
   const isRealEstate = pageKey === "realEstate";
+  const isIndustry = ["realEstate", "automotive"].includes(pageKey);
+  const relatedLandingPages = [
+    ["salesIntelligence", "solutions/sales-conversation-intelligence", ui.salesIntelligenceLink],
+    ["salesCallAnalysis", "solutions/ai-sales-call-analysis", ui.salesCallLink],
+    ["realEstate", "industries/real-estate-sales-ai", ui.realEstateLink],
+    ["automotive", "industries/automotive-sales-ai", ui.automotiveLink],
+  ].filter(([key]) => key !== pageKey);
   const splitTitle = copy.title.split("\n");
   const sourceHref = isRealEstate
     ? "https://dubailand.gov.ae/en/open-data/research/annual-report-real-estate-sector-performance-2024/"
@@ -757,7 +764,7 @@ function SeoLandingPage({ pageKey }) {
             <p>{copy.intro}</p>
             <div className="hero-actions">
               <a className="button dark" href="#contact">{copy.primaryAction}</a>
-              <a className="button outline" href={isRealEstate ? localeHref(language, "solutions/sales-conversation-intelligence") : localeHref(language, "tellwin")}>{copy.secondaryAction}</a>
+              <a className="button outline" href={isIndustry ? localeHref(language, "solutions/sales-conversation-intelligence") : localeHref(language, "tellwin")}>{copy.secondaryAction}</a>
             </div>
           </div>
           <aside className="seo-signal-card" aria-label={copy.valueTitle}>
@@ -817,10 +824,10 @@ function SeoLandingPage({ pageKey }) {
         <section className="section-shell seo-related-links" aria-label={ui.related}>
           <a href={localeHref(language, "tellwin")}>{ui.tellwinLink}</a>
           <a href={localeHref(language, "fde")}>{ui.fdeLink}</a>
-          {!isRealEstate && <a href={localeHref(language, "industries/real-estate-sales-ai")}>{ui.realEstateLink}</a>}
+          {relatedLandingPages.map(([key, route, label]) => <a key={key} href={localeHref(language, route)}>{label}</a>)}
         </section>
       </main>
-      <Contact source={isRealEstate ? "房地产销售 AI SEO 页" : "销售对话智能 SEO 页"} defaultService="AI 产品开发" />
+      <Contact source={copy.kicker} defaultService="AI 产品开发" />
       <Footer />
     </>
   );
@@ -1382,6 +1389,12 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
   usePageTranslation(language);
   const localizedPath = browserPath.replace(/^\/(zh|en|ar)(?=\/|$)/, "");
   const path = localizedPath.replace(/\/$/, "") || "/";
+  const seoLandingPageKey = {
+    "/solutions/sales-conversation-intelligence": "salesIntelligence",
+    "/solutions/ai-sales-call-analysis": "salesCallAnalysis",
+    "/industries/real-estate-sales-ai": "realEstate",
+    "/industries/automotive-sales-ai": "automotive",
+  }[path];
   const isTellWinHash =
     path === "/" && (hash === "#tellwin" || hash.startsWith("#tellwin-"));
   const isTellWinPage =
@@ -1395,7 +1408,7 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
     return () => window.removeEventListener("hashchange", syncHash);
   }, []);
   useEffect(() => {
-    const pageKey = isTellWinPage ? "tellwin" : isQixiaoPage ? "qixiao" : path === "/fde" ? "fde" : path === "/training" ? "training" : path === "/solutions/sales-conversation-intelligence" ? "salesIntelligence" : path === "/industries/real-estate-sales-ai" ? "realEstate" : "home";
+    const pageKey = isTellWinPage ? "tellwin" : isQixiaoPage ? "qixiao" : path === "/fde" ? "fde" : path === "/training" ? "training" : seoLandingPageKey || "home";
     document.title = seoForRoute(language, pageKey).localizedTitle;
     if (path === "/" && hash.startsWith("#tellwin")) {
       const anchor = hash === "#tellwin" ? "" : hash;
@@ -1410,7 +1423,7 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
     } else {
       window.scrollTo(0, 0);
     }
-  }, [path, hash, language, isTellWinPage, isQixiaoPage]);
+  }, [path, hash, language, isTellWinPage, isQixiaoPage, seoLandingPageKey]);
   const page =
     path === "/fde" ? (
       <FdePage />
@@ -1420,10 +1433,8 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
       <TellynPage />
     ) : isQixiaoPage ? (
       <QixiaoPage />
-    ) : path === "/solutions/sales-conversation-intelligence" ? (
-      <SeoLandingPage pageKey="salesIntelligence" />
-    ) : path === "/industries/real-estate-sales-ai" ? (
-      <SeoLandingPage pageKey="realEstate" />
+    ) : seoLandingPageKey ? (
+      <SeoLandingPage pageKey={seoLandingPageKey} />
     ) : (
       <Home />
     );

@@ -61,7 +61,7 @@ function structuredData(seo) {
       url: seo.canonical,
       provider: { '@id': `${SITE_ORIGIN}/#organization` },
     })
-  } else if (['fde', 'training', 'salesIntelligence', 'realEstate'].includes(seo.key)) {
+  } else if (['fde', 'training', 'salesIntelligence', 'salesCallAnalysis', 'automotive', 'realEstate'].includes(seo.key)) {
     graph.push({
       '@type': 'Service',
       name: seo.localizedTitle.split('｜')[0].split('|')[0].trim(),

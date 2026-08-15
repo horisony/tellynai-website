@@ -80,6 +80,32 @@ const pages = {
       ar: 'حوّل محادثات المبيعات إلى ملفات عملاء وإشارات شراء وإجراءات متابعة وأدلة تدريب ومعلومات مشتركة مع TellWin.',
     },
   },
+  salesCallAnalysis: {
+    path: 'solutions/ai-sales-call-analysis',
+    title: {
+      zh: 'AI 销售通话分析｜客户意图、异议与跟进洞察',
+      en: 'AI Sales Call Analysis | Buyer Signals & Coaching Insight',
+      ar: 'تحليل مكالمات المبيعات بالذكاء الاصطناعي | TellWin',
+    },
+    description: {
+      zh: 'TellWin 将销售电话与面对面沟通整理为客户需求、购买信号、异议、竞品、承诺事项与下一步，并为主管提供可追溯的辅导依据。',
+      en: 'Turn approved sales calls into buyer needs, signals, objections, competitor mentions, commitments, next actions and traceable coaching evidence with TellWin.',
+      ar: 'حوّل مكالمات المبيعات المصرح بها إلى احتياجات وإشارات واعتراضات ومنافسين والتزامات وخطوات تالية وأدلة تدريب قابلة للتتبع.',
+    },
+  },
+  automotive: {
+    path: 'industries/automotive-sales-ai',
+    title: {
+      zh: '汽车销售 AI｜试驾对话分析与客户跟进助手',
+      en: 'Automotive Sales AI | Test-Drive Conversation Intelligence',
+      ar: 'الذكاء الاصطناعي لمبيعات السيارات | ذكاء محادثات المعرض',
+    },
+    description: {
+      zh: '面向汽车经销商与品牌销售团队，整理试驾和门店对话中的车型、预算、置换、配置、竞品、顾虑和下一步。',
+      en: 'AI conversation intelligence for automotive sales teams, structuring model, budget, trade-in, feature, competitor, concern and follow-up context.',
+      ar: 'ذكاء محادثات لفرق مبيعات السيارات ينظم الطراز والميزانية والاستبدال والمواصفات والمنافسين والمخاوف والمتابعة.',
+    },
+  },
   realEstate: {
     path: 'industries/real-estate-sales-ai',
     title: {
