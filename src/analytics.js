@@ -1,4 +1,4 @@
-import { inject, track } from '@vercel/analytics'
+import { track } from '@vercel/analytics'
 
 const ATTRIBUTION_KEY = 'tellwin-attribution'
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
@@ -19,7 +19,6 @@ function safeReferrer(value) {
 
 export function initializeAnalytics() {
   if (typeof window === 'undefined') return
-  inject({ mode: import.meta.env.PROD ? 'production' : 'development' })
   getLeadAttribution()
 }
 
