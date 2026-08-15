@@ -14,6 +14,7 @@
 const BASE_API = 'https://open.feishu.cn/open-apis'
 
 const pick = (v) => String(v ?? '').trim()
+const pickAttribution = (v) => pick(v).slice(0, 160)
 
 function readJson(req) {
   return new Promise((resolve, reject) => {
@@ -73,8 +74,21 @@ export default async function handler(req, res) {
     }
     const companySize = pick(form.companySize)
     const source = pick(form.source)
+    const attribution = form.attribution && typeof form.attribution === 'object' ? form.attribution : {}
     if (companySize) fields['企业规模'] = companySize
-    if (source) fields['来源页面'] = source
+    const sourceDetails = [
+      source && `页面：${pickAttribution(source)}`,
+      pickAttribution(attribution.currentPage) && `提交路径：${pickAttribution(attribution.currentPage)}`,
+      pickAttribution(attribution.landingPage) && `首次落地：${pickAttribution(attribution.landingPage)}`,
+      pickAttribution(attribution.referrer) && `外部来源：${pickAttribution(attribution.referrer)}`,
+      pickAttribution(attribution.language) && `语言：${pickAttribution(attribution.language)}`,
+      pickAttribution(attribution.utm_source) && `utm_source：${pickAttribution(attribution.utm_source)}`,
+      pickAttribution(attribution.utm_medium) && `utm_medium：${pickAttribution(attribution.utm_medium)}`,
+      pickAttribution(attribution.utm_campaign) && `utm_campaign：${pickAttribution(attribution.utm_campaign)}`,
+      pickAttribution(attribution.utm_content) && `utm_content：${pickAttribution(attribution.utm_content)}`,
+      pickAttribution(attribution.utm_term) && `utm_term：${pickAttribution(attribution.utm_term)}`,
+    ].filter(Boolean).join('\n')
+    if (sourceDetails) fields['来源页面'] = sourceDetails
 
     const appId = process.env.FEISHU_APP_ID || 'cli_a9665e3c15389bef'
     const appSecret = process.env.FEISHU_APP_SECRET

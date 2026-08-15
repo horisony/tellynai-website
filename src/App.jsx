@@ -15,6 +15,7 @@ import {
 } from "./i18n";
 import { seoForRoute } from "./seo";
 import { seoLandingContent, seoLandingUi } from "./seo-content";
+import { getLeadAttribution, trackEvent } from "./analytics";
 
 const LocaleContext = createContext({ language: "zh", setLanguage: () => {} });
 
@@ -178,9 +179,11 @@ function Faq({ items }) {
 }
 
 function Contact({ source = "首页", defaultService = "", id = "contact" }) {
+  const { language } = useContext(LocaleContext);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [contactConsent, setContactConsent] = useState(false);
   const [form, setForm] = useState({
     name: "",
     company: "",
@@ -199,10 +202,15 @@ function Contact({ source = "首页", defaultService = "", id = "contact" }) {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, source }),
+        body: JSON.stringify({ ...form, source, attribution: getLeadAttribution(language) }),
       });
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.message);
+      trackEvent("lead_form_submitted", {
+        language,
+        service: form.service || "unspecified",
+        source,
+      });
       setSubmitted(true);
     } catch (error) {
       setSubmitError(error.message || "提交失败，请稍后重试。");
@@ -314,6 +322,15 @@ function Contact({ source = "首页", defaultService = "", id = "contact" }) {
                 placeholder="说说目前的流程、难点或想验证的方向"
                 rows="3"
               />
+            </label>
+            <label className="consent-row">
+              <input
+                type="checkbox"
+                required
+                checked={contactConsent}
+                onChange={(event) => setContactConsent(event.target.checked)}
+              />
+              <span>同意我们仅将上述信息用于回复咨询与后续业务沟通。数据不会发送给网站分析工具。</span>
             </label>
             {submitError && <p className="form-error">{submitError}</p>}
             <button className="button yellow" disabled={submitting}>

@@ -760,6 +760,21 @@ h2 em {
 .contact textarea {
   resize: vertical;
 }
+.contact .consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 3px;
+  line-height: 1.55;
+}
+.contact .consent-row input {
+  flex: 0 0 15px;
+  width: 15px;
+  height: 15px;
+  margin: 1px 0 0;
+  padding: 0;
+  accent-color: var(--yellow);
+}
 .form-error {
   color: #ffb3a3;
   font-size: 12px;

@@ -1,6 +1,7 @@
 // Product-page copy added after the original translation pass. Keeping each
 // phrase as one explicit three-language record makes additions reviewable.
 export const launchCopy = {
+  '同意我们仅将上述信息用于回复咨询与后续业务沟通。数据不会发送给网站分析工具。': { zh: '同意我们仅将上述信息用于回复咨询与后续业务沟通。数据不会发送给网站分析工具。', en: 'I agree that this information may be used only to answer my inquiry and follow up about relevant services. It will not be sent to website analytics.', ar: 'أوافق على استخدام هذه المعلومات فقط للرد على استفساري والمتابعة بشأن الخدمات ذات الصلة، ولن تُرسل إلى أدوات تحليل الموقع.' },
   '图灵驭界': { zh: '图灵驭界', en: 'TellWin AI', ar: 'TellWin AI' },
   '© 2026 图灵驭界 · 企业 AI 落地伙伴': { zh: '© 2026 图灵驭界 · 企业 AI 落地伙伴', en: '© 2026 TellWin AI · Enterprise AI implementation partner', ar: '© 2026 TellWin AI · شريك تنفيذ الذكاء الاصطناعي للمؤسسات' },
   'TellWin 用 AI 收集销售、产品和市场的一线反馈，整理为可以被管理者理解、被团队执行的业务洞察。': { zh: 'TellWin 用 AI 收集销售、产品和市场的一线反馈，整理为可以被管理者理解、被团队执行的业务洞察。', en: 'TellWin turns frontline sales, product, and market feedback into insights leaders understand and teams can act on.', ar: 'يحوّل TellWin ملاحظات المبيعات والمنتج والسوق إلى رؤى تفهمها الإدارة وتنفذها الفرق.' },

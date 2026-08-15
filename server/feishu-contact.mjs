@@ -56,11 +56,23 @@ export async function handleContact(request, response) {
   }
   try {
     const form = await readBody(request)
+    const attribution = form.attribution && typeof form.attribution === 'object' ? form.attribution : {}
+    const short = (value) => String(value ?? '').trim().slice(0, 160)
+    const sourceDetails = [
+      form.source && `页面：${short(form.source)}`,
+      attribution.currentPage && `提交路径：${short(attribution.currentPage)}`,
+      attribution.landingPage && `首次落地：${short(attribution.landingPage)}`,
+      attribution.referrer && `外部来源：${short(attribution.referrer)}`,
+      attribution.language && `语言：${short(attribution.language)}`,
+      ...['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
+        .filter((key) => attribution[key])
+        .map((key) => `${key}：${short(attribution[key])}`),
+    ].filter(Boolean).join('\n')
     const details = [
       `感兴趣的服务：${form.service || '未选择'}`,
       `企业规模：${form.companySize || '未选择'}`,
       `期望启动时间：${form.startTime || '未选择'}`,
-      `来源页面：${form.source || '未知'}`,
+      `来源页面：${sourceDetails || form.source || '未知'}`,
       '',
       String(form.need ?? '').trim(),
     ].join('\n').trim()

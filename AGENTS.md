@@ -8,6 +8,9 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable Design Decisions
 
+- Use privacy-preserving, cookie-free Vercel Web Analytics for baseline traffic reporting. Never send names, contact details, free-text needs, or other personal information to analytics.
+- Lead follow-up remains in Feishu Base. Store only sanitized campaign attribution, landing path, referrer host/path, current page, and language alongside a user-submitted contact form; GA4 may be added later only with an explicit measurement ID and consent-mode implementation.
+
 - The canonical company website domain remains `tellynai.com`; do not migrate public URLs to `tellwinai.com`.
 - Public SEO pages use crawlable language-prefixed routes (`/zh/`, `/en/`, `/ar/`) with real path-based product and service URLs. Legacy unprefixed and hash-based product links remain compatible through permanent redirects or client-side compatibility handling.
 - The English-facing company brand is “TellWin AI”; keep the existing `tellynai.com` domain for continuity.
