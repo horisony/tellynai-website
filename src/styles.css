@@ -311,6 +311,32 @@ h2 em {
 .hero-visual {
   height: 365px;
 }
+.brand-profile {
+  background: var(--ink);
+  color: #fff;
+}
+.brand-profile-inner {
+  display: grid;
+  grid-template-columns: minmax(240px, .72fr) minmax(0, 1.28fr);
+  gap: 80px;
+  padding-top: 58px;
+  padding-bottom: 62px;
+}
+.brand-profile h2 {
+  font-size: clamp(28px, 3.2vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+.brand-profile p {
+  max-width: 760px;
+  color: #c5c0b7;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.brand-profile p + p {
+  margin-top: 12px;
+  color: #969087;
+}
 .bao-hero {
   width: 100%;
   height: 100%;
@@ -1226,6 +1252,12 @@ footer > a:last-child {
   }
   .hero {
     min-height: 0;
+  }
+  .brand-profile-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 46px;
+    padding-bottom: 50px;
   }
   .hero-visual {
     height: 280px;

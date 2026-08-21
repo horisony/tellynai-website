@@ -32,13 +32,13 @@ function structuredData(seo) {
       '@type': 'Organization',
       '@id': organizationId,
       name: 'TellWin AI',
-      alternateName: ['图灵驭界', 'Tellyn AI'],
+      alternateName: ['图灵驭界', '图灵驭界 AI', 'Tellyn AI'],
       url: SITE_ORIGIN,
       logo: {
         '@type': 'ImageObject',
         url: `${SITE_ORIGIN}/assets/tuling-logo.png`,
       },
-      description: 'TellWin AI provides enterprise sales conversation intelligence, AI workflow diagnosis, training and FDE co-delivery for high-value, long-cycle sales teams.',
+      description: '图灵驭界 is the Chinese company brand of TellWin AI, providing enterprise sales conversation intelligence, AI workflow diagnosis, training and FDE co-delivery for high-value, long-cycle sales teams.',
       email: 'baolyang@tellynai.com',
       contactPoint: {
         '@type': 'ContactPoint',

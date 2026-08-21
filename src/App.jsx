@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {
+  brandProfile,
   cases,
   fdeFaqs,
   homeFaqs,
@@ -390,6 +391,7 @@ function PageHero({
 
 function Home() {
   const { language } = useContext(LocaleContext);
+  const brand = brandProfile[language];
   return (
     <Localized>
       <>
@@ -432,6 +434,15 @@ function Home() {
               src="/assets/team-hero.png"
               alt="图灵驭界团队手绘插图"
             />
+          </div>
+        </section>
+        <section className="brand-profile" aria-labelledby="brand-profile-title">
+          <div className="section-shell brand-profile-inner">
+            <h2 id="brand-profile-title">{brand.heading}</h2>
+            <div>
+              <p>{brand.body}</p>
+              <p>{brand.detail}</p>
+            </div>
           </div>
         </section>
         <section className="client-section section-shell">

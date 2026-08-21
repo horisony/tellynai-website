@@ -5,6 +5,24 @@ export const services = [
   { id: 'product', number: '04', title: 'AI 产品与智能体开发', summary: '把已经验证的工作方法沉淀为稳定、可持续演进的 AI 产品。', fit: '场景已验证，需要产品化与规模化', deliverable: '产品设计 · 全栈开发 · 上线陪跑', href: '/#contact' },
 ]
 
+export const brandProfile = {
+  zh: {
+    heading: '图灵驭界是谁？',
+    body: '图灵驭界是 TellWin AI 的中文公司品牌，专注帮助高客单、长决策链企业把销售对话转化为客户情报，并通过 AI 业务诊断、企业内训与 FDE 共创，让 AI 真正进入业务流程。',
+    detail: '图灵驭界旗下产品包括销售对话智能产品 TellWin、AI 设计产品 SnapDesign，以及企业 AI 舆情研判与公关工作系统启晓。',
+  },
+  en: {
+    heading: 'About TellWin AI',
+    body: 'TellWin AI, known in Chinese as 图灵驭界, helps high-value, long-cycle sales teams turn customer conversations into actionable intelligence through AI workflow diagnosis, enterprise training and FDE co-delivery.',
+    detail: 'Its product portfolio includes TellWin for sales conversation intelligence, SnapDesign for AI-assisted visual creation, and Qixiao for enterprise PR intelligence and response workflows.',
+  },
+  ar: {
+    heading: 'عن TellWin AI',
+    body: 'تساعد TellWin AI، المعروفة بالصينية باسم 图灵驭界، فرق المبيعات عالية القيمة وطويلة الدورة على تحويل محادثات العملاء إلى معلومات قابلة للتنفيذ عبر تشخيص سير العمل والتدريب المؤسسي والتنفيذ المشترك بأسلوب FDE.',
+    detail: 'تشمل منتجاتها TellWin لذكاء محادثات المبيعات وSnapDesign للتصميم المرئي المدعوم بالذكاء الاصطناعي وQixiao لذكاء العلاقات العامة والاستجابة المؤسسية.',
+  },
+}
+
 export const deliverySteps = [
   ['01', '业务诊断', '走进流程，找到问题、数据和真正的业务目标。'],
   ['02', '场景拆解', '按价值、可行性和风险排出交付优先级。'],

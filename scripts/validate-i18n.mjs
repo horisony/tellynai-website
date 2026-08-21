@@ -1,10 +1,12 @@
 import { readFile } from 'node:fs/promises'
 import { copyConfig } from '../src/i18n.js'
+import { brandProfile } from '../src/content.js'
 import { seoLandingContent, seoLandingUi } from '../src/seo-content.js'
 
 const files = ['src/App.jsx', 'src/content.js']
 const cjk = /[\u3400-\u9fff]/
 const configured = new Set(Object.keys(copyConfig))
+const structuredValues = new Set(Object.values(brandProfile).flatMap((entry) => Object.values(entry)))
 const discovered = new Set()
 
 for (const file of files) {
@@ -24,6 +26,7 @@ for (const file of files) {
 }
 
 const missing = [...discovered].filter((source) => {
+  if (structuredValues.has(source)) return false
   const entry = copyConfig[source]
   return !configured.has(source) || !entry?.zh || !entry?.en || !entry?.ar
 })
@@ -43,6 +46,10 @@ if (incomplete.length) {
 
 const requiredLanguages = ['zh', 'en', 'ar']
 const landingErrors = []
+for (const language of requiredLanguages) {
+  const value = brandProfile[language]
+  if (!value?.heading || !value?.body || !value?.detail) landingErrors.push(`brandProfile.${language}`)
+}
 for (const language of requiredLanguages) {
   const ui = seoLandingUi[language]
   if (!ui || Object.values(ui).some((value) => !value)) landingErrors.push(`seoLandingUi.${language}`)

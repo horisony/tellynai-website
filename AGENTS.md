@@ -8,6 +8,8 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable Design Decisions
 
+- Chinese brand SEO must strongly associate the exact query “图灵驭界” with `tellynai.com`. Keep the Chinese homepage title and visible company description explicit about the relationship: 图灵驭界 is the Chinese company brand of TellWin AI. Do not remove this exact-match brand wording when revising positioning copy.
+
 - Use privacy-preserving, cookie-free Vercel Web Analytics for baseline traffic reporting. Never send names, contact details, free-text needs, or other personal information to analytics.
 - Lead follow-up remains in Feishu Base. Store only sanitized campaign attribution, landing path, referrer host/path, current page, and language alongside a user-submitted contact form; GA4 may be added later only with an explicit measurement ID and consent-mode implementation.
 

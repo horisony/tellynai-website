@@ -5,12 +5,12 @@ const pages = {
   home: {
     path: '',
     title: {
-      zh: 'TellWin AI｜企业销售 AI 与客户对话智能落地',
+      zh: '图灵驭界｜TellWin AI 企业销售对话智能与 AI 落地',
       en: 'TellWin AI | Enterprise Sales AI & Conversation Intelligence',
       ar: 'TellWin AI | ذكاء محادثات المبيعات للمؤسسات',
     },
     description: {
-      zh: 'TellWin AI 帮助高客单、长决策链企业，把销售对话转化为客户情报，并通过 AI 业务诊断、企业内训与 FDE 共创真正落地。',
+      zh: '图灵驭界是 TellWin AI 的中文公司品牌，帮助高客单、长决策链企业把销售对话转化为客户情报，并通过 AI 业务诊断、企业内训与 FDE 共创真正落地。',
       en: 'TellWin AI helps high-value sales teams turn customer conversations into actionable intelligence through enterprise AI diagnosis, training and FDE delivery.',
       ar: 'تساعد TellWin AI فرق المبيعات عالية القيمة على تحويل محادثات العملاء إلى معلومات قابلة للتنفيذ عبر التشخيص والتدريب والتنفيذ المشترك.',
     },
