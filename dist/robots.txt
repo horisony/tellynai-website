@@ -1,3 +1,9 @@
+# ChatGPT search crawler. This is independent from GPTBot model-training controls.
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /customer/
+
 User-agent: *
 Allow: /
 Disallow: /api/

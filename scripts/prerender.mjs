@@ -22,22 +22,46 @@ function alternateLinks(page) {
 }
 
 function structuredData(seo) {
+  const organizationId = `${SITE_ORIGIN}/#organization`
+  const productNames = {
+    tellwin: 'TellWin',
+    qixiao: seo.language === 'zh' ? '启晓（Qixiao）' : 'Qixiao',
+  }
   const graph = [
     {
       '@type': 'Organization',
-      '@id': `${SITE_ORIGIN}/#organization`,
+      '@id': organizationId,
       name: 'TellWin AI',
-      alternateName: '图灵驭界',
+      alternateName: ['图灵驭界', 'Tellyn AI'],
       url: SITE_ORIGIN,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_ORIGIN}/assets/tuling-logo.png`,
+      },
+      description: 'TellWin AI provides enterprise sales conversation intelligence, AI workflow diagnosis, training and FDE co-delivery for high-value, long-cycle sales teams.',
       email: 'baolyang@tellynai.com',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        email: 'baolyang@tellynai.com',
+        availableLanguage: ['Chinese', 'English', 'Arabic'],
+      },
       address: { '@type': 'PostalAddress', addressLocality: 'Shanghai', addressCountry: 'CN' },
+      knowsAbout: [
+        'Enterprise sales conversation intelligence',
+        'AI sales call analysis',
+        'Customer intelligence',
+        'Enterprise AI implementation',
+        'Forward Deployed Engineering',
+        'Enterprise AI public relations intelligence',
+      ],
     },
     {
       '@type': 'WebSite',
       '@id': `${SITE_ORIGIN}/#website`,
       name: 'TellWin AI',
       url: SITE_ORIGIN,
-      publisher: { '@id': `${SITE_ORIGIN}/#organization` },
+      publisher: { '@id': organizationId },
       inLanguage: ['zh-CN', 'en', 'ar'],
     },
     {
@@ -47,19 +71,21 @@ function structuredData(seo) {
       name: seo.localizedTitle,
       description: seo.localizedDescription,
       isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
-      about: { '@id': `${SITE_ORIGIN}/#organization` },
+      about: { '@id': organizationId },
       inLanguage: seo.language === 'zh' ? 'zh-CN' : seo.language,
     },
   ]
-  if (seo.key === 'tellwin') {
+  if (productNames[seo.key]) {
     graph.push({
       '@type': 'SoftwareApplication',
-      name: 'TellWin',
+      '@id': `${seo.canonical}#software`,
+      name: productNames[seo.key],
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
       description: seo.localizedDescription,
       url: seo.canonical,
-      provider: { '@id': `${SITE_ORIGIN}/#organization` },
+      provider: { '@id': organizationId },
+      brand: { '@id': organizationId },
     })
   } else if (['fde', 'training', 'salesIntelligence', 'salesCallAnalysis', 'automotive', 'realEstate'].includes(seo.key)) {
     graph.push({
@@ -67,7 +93,7 @@ function structuredData(seo) {
       name: seo.localizedTitle.split('｜')[0].split('|')[0].trim(),
       description: seo.localizedDescription,
       url: seo.canonical,
-      provider: { '@id': `${SITE_ORIGIN}/#organization` },
+      provider: { '@id': organizationId },
       areaServed: seo.key === 'realEstate' ? ['AE'] : ['CN', 'AE'],
     })
   }
@@ -149,7 +175,7 @@ const sitemapUrls = SEO_PAGES.flatMap((page) => SEO_LANGUAGES.map((language) => 
 })).join('\n')
 
 await writeFile(new URL('sitemap.xml', distDir), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapUrls}\n</urlset>\n`)
-await writeFile(new URL('robots.txt', distDir), `User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /customer/\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`)
+await writeFile(new URL('robots.txt', distDir), `# ChatGPT search crawler. This is independent from GPTBot model-training controls.\nUser-agent: OAI-SearchBot\nAllow: /\nDisallow: /api/\nDisallow: /customer/\n\nUser-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /customer/\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`)
 await rm(new URL('../dist-ssr/', root), { recursive: true, force: true })
 
 console.log(`Prerendered ${SEO_LANGUAGES.length * SEO_PAGES.length} localized SEO pages.`)
