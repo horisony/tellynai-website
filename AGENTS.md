@@ -8,6 +8,7 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable Design Decisions
 
+- The Chinese company introduction must open with: “图灵驭界是base在上海，为全球企业提供AI销售提效的公司。” Keep the following copy explicit that 图灵驭界 is TellWin AI’s Chinese company brand for brand SEO.
 - Chinese brand SEO must strongly associate the exact query “图灵驭界” with `tellynai.com`. Keep the Chinese homepage title and visible company description explicit about the relationship: 图灵驭界 is the Chinese company brand of TellWin AI. Do not remove this exact-match brand wording when revising positioning copy.
 
 - Use privacy-preserving, cookie-free Vercel Web Analytics for baseline traffic reporting. Never send names, contact details, free-text needs, or other personal information to analytics.

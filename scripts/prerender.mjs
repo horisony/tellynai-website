@@ -13,11 +13,15 @@ const { render } = await import(pathToFileURL(serverEntry.pathname).href)
 const escapeAttribute = (value) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;')
 const jsonLd = (value) => JSON.stringify(value).replaceAll('<', '\\u003c')
 
+function xDefaultUrl(page) {
+  return page.key === 'home' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${seoPath('zh', page)}`
+}
+
 function alternateLinks(page) {
   const links = SEO_LANGUAGES.map((language) =>
     `<link rel="alternate" hreflang="${language === 'zh' ? 'zh-Hans' : language}" href="${SITE_ORIGIN}${seoPath(language, page)}" />`,
   )
-  links.push(`<link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}/" />`)
+  links.push(`<link rel="alternate" hreflang="x-default" href="${xDefaultUrl(page)}" />`)
   return links.join('\n    ')
 }
 
@@ -38,7 +42,7 @@ function structuredData(seo) {
         '@type': 'ImageObject',
         url: `${SITE_ORIGIN}/assets/tuling-logo.png`,
       },
-      description: '图灵驭界 is the Chinese company brand of TellWin AI, providing enterprise sales conversation intelligence, AI workflow diagnosis, training and FDE co-delivery for high-value, long-cycle sales teams.',
+      description: '图灵驭界 is based in Shanghai and helps global enterprises improve sales with AI. It is the Chinese company brand of TellWin AI.',
       email: 'baolyang@tellynai.com',
       contactPoint: {
         '@type': 'ContactPoint',
@@ -135,11 +139,14 @@ function buildHtml(seo, appHtml, { canonicalOverride = '' } = {}) {
     <meta property="og:url" content="${canonical}" />
     <meta property="og:site_name" content="TellWin AI" />
     <meta property="og:locale" content="${seo.language === 'zh' ? 'zh_CN' : seo.language === 'ar' ? 'ar_AE' : 'en_US'}" />
+    ${SEO_LANGUAGES.filter((language) => language !== seo.language).map((language) => `<meta property="og:locale:alternate" content="${language === 'zh' ? 'zh_CN' : language === 'ar' ? 'ar_AE' : 'en_US'}" />`).join('\n    ')}
     <meta property="og:image" content="${SITE_ORIGIN}/og.png" />
     <meta property="og:image:width" content="1731" />
     <meta property="og:image:height" content="909" />
     <meta property="og:image:alt" content="TellWin AI — Enterprise Sales Intelligence" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeAttribute(seo.localizedTitle)}" />
+    <meta name="twitter:description" content="${escapeAttribute(seo.localizedDescription)}" />
     <meta name="twitter:image" content="${SITE_ORIGIN}/og.png" />
     <script type="application/ld+json">${jsonLd(structuredData({ ...seo, canonical }))}</script>`
 
@@ -171,7 +178,7 @@ const sitemapUrls = SEO_PAGES.flatMap((page) => SEO_LANGUAGES.map((language) => 
   const alternates = SEO_LANGUAGES.map((alternate) =>
     `    <xhtml:link rel="alternate" hreflang="${alternate === 'zh' ? 'zh-Hans' : alternate}" href="${SITE_ORIGIN}${seoPath(alternate, page)}" />`,
   ).join('\n')
-  return `  <url>\n    <loc>${loc}</loc>\n${alternates}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}/" />\n  </url>`
+  return `  <url>\n    <loc>${loc}</loc>\n${alternates}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${xDefaultUrl(page)}" />\n  </url>`
 })).join('\n')
 
 await writeFile(new URL('sitemap.xml', distDir), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapUrls}\n</urlset>\n`)

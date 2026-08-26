@@ -10,7 +10,7 @@ const pages = {
       ar: 'TellWin AI | ذكاء محادثات المبيعات للمؤسسات',
     },
     description: {
-      zh: '图灵驭界是 TellWin AI 的中文公司品牌，帮助高客单、长决策链企业把销售对话转化为客户情报，并通过 AI 业务诊断、企业内训与 FDE 共创真正落地。',
+      zh: '图灵驭界是base在上海，为全球企业提供AI销售提效的公司。作为 TellWin AI 的中文公司品牌，图灵驭界帮助高客单、长决策链企业把销售对话转化为客户情报。',
       en: 'TellWin AI helps high-value sales teams turn customer conversations into actionable intelligence through enterprise AI diagnosis, training and FDE delivery.',
       ar: 'تساعد TellWin AI فرق المبيعات عالية القيمة على تحويل محادثات العملاء إلى معلومات قابلة للتنفيذ عبر التشخيص والتدريب والتنفيذ المشترك.',
     },

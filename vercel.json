@@ -9,7 +9,15 @@
     { "source": "/training", "destination": "/zh/training/", "permanent": true },
     { "source": "/training/", "destination": "/zh/training/", "permanent": true },
     { "source": "/qixiao", "destination": "/zh/qixiao/", "permanent": true },
-    { "source": "/qixiao/", "destination": "/zh/qixiao/", "permanent": true }
+    { "source": "/qixiao/", "destination": "/zh/qixiao/", "permanent": true },
+    { "source": "/solutions/sales-conversation-intelligence", "destination": "/zh/solutions/sales-conversation-intelligence/", "permanent": true },
+    { "source": "/solutions/sales-conversation-intelligence/", "destination": "/zh/solutions/sales-conversation-intelligence/", "permanent": true },
+    { "source": "/solutions/ai-sales-call-analysis", "destination": "/zh/solutions/ai-sales-call-analysis/", "permanent": true },
+    { "source": "/solutions/ai-sales-call-analysis/", "destination": "/zh/solutions/ai-sales-call-analysis/", "permanent": true },
+    { "source": "/industries/automotive-sales-ai", "destination": "/zh/industries/automotive-sales-ai/", "permanent": true },
+    { "source": "/industries/automotive-sales-ai/", "destination": "/zh/industries/automotive-sales-ai/", "permanent": true },
+    { "source": "/industries/real-estate-sales-ai", "destination": "/zh/industries/real-estate-sales-ai/", "permanent": true },
+    { "source": "/industries/real-estate-sales-ai/", "destination": "/zh/industries/real-estate-sales-ai/", "permanent": true }
   ],
   "rewrites": [
     {

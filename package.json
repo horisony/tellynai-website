@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "validate:i18n": "node scripts/validate-i18n.mjs",
-    "build": "npm run validate:i18n && vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.mjs",
+    "validate:seo": "node scripts/validate-seo.mjs",
+    "build": "npm run validate:i18n && vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.mjs && npm run validate:seo",
     "preview": "vite preview",
     "start": "node server/index.mjs"
   },
