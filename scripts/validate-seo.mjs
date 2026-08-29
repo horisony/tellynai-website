@@ -10,6 +10,36 @@ const expect = (condition, message) => {
   if (!condition) failures.push(message)
 }
 
+function validateStructuredData(html, seo, label) {
+  const match = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)
+  expect(Boolean(match), `${label}: missing JSON-LD`)
+  if (!match) return
+
+  let data
+  try {
+    data = JSON.parse(match[1])
+  } catch {
+    expect(false, `${label}: invalid JSON-LD`)
+    return
+  }
+
+  const graph = data['@graph']
+  expect(Array.isArray(graph), `${label}: JSON-LD graph is missing`)
+  if (!Array.isArray(graph)) return
+
+  const ids = new Set(graph.map((node) => node['@id']).filter(Boolean))
+  expect(ids.size === graph.filter((node) => node['@id']).length, `${label}: JSON-LD contains duplicate @id values`)
+
+  const webPage = graph.find((node) => node['@id'] === `${seo.canonical}#webpage`)
+  expect(Boolean(webPage), `${label}: WebPage entity is missing`)
+  if (!webPage) return
+
+  for (const relation of ['mainEntity', 'breadcrumb', 'hasPart']) {
+    const reference = webPage[relation]?.['@id']
+    if (reference) expect(ids.has(reference), `${label}: WebPage ${relation} points to a missing entity`)
+  }
+}
+
 for (const page of SEO_PAGES) {
   for (const language of SEO_LANGUAGES) {
     const seo = seoForRoute(language, page.key)
@@ -24,7 +54,7 @@ for (const page of SEO_PAGES) {
     expect(html.includes(`<meta name="description" content="${seo.localizedDescription}" />`), `${label}: missing localized description`)
     expect(html.includes(`<link rel="canonical" href="${seo.canonical}" />`), `${label}: incorrect canonical`)
     expect(html.includes(`<link rel="alternate" hreflang="x-default" href="${expectedDefault}" />`), `${label}: incorrect x-default URL`)
-    expect(html.includes('<script type="application/ld+json">'), `${label}: missing JSON-LD`)
+    validateStructuredData(html, seo, label)
 
     for (const alternate of SEO_LANGUAGES) {
       const hreflang = alternate === 'zh' ? 'zh-Hans' : alternate

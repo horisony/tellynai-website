@@ -27,9 +27,23 @@ function alternateLinks(page) {
 
 function structuredData(seo) {
   const organizationId = `${SITE_ORIGIN}/#organization`
+  const webPageId = `${seo.canonical}#webpage`
+  const breadcrumbId = `${seo.canonical}#breadcrumb`
+  const faqId = `${seo.canonical}#faq`
+  const mainEntityId = `${seo.canonical}#main-entity`
   const productNames = {
     tellwin: 'TellWin',
     qixiao: seo.language === 'zh' ? '启晓（Qixiao）' : 'Qixiao',
+  }
+  const webPage = {
+    '@type': 'WebPage',
+    '@id': webPageId,
+    url: seo.canonical,
+    name: seo.localizedTitle,
+    description: seo.localizedDescription,
+    isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
+    about: { '@id': organizationId },
+    inLanguage: seo.language === 'zh' ? 'zh-CN' : seo.language,
   }
   const graph = [
     {
@@ -68,21 +82,13 @@ function structuredData(seo) {
       publisher: { '@id': organizationId },
       inLanguage: ['zh-CN', 'en', 'ar'],
     },
-    {
-      '@type': 'WebPage',
-      '@id': `${seo.canonical}#webpage`,
-      url: seo.canonical,
-      name: seo.localizedTitle,
-      description: seo.localizedDescription,
-      isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
-      about: { '@id': organizationId },
-      inLanguage: seo.language === 'zh' ? 'zh-CN' : seo.language,
-    },
+    webPage,
   ]
   if (productNames[seo.key]) {
+    webPage.mainEntity = { '@id': mainEntityId }
     graph.push({
       '@type': 'SoftwareApplication',
-      '@id': `${seo.canonical}#software`,
+      '@id': mainEntityId,
       name: productNames[seo.key],
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
@@ -92,8 +98,10 @@ function structuredData(seo) {
       brand: { '@id': organizationId },
     })
   } else if (['fde', 'training', 'salesIntelligence', 'salesCallAnalysis', 'automotive', 'realEstate'].includes(seo.key)) {
+    webPage.mainEntity = { '@id': mainEntityId }
     graph.push({
       '@type': 'Service',
+      '@id': mainEntityId,
       name: seo.localizedTitle.split('｜')[0].split('|')[0].trim(),
       description: seo.localizedDescription,
       url: seo.canonical,
@@ -103,9 +111,11 @@ function structuredData(seo) {
   }
   const landingCopy = seoLandingContent[seo.key]?.[seo.language]
   if (landingCopy) {
+    webPage.breadcrumb = { '@id': breadcrumbId }
+    webPage.hasPart = { '@id': faqId }
     graph.push({
       '@type': 'FAQPage',
-      '@id': `${seo.canonical}#faq`,
+      '@id': faqId,
       mainEntity: landingCopy.faqs.map(([question, answer]) => ({
         '@type': 'Question',
         name: question,
@@ -114,7 +124,7 @@ function structuredData(seo) {
     })
     graph.push({
       '@type': 'BreadcrumbList',
-      '@id': `${seo.canonical}#breadcrumb`,
+      '@id': breadcrumbId,
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'TellWin AI', item: `${SITE_ORIGIN}/${seo.language}/` },
         { '@type': 'ListItem', position: 2, name: seo.localizedTitle, item: seo.canonical },
