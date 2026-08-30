@@ -512,7 +512,7 @@ function Home() {
             <div className="case-preview-grid">
               {cases.slice(0, 3).map((c) => (
                 <article key={c.slug}>
-                  <img src={c.image} alt="" />
+                  <img src={c.image} alt="" loading="lazy" decoding="async" />
                   <div>
                     <span>
                       {c.industry} · {c.service}
@@ -593,6 +593,8 @@ function Home() {
             className="product-shot"
             src="/assets/tellyn-dashboard.png"
             alt="TellWin 产品界面"
+            loading="lazy"
+            decoding="async"
           />
         </section>
         <section
@@ -603,6 +605,7 @@ function Home() {
             <iframe
               src="https://www.youtube.com/embed/WMDGoGlz3vI?autoplay=1&mute=1&loop=1&playlist=WMDGoGlz3vI&controls=1&playsinline=1&rel=0"
               title="SnapDesign 快速生成设计海报演示"
+              loading="lazy"
               allow="autoplay; encrypted-media; picture-in-picture"
               allowFullScreen
             />
@@ -643,6 +646,8 @@ function Home() {
               className="product-shot"
               src="/assets/qixiao-dashboard.png"
               alt="启晓 AI 公关工作系统总览"
+              loading="lazy"
+              decoding="async"
             />
             <div className="tellyn-copy">
               <span className="eyebrow"><i />AI PR WORK SYSTEM</span>
@@ -730,7 +735,7 @@ function QixiaoPage() {
           <section className="qixiao-proof-band">
             <div className="section-shell qixiao-proof-layout">
               <div className="tellyn-section-head"><span>ONE SHARED CONTROL CENTER</span><h2>零散帖子变成事件，<br />事件进入<em>同一个工作台</em>。</h2><p>总览、话题、事件、可疑账号、多平台热搜与分析报告共享上下文，公关团队不必在不同工具间重复拼接判断。</p></div>
-              <div className="dashboard-frame"><img src="/assets/qixiao-dashboard.png" alt="启晓舆情监测与智能管控中心" /></div>
+              <div className="dashboard-frame"><img src="/assets/qixiao-dashboard.png" alt="启晓舆情监测与智能管控中心" loading="lazy" decoding="async" /></div>
             </div>
           </section>
 
@@ -742,7 +747,7 @@ function QixiaoPage() {
           <section className="qixiao-agent-section">
             <div className="section-shell validation-layout">
               <div><span>AGENT + KNOWLEDGE</span><h2>每一次人工判断，<br />都成为品牌自己的<em>公关资产</em>。</h2><p>启晓将历史事件、品牌口径、合规红线与团队反馈沉淀到企业专属知识库。系统不是固定交付后停止变化，而是在明确的人机边界内持续吸收判断力。</p><div className="validation-points"><span>品牌专属模型</span><span>客户知识库</span><span>Agent 工作流</span><span>持续反馈</span></div></div>
-              <img src="/assets/qixiao-agent-workflow.png" alt="启晓舆情专家 Agent 工作流程" />
+              <img src="/assets/qixiao-agent-workflow.png" alt="启晓舆情专家 Agent 工作流程" loading="lazy" decoding="async" />
             </div>
           </section>
 
@@ -754,7 +759,7 @@ function QixiaoPage() {
           <section className="qixiao-report-section">
             <div className="section-shell validation-layout">
               <div><span>DECISION-READY REPORTING</span><h2>不止告诉你发生了什么，<br />更把<em>下一步依据</em>说清楚。</h2><p>报告以多维分析、传播演化和风险评估为基础，结构化呈现证据、重点与建议。模板和视觉可按企业需要配置，便于管理层快速阅读与团队协同。</p></div>
-              <img src="/assets/qixiao-report.png" alt="启晓舆情分析报告示例" />
+              <img src="/assets/qixiao-report.png" alt="启晓舆情分析报告示例" loading="lazy" decoding="async" />
             </div>
           </section>
         </main>
@@ -1064,7 +1069,7 @@ function TellynPage() {
               <article key={item.number}>
                 <small>{item.number}</small>
                 <div className="industry-illustration" aria-hidden="true">
-                  <img src={item.image} alt="" />
+                  <img src={item.image} alt="" loading="lazy" decoding="async" />
                 </div>
                 <h3>{item.title}</h3>
                 <strong>{item.lead}</strong>
@@ -1145,7 +1150,7 @@ function TellynPage() {
               <p>在上海高端珠宝定制场景中，我们围绕企业微信真实成交记录构建销售知识库与话术分析能力，为一线提供更一致的回复建议。该项目已完成付费交付，验证了客户对“把对话变成团队能力”的明确需求。</p>
               <div className="validation-points"><span>高客单定制场景</span><span>企业微信真实语料</span><span>已完成付费交付</span></div>
             </div>
-            <a href="/#wecom-showcase" aria-label="查看企微销售分析案例"><img src="/assets/wecom-sales-assistant.webp" alt="企微销售分析界面" /></a>
+            <a href="/#wecom-showcase" aria-label="查看企微销售分析案例"><img src="/assets/wecom-sales-assistant.webp" alt="企微销售分析界面" loading="lazy" decoding="async" /></a>
           </div>
         </section>
 
@@ -1165,6 +1170,8 @@ function TellynPage() {
             <img
               src="/assets/tellyn-dashboard.png"
               alt="TellWin 销售洞察与经营总览界面"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div className="proof-grid tellyn-proof-grid">
