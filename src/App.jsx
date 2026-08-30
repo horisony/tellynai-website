@@ -49,7 +49,7 @@ const clients = [
 function Mark() {
   return (
     <Localized>
-      <img className="mark" src="/assets/tuling-logo.png" alt="图灵驭界 AI" />
+      <img className="mark" src="/assets/tuling-logo.png" alt="图灵驭界 AI" width="186" height="185" />
     </Localized>
   );
 }
@@ -418,13 +418,15 @@ function Home() {
             <div className="team-origin">
               <strong>核心团队来自</strong>
               <div>
-                <img src="/assets/team-tencent-cloud.svg" alt="腾讯云" />
-                <img src="/assets/team-nio.png" alt="NIO 蔚来" />
+                <img src="/assets/team-tencent-cloud.svg" alt="腾讯云" width="1053" height="720" />
+                <img src="/assets/team-nio.png" alt="NIO 蔚来" width="658" height="320" />
                 <img
                   src="/assets/team-bytedance.svg"
                   alt="ByteDance 字节跳动"
+                  width="1622"
+                  height="280"
                 />
-                <img src="/assets/team-meituan.png" alt="美团" />
+                <img src="/assets/team-meituan.png" alt="美团" width="830" height="300" />
               </div>
             </div>
           </div>
@@ -433,6 +435,8 @@ function Home() {
               className="bao-hero"
               src="/assets/team-hero.png"
               alt="图灵驭界团队手绘插图"
+              width="960"
+              height="801"
             />
           </div>
         </section>
@@ -555,6 +559,8 @@ function Home() {
               className="wecom-sales-shot"
               src="/assets/wecom-sales-assistant.webp"
               alt="企微销售分析界面"
+              width="2412"
+              height="1520"
               loading="lazy"
             />
             <span className="wecom-sales-cta">体验企微销售分析 ↗</span>
@@ -593,6 +599,8 @@ function Home() {
             className="product-shot"
             src="/assets/tellyn-dashboard.png"
             alt="TellWin 产品界面"
+            width="2546"
+            height="1358"
             loading="lazy"
             decoding="async"
           />
@@ -646,6 +654,8 @@ function Home() {
               className="product-shot"
               src="/assets/qixiao-dashboard.png"
               alt="启晓 AI 公关工作系统总览"
+              width="1344"
+              height="756"
               loading="lazy"
               decoding="async"
             />
@@ -716,7 +726,7 @@ function QixiaoPage() {
               </div>
               <div className="tellyn-promise"><span>发现</span><b>→</b><span>理解</span><b>→</b><span>研判</span><b>→</b><span>行动</span><b>→</b><span>复盘</span></div>
             </div>
-            <div className="qixiao-hero-screen"><img src="/assets/qixiao-dashboard.png" alt="启晓 AI 公关工作系统总览" /></div>
+            <div className="qixiao-hero-screen"><img src="/assets/qixiao-dashboard.png" alt="启晓 AI 公关工作系统总览" width="1344" height="756" /></div>
           </section>
 
           <section className="tellyn-problem">
@@ -735,7 +745,7 @@ function QixiaoPage() {
           <section className="qixiao-proof-band">
             <div className="section-shell qixiao-proof-layout">
               <div className="tellyn-section-head"><span>ONE SHARED CONTROL CENTER</span><h2>零散帖子变成事件，<br />事件进入<em>同一个工作台</em>。</h2><p>总览、话题、事件、可疑账号、多平台热搜与分析报告共享上下文，公关团队不必在不同工具间重复拼接判断。</p></div>
-              <div className="dashboard-frame"><img src="/assets/qixiao-dashboard.png" alt="启晓舆情监测与智能管控中心" loading="lazy" decoding="async" /></div>
+              <div className="dashboard-frame"><img src="/assets/qixiao-dashboard.png" alt="启晓舆情监测与智能管控中心" width="1344" height="756" loading="lazy" decoding="async" /></div>
             </div>
           </section>
 
@@ -747,7 +757,7 @@ function QixiaoPage() {
           <section className="qixiao-agent-section">
             <div className="section-shell validation-layout">
               <div><span>AGENT + KNOWLEDGE</span><h2>每一次人工判断，<br />都成为品牌自己的<em>公关资产</em>。</h2><p>启晓将历史事件、品牌口径、合规红线与团队反馈沉淀到企业专属知识库。系统不是固定交付后停止变化，而是在明确的人机边界内持续吸收判断力。</p><div className="validation-points"><span>品牌专属模型</span><span>客户知识库</span><span>Agent 工作流</span><span>持续反馈</span></div></div>
-              <img src="/assets/qixiao-agent-workflow.png" alt="启晓舆情专家 Agent 工作流程" loading="lazy" decoding="async" />
+              <img src="/assets/qixiao-agent-workflow.png" alt="启晓舆情专家 Agent 工作流程" width="1344" height="756" loading="lazy" decoding="async" />
             </div>
           </section>
 
@@ -759,7 +769,7 @@ function QixiaoPage() {
           <section className="qixiao-report-section">
             <div className="section-shell validation-layout">
               <div><span>DECISION-READY REPORTING</span><h2>不止告诉你发生了什么，<br />更把<em>下一步依据</em>说清楚。</h2><p>报告以多维分析、传播演化和风险评估为基础，结构化呈现证据、重点与建议。模板和视觉可按企业需要配置，便于管理层快速阅读与团队协同。</p></div>
-              <img src="/assets/qixiao-report.png" alt="启晓舆情分析报告示例" loading="lazy" decoding="async" />
+              <img src="/assets/qixiao-report.png" alt="启晓舆情分析报告示例" width="1344" height="756" loading="lazy" decoding="async" />
             </div>
           </section>
         </main>
@@ -886,6 +896,8 @@ function TellynPage() {
     {
       number: "01",
       image: "/assets/tellyn-healthcare.png",
+      imageWidth: 500,
+      imageHeight: 500,
       title: "医疗与医疗器械",
       lead: "一次专业沟通，不能只留在销售的记忆里。",
       scene:
@@ -899,6 +911,8 @@ function TellynPage() {
     {
       number: "02",
       image: "/assets/tellyn-real-estate.png",
+      imageWidth: 558,
+      imageHeight: 447,
       title: "汽车销售",
       lead: "试驾结束后，真正的销售工作才刚开始。",
       scene:
@@ -912,6 +926,8 @@ function TellynPage() {
     {
       number: "03",
       image: "/assets/tellyn-automotive.png",
+      imageWidth: 500,
+      imageHeight: 500,
       title: "房产销售",
       lead: "每次带看，都应该让下一套推荐更准确。",
       scene:
@@ -948,7 +964,7 @@ function TellynPage() {
         <section className="tellyn-hero section-shell">
           <div className="tellyn-hero-copy">
             <div className="tellyn-lockup">
-              <img src="/assets/tellyn-mark.png" alt="TellWin" />
+              <img src="/assets/tellyn-mark.png" alt="TellWin" width="157" height="156" />
               <strong>TellWin</strong>
               <span>AI Sales Copilot</span>
             </div>
@@ -983,6 +999,8 @@ function TellynPage() {
             <img
               src="/assets/tellyn-hero-sales.png"
               alt="汽车销售向客户介绍车辆的手绘插图"
+              width="577"
+              height="433"
             />
             <div>
               <small>AI 整理完成</small>
@@ -1069,7 +1087,7 @@ function TellynPage() {
               <article key={item.number}>
                 <small>{item.number}</small>
                 <div className="industry-illustration" aria-hidden="true">
-                  <img src={item.image} alt="" loading="lazy" decoding="async" />
+                  <img src={item.image} alt="" width={item.imageWidth} height={item.imageHeight} loading="lazy" decoding="async" />
                 </div>
                 <h3>{item.title}</h3>
                 <strong>{item.lead}</strong>
@@ -1150,7 +1168,7 @@ function TellynPage() {
               <p>在上海高端珠宝定制场景中，我们围绕企业微信真实成交记录构建销售知识库与话术分析能力，为一线提供更一致的回复建议。该项目已完成付费交付，验证了客户对“把对话变成团队能力”的明确需求。</p>
               <div className="validation-points"><span>高客单定制场景</span><span>企业微信真实语料</span><span>已完成付费交付</span></div>
             </div>
-            <a href="/#wecom-showcase" aria-label="查看企微销售分析案例"><img src="/assets/wecom-sales-assistant.webp" alt="企微销售分析界面" loading="lazy" decoding="async" /></a>
+            <a href="/#wecom-showcase" aria-label="查看企微销售分析案例"><img src="/assets/wecom-sales-assistant.webp" alt="企微销售分析界面" width="2412" height="1520" loading="lazy" decoding="async" /></a>
           </div>
         </section>
 
@@ -1170,6 +1188,8 @@ function TellynPage() {
             <img
               src="/assets/tellyn-dashboard.png"
               alt="TellWin 销售洞察与经营总览界面"
+              width="2546"
+              height="1358"
               loading="lazy"
               decoding="async"
             />
