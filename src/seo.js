@@ -5,14 +5,19 @@ const pages = {
   home: {
     path: '',
     title: {
-      zh: '图灵驭界｜TellWin AI 企业销售对话智能与 AI 落地',
-      en: 'TellWin AI | Enterprise Sales AI & Conversation Intelligence',
+      zh: '上海图灵驭界科技有限公司｜图灵驭界 TellWin AI 官网',
+      en: 'Shanghai Tellyn Frontier Technology Co., Ltd. | TellWin AI',
       ar: 'TellWin AI | ذكاء محادثات المبيعات للمؤسسات',
     },
     description: {
-      zh: '图灵驭界是base在上海，为全球企业提供AI销售提效的公司。作为 TellWin AI 的中文公司品牌，图灵驭界帮助高客单、长决策链企业把销售对话转化为客户情报。',
-      en: 'TellWin AI helps high-value sales teams turn customer conversations into actionable intelligence through enterprise AI diagnosis, training and FDE delivery.',
+      zh: '图灵驭界是base在上海，为全球企业提供AI销售提效的公司。上海图灵驭界科技有限公司以图灵驭界为中文公司品牌，是 TellWin AI 的运营主体，专注企业销售对话智能与 AI 落地。',
+      en: 'Shanghai Tellyn Frontier Technology Co., Ltd., operating as TellWin AI and known in Chinese as 图灵驭界, helps global enterprises improve high-value sales with conversation intelligence and enterprise AI delivery.',
       ar: 'تساعد TellWin AI فرق المبيعات عالية القيمة على تحويل محادثات العملاء إلى معلومات قابلة للتنفيذ عبر التشخيص والتدريب والتنفيذ المشترك.',
+    },
+    keywords: {
+      zh: ['上海图灵驭界科技有限公司', '上海图灵驭界有限公司', '上海图灵驭界', '图灵驭界', 'Shanghai Tellyn Frontier Technology Co., Ltd.', 'Shanghai Tellyn Frontier', 'Tellyn Frontier'],
+      en: ['Shanghai Tellyn Frontier Technology Co., Ltd.', 'Shanghai Tellyn Frontier', 'Tellyn Frontier', '图灵驭界', 'TellWin AI'],
+      ar: ['TellWin AI', 'Tellyn Frontier', 'Shanghai Tellyn Frontier Technology Co., Ltd.', '图灵驭界'],
     },
   },
   tellwin: {
@@ -137,5 +142,6 @@ export function seoForRoute(language, pageKey) {
     canonical: `${SITE_ORIGIN}${pathname}`,
     localizedTitle: page.title[language],
     localizedDescription: page.description[language],
+    localizedKeywords: page.keywords?.[language] || [],
   }
 }

@@ -8,12 +8,12 @@ export const services = [
 export const brandProfile = {
   zh: {
     heading: '图灵驭界是谁？',
-    body: '图灵驭界是base在上海，为全球企业提供AI销售提效的公司。图灵驭界是 TellWin AI 的中文公司品牌，专注帮助高客单、长决策链企业把销售对话转化为客户情报，并通过 AI 业务诊断、企业内训与 FDE 共创，让 AI 真正进入业务流程。',
+    body: '图灵驭界是base在上海，为全球企业提供AI销售提效的公司，专注帮助高客单、长决策链企业把销售对话转化为客户情报，并通过 AI 业务诊断、企业内训与 FDE 共创，让 AI 真正进入业务流程。',
     detail: '图灵驭界旗下产品包括销售对话智能产品 TellWin、AI 设计产品 SnapDesign，以及企业 AI 舆情研判与公关工作系统启晓。',
   },
   en: {
     heading: 'About TellWin AI',
-    body: 'TellWin AI, known in Chinese as 图灵驭界, helps high-value, long-cycle sales teams turn customer conversations into actionable intelligence through AI workflow diagnosis, enterprise training and FDE co-delivery.',
+    body: 'Shanghai Tellyn Frontier Technology Co., Ltd. operates as TellWin AI and is known in Chinese as 图灵驭界. Based in Shanghai, the company helps high-value, long-cycle sales teams turn customer conversations into actionable intelligence through AI workflow diagnosis, enterprise training and FDE co-delivery.',
     detail: 'Its product portfolio includes TellWin for sales conversation intelligence, SnapDesign for AI-assisted visual creation, and Qixiao for enterprise PR intelligence and response workflows.',
   },
   ar: {

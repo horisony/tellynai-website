@@ -49,14 +49,15 @@ function structuredData(seo) {
     {
       '@type': 'Organization',
       '@id': organizationId,
-      name: 'TellWin AI',
-      alternateName: ['图灵驭界', '图灵驭界 AI', 'Tellyn AI'],
+      name: '上海图灵驭界科技有限公司',
+      legalName: '上海图灵驭界科技有限公司',
+      alternateName: ['上海图灵驭界有限公司', '上海图灵驭界', '图灵驭界', 'TellWin AI', 'Shanghai Tellyn Frontier Technology Co., Ltd.', 'Shanghai Tellyn Frontier', 'Tellyn Frontier'],
       url: SITE_ORIGIN,
       logo: {
         '@type': 'ImageObject',
         url: `${SITE_ORIGIN}/assets/tuling-logo.png`,
       },
-      description: '图灵驭界 is based in Shanghai and helps global enterprises improve sales with AI. It is the Chinese company brand of TellWin AI.',
+      description: '图灵驭界 is based in Shanghai and helps global enterprises improve sales with AI. Shanghai Tellyn Frontier Technology Co., Ltd. operates TellWin AI, whose Chinese company brand is 图灵驭界.',
       email: 'baolyang@tellynai.com',
       contactPoint: {
         '@type': 'ContactPoint',
@@ -140,6 +141,7 @@ function buildHtml(seo, appHtml, { canonicalOverride = '' } = {}) {
   const direction = seo.language === 'ar' ? 'rtl' : 'ltr'
   const head = `
     <meta name="description" content="${escapeAttribute(seo.localizedDescription)}" />
+    ${seo.localizedKeywords.length ? `<meta name="keywords" content="${escapeAttribute(seo.localizedKeywords.join(', '))}" />` : ''}
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="${canonical}" />
     ${alternateLinks(seo)}
