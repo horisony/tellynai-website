@@ -637,7 +637,9 @@ h2 em {
   font-weight: 700;
 }
 .product-shot {
+  display: block;
   width: 100%;
+  height: auto;
   border: 1px solid var(--line);
   border-radius: 20px;
   box-shadow: 0 18px 40px rgba(34, 30, 23, 0.09);
@@ -1703,6 +1705,7 @@ html[dir="rtl"] .commercial-note {
 }
 .tellyn-hero-art > img {
   width: 100%;
+  height: auto;
   max-height: 430px;
   object-fit: contain;
 }
@@ -2069,7 +2072,7 @@ html[dir="rtl"] .commercial-note {
   transition: .18s;
 }
 .validation-layout a:hover { transform: translate(-3px, -3px); box-shadow: 15px 15px 0 var(--ink); }
-.validation-layout img { display: block; width: 100%; border-radius: 12px; }
+.validation-layout img { display: block; width: 100%; height: auto; border-radius: 12px; }
 .validation-points { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; }
 .validation-points span { padding: 8px 11px; border: 1px solid rgba(23,22,20,.5); border-radius: 99px; font-size: 11px; font-weight: 700; }
 .proof-note {
@@ -2134,6 +2137,7 @@ html[dir="rtl"] .commercial-note {
 .dashboard-frame img {
   display: block;
   width: 100%;
+  height: auto;
   border-radius: 13px;
 }
 .tellyn-proof-grid {
@@ -2159,7 +2163,7 @@ html[dir="rtl"] .commercial-note {
   box-shadow: 18px 18px 0 var(--yellow);
   transform: rotate(1deg);
 }
-.qixiao-hero-screen img { display: block; width: 100%; border-radius: 13px; }
+.qixiao-hero-screen img { display: block; width: 100%; height: auto; border-radius: 13px; }
 .qixiao-page .tellyn-problem em { background-image: linear-gradient(to top, var(--yellow) 0 .3em, transparent .3em); }
 .qixiao-workflow,
 .qixiao-capabilities,
@@ -2191,7 +2195,7 @@ html[dir="rtl"] .commercial-note {
 .qixiao-agent-section .validation-layout p { color: #c9c3b9; }
 .qixiao-agent-section .validation-points span { border-color: rgba(255,255,255,.45); }
 .qixiao-agent-section img,
-.qixiao-report-section img { display: block; width: 100%; border-radius: 18px; box-shadow: 0 28px 55px rgba(20,39,65,.18); }
+.qixiao-report-section img { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 28px 55px rgba(20,39,65,.18); }
 .qixiao-fit .department-grid article { border-color: #d7d1c4; background: #fffdfa; }
 .qixiao-report-section { background: var(--yellow); }
 .qixiao-report-section .validation-layout { grid-template-columns: .75fr 1.25fr; }
