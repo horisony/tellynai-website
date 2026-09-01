@@ -16,6 +16,10 @@
     { "source": "/solutions/ai-sales-call-analysis/", "destination": "/zh/solutions/ai-sales-call-analysis/", "permanent": true },
     { "source": "/industries/automotive-sales-ai", "destination": "/zh/industries/automotive-sales-ai/", "permanent": true },
     { "source": "/industries/automotive-sales-ai/", "destination": "/zh/industries/automotive-sales-ai/", "permanent": true },
+    { "source": "/industries/jewelry-sales-ai", "destination": "/zh/industries/jewelry-sales-ai/", "permanent": true },
+    { "source": "/industries/jewelry-sales-ai/", "destination": "/zh/industries/jewelry-sales-ai/", "permanent": true },
+    { "source": "/industries/medical-device-sales-ai", "destination": "/zh/industries/medical-device-sales-ai/", "permanent": true },
+    { "source": "/industries/medical-device-sales-ai/", "destination": "/zh/industries/medical-device-sales-ai/", "permanent": true },
     { "source": "/industries/real-estate-sales-ai", "destination": "/zh/industries/real-estate-sales-ai/", "permanent": true },
     { "source": "/industries/real-estate-sales-ai/", "destination": "/zh/industries/real-estate-sales-ai/", "permanent": true }
   ],

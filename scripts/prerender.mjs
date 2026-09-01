@@ -98,7 +98,7 @@ function structuredData(seo) {
       provider: { '@id': organizationId },
       brand: { '@id': organizationId },
     })
-  } else if (['fde', 'training', 'salesIntelligence', 'salesCallAnalysis', 'automotive', 'realEstate'].includes(seo.key)) {
+  } else if (['fde', 'training', 'salesIntelligence', 'salesCallAnalysis', 'automotive', 'jewelry', 'medicalDevice', 'realEstate'].includes(seo.key)) {
     webPage.mainEntity = { '@id': mainEntityId }
     graph.push({
       '@type': 'Service',

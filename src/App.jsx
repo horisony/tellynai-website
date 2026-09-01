@@ -785,12 +785,14 @@ function SeoLandingPage({ pageKey }) {
   const copy = seoLandingContent[pageKey][language];
   const ui = seoLandingUi[language];
   const isRealEstate = pageKey === "realEstate";
-  const isIndustry = ["realEstate", "automotive"].includes(pageKey);
+  const isIndustry = ["realEstate", "automotive", "jewelry", "medicalDevice"].includes(pageKey);
   const relatedLandingPages = [
     ["salesIntelligence", "solutions/sales-conversation-intelligence", ui.salesIntelligenceLink],
     ["salesCallAnalysis", "solutions/ai-sales-call-analysis", ui.salesCallLink],
     ["realEstate", "industries/real-estate-sales-ai", ui.realEstateLink],
     ["automotive", "industries/automotive-sales-ai", ui.automotiveLink],
+    ["jewelry", "industries/jewelry-sales-ai", ui.jewelryLink],
+    ["medicalDevice", "industries/medical-device-sales-ai", ui.medicalDeviceLink],
   ].filter(([key]) => key !== pageKey);
   const splitTitle = copy.title.split("\n");
   const sourceHref = isRealEstate
@@ -1449,6 +1451,8 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
     "/solutions/ai-sales-call-analysis": "salesCallAnalysis",
     "/industries/real-estate-sales-ai": "realEstate",
     "/industries/automotive-sales-ai": "automotive",
+    "/industries/jewelry-sales-ai": "jewelry",
+    "/industries/medical-device-sales-ai": "medicalDevice",
   }[path];
   const isTellWinHash =
     path === "/" && (hash === "#tellwin" || hash.startsWith("#tellwin-"));

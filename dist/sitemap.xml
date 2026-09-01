@@ -169,6 +169,48 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/industries/automotive-sales-ai/" />
   </url>
   <url>
+    <loc>https://tellynai.com/zh/industries/jewelry-sales-ai/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/industries/jewelry-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/industries/jewelry-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/industries/jewelry-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/industries/jewelry-sales-ai/" />
+  </url>
+  <url>
+    <loc>https://tellynai.com/en/industries/jewelry-sales-ai/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/industries/jewelry-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/industries/jewelry-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/industries/jewelry-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/industries/jewelry-sales-ai/" />
+  </url>
+  <url>
+    <loc>https://tellynai.com/ar/industries/jewelry-sales-ai/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/industries/jewelry-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/industries/jewelry-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/industries/jewelry-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/industries/jewelry-sales-ai/" />
+  </url>
+  <url>
+    <loc>https://tellynai.com/zh/industries/medical-device-sales-ai/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/industries/medical-device-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/industries/medical-device-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/industries/medical-device-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/industries/medical-device-sales-ai/" />
+  </url>
+  <url>
+    <loc>https://tellynai.com/en/industries/medical-device-sales-ai/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/industries/medical-device-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/industries/medical-device-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/industries/medical-device-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/industries/medical-device-sales-ai/" />
+  </url>
+  <url>
+    <loc>https://tellynai.com/ar/industries/medical-device-sales-ai/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/industries/medical-device-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/industries/medical-device-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/industries/medical-device-sales-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/industries/medical-device-sales-ai/" />
+  </url>
+  <url>
     <loc>https://tellynai.com/zh/industries/real-estate-sales-ai/</loc>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/industries/real-estate-sales-ai/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/industries/real-estate-sales-ai/" />

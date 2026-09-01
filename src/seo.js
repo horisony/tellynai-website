@@ -111,6 +111,32 @@ const pages = {
       ar: 'ذكاء محادثات لفرق مبيعات السيارات ينظم الطراز والميزانية والاستبدال والمواصفات والمنافسين والمخاوف والمتابعة.',
     },
   },
+  jewelry: {
+    path: 'industries/jewelry-sales-ai',
+    title: {
+      zh: '珠宝销售 AI｜客户对话分析与导购跟进助手',
+      en: 'Jewelry Sales AI | Clienteling Conversation Intelligence',
+      ar: 'الذكاء الاصطناعي لمبيعات المجوهرات | ذكاء محادثات العملاء',
+    },
+    description: {
+      zh: '面向高端珠宝与定制销售团队，整理客户偏好、预算、用途、材质、款式、顾虑、承诺事项与下一步，让真实客户语境进入持续跟进。',
+      en: 'Conversation intelligence for jewelry sales teams, structuring client preferences, budget, occasion, materials, design concerns, commitments and next actions.',
+      ar: 'ذكاء محادثات لفرق مبيعات المجوهرات ينظم تفضيلات العميل والميزانية والمناسبة والمواد والتصميم والمخاوف والالتزامات والخطوات التالية.',
+    },
+  },
+  medicalDevice: {
+    path: 'industries/medical-device-sales-ai',
+    title: {
+      zh: '医疗器械销售 AI｜专业沟通分析与客户跟进助手',
+      en: 'Medical Device Sales AI | Conversation Intelligence for Field Teams',
+      ar: 'الذكاء الاصطناعي لمبيعات الأجهزة الطبية | ذكاء محادثات الفرق الميدانية',
+    },
+    description: {
+      zh: '面向医疗器械与专业医疗产品销售团队，整理客户角色、临床与业务需求、产品关注、异议、承诺事项和下一步，为销售跟进与主管辅导提供可复核依据。',
+      en: 'Conversation intelligence for medical device sales teams, structuring stakeholder roles, clinical and business needs, product questions, objections, commitments and next actions.',
+      ar: 'ذكاء محادثات لفرق مبيعات الأجهزة الطبية ينظم أدوار أصحاب المصلحة والاحتياجات السريرية والتجارية وأسئلة المنتج والاعتراضات والالتزامات والخطوات التالية.',
+    },
+  },
   realEstate: {
     path: 'industries/real-estate-sales-ai',
     title: {
