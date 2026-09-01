@@ -82,6 +82,9 @@ const robots = await readFile(new URL('robots.txt', distDir), 'utf8')
 expect(robots.includes(`Sitemap: ${SITE_ORIGIN}/sitemap.xml`), 'robots.txt: missing sitemap URL')
 expect(robots.includes('Disallow: /api/'), 'robots.txt: API routes must stay excluded')
 
+const customerDemo = await readFile(new URL('customer/index.html', distDir), 'utf8')
+expect(customerDemo.includes('<meta name="robots" content="noindex,nofollow,noarchive" />'), 'customer demo: missing HTML noindex directive')
+
 const vercelConfig = JSON.parse(await readFile(new URL('../vercel.json', import.meta.url), 'utf8'))
 for (const page of SEO_PAGES.filter((item) => item.path)) {
   const expectedDestination = seoPath('zh', page)
