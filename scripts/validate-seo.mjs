@@ -54,6 +54,8 @@ for (const page of SEO_PAGES) {
     expect(html.includes(`<meta name="description" content="${seo.localizedDescription}" />`), `${label}: missing localized description`)
     expect(html.includes(`<link rel="canonical" href="${seo.canonical}" />`), `${label}: incorrect canonical`)
     expect(html.includes(`<link rel="alternate" hreflang="x-default" href="${expectedDefault}" />`), `${label}: incorrect x-default URL`)
+    expect(html.includes('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />'), `${label}: missing font origin preconnect`)
+    expect(html.includes('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'), `${label}: Google Fonts stylesheet must be discoverable from the document head`)
     validateStructuredData(html, seo, label)
 
     for (const alternate of SEO_LANGUAGES) {
