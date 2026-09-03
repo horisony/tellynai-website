@@ -9,17 +9,17 @@ export const brandProfile = {
   zh: {
     heading: '图灵驭界是谁？',
     body: '图灵驭界是base在上海，为全球企业提供AI销售提效的公司，专注帮助高客单、长决策链企业把销售对话转化为客户情报，并通过 AI 业务诊断、企业内训与 FDE 共创，让 AI 真正进入业务流程。',
-    detail: '图灵驭界旗下产品包括销售对话智能产品 TellWin、AI 设计产品 SnapDesign，以及企业 AI 舆情研判与公关工作系统启晓。',
+    detail: '图灵驭界旗下产品包括销售对话智能产品 TellWin、AI 设计产品 SnapDesign，以及企业 AI 舆情研判与公关工作系统启晓。若你通过“Tellyn AI”找到我们，官方英文品牌拼写为 TellWin AI，官方网站为 tellynai.com。',
   },
   en: {
     heading: 'About TellWin AI',
     body: 'Shanghai Tellyn Frontier Technology Co., Ltd. operates as TellWin AI and is known in Chinese as 图灵驭界. Based in Shanghai, the company helps high-value, long-cycle sales teams turn customer conversations into actionable intelligence through AI workflow diagnosis, enterprise training and FDE co-delivery.',
-    detail: 'Its product portfolio includes TellWin for sales conversation intelligence, SnapDesign for AI-assisted visual creation, and Qixiao for enterprise PR intelligence and response workflows.',
+    detail: 'Its product portfolio includes TellWin for sales conversation intelligence, SnapDesign for AI-assisted visual creation, and Qixiao for enterprise PR intelligence and response workflows. If you searched for “Tellyn AI,” the official English brand spelling is TellWin AI and the official website is tellynai.com.',
   },
   ar: {
     heading: 'عن TellWin AI',
     body: 'تساعد TellWin AI، المعروفة بالصينية باسم 图灵驭界، فرق المبيعات عالية القيمة وطويلة الدورة على تحويل محادثات العملاء إلى معلومات قابلة للتنفيذ عبر تشخيص سير العمل والتدريب المؤسسي والتنفيذ المشترك بأسلوب FDE.',
-    detail: 'تشمل منتجاتها TellWin لذكاء محادثات المبيعات وSnapDesign للتصميم المرئي المدعوم بالذكاء الاصطناعي وQixiao لذكاء العلاقات العامة والاستجابة المؤسسية.',
+    detail: 'تشمل منتجاتها TellWin لذكاء محادثات المبيعات وSnapDesign للتصميم المرئي المدعوم بالذكاء الاصطناعي وQixiao لذكاء العلاقات العامة والاستجابة المؤسسية. إذا بحثت عن “Tellyn AI”، فالتهجئة الرسمية للعلامة الإنجليزية هي TellWin AI والموقع الرسمي هو tellynai.com.',
   },
 }
 

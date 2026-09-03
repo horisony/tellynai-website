@@ -15,9 +15,9 @@ const pages = {
       ar: 'تساعد TellWin AI فرق المبيعات عالية القيمة على تحويل محادثات العملاء إلى معلومات قابلة للتنفيذ عبر التشخيص والتدريب والتنفيذ المشترك.',
     },
     keywords: {
-      zh: ['上海图灵驭界科技有限公司', '上海图灵驭界有限公司', '上海图灵驭界', '图灵驭界', 'Shanghai Tellyn Frontier Technology Co., Ltd.', 'Shanghai Tellyn Frontier', 'Tellyn Frontier'],
-      en: ['Shanghai Tellyn Frontier Technology Co., Ltd.', 'Shanghai Tellyn Frontier', 'Tellyn Frontier', '图灵驭界', 'TellWin AI'],
-      ar: ['TellWin AI', 'Tellyn Frontier', 'Shanghai Tellyn Frontier Technology Co., Ltd.', '图灵驭界'],
+      zh: ['上海图灵驭界科技有限公司', '上海图灵驭界有限公司', '上海图灵驭界', '图灵驭界', 'TellWin AI', 'Tellyn AI', 'Shanghai Tellyn Frontier Technology Co., Ltd.', 'Shanghai Tellyn Frontier', 'Tellyn Frontier'],
+      en: ['TellWin AI', 'Tellyn AI', 'Shanghai Tellyn Frontier Technology Co., Ltd.', 'Shanghai Tellyn Frontier', 'Tellyn Frontier', '图灵驭界'],
+      ar: ['TellWin AI', 'Tellyn AI', 'Tellyn Frontier', 'Shanghai Tellyn Frontier Technology Co., Ltd.', '图灵驭界'],
     },
   },
   tellwin: {
@@ -31,6 +31,11 @@ const pages = {
       zh: 'TellWin 将线下销售与企业微信客户对话整理为结构化档案、跟进建议、产品反馈与经营洞察，适用于汽车、珠宝、房产和医疗等高客单行业。',
       en: 'TellWin turns in-person and private-channel sales conversations into customer records, follow-up actions and business intelligence for high-value sales teams.',
       ar: 'تحوّل TellWin محادثات المبيعات الميدانية والرقمية إلى ملفات عملاء وإجراءات متابعة ورؤى أعمال لفرق المبيعات عالية القيمة.',
+    },
+    keywords: {
+      zh: ['TellWin AI', 'Tellyn AI', '销售对话智能', 'AI 销售助手', '客户情报'],
+      en: ['TellWin AI', 'Tellyn AI', 'AI sales copilot', 'sales conversation intelligence', 'customer intelligence'],
+      ar: ['TellWin AI', 'Tellyn AI', 'مساعد مبيعات بالذكاء الاصطناعي', 'ذكاء محادثات المبيعات'],
     },
   },
   fde: {
@@ -75,14 +80,19 @@ const pages = {
   salesIntelligence: {
     path: 'solutions/sales-conversation-intelligence',
     title: {
-      zh: '销售对话分析｜AI 销售助手与客户声音洞察',
-      en: 'Sales Conversation Intelligence | AI Sales Copilot',
-      ar: 'ذكاء محادثات المبيعات | مساعد مبيعات بالذكاء الاصطناعي',
+      zh: '销售情报与对话智能｜AI 客户洞察与销售助手',
+      en: 'Sales Intelligence from Customer Conversations | TellWin',
+      ar: 'ذكاء المبيعات من محادثات العملاء | TellWin',
     },
     description: {
-      zh: 'TellWin 将面对面沟通、企业微信等渠道的销售对话整理为客户档案、购买信号、异议、跟进建议和跨团队客户声音洞察。',
-      en: 'Turn sales conversations into customer records, buying signals, follow-up actions, coaching evidence and cross-team customer intelligence with TellWin.',
-      ar: 'حوّل محادثات المبيعات إلى ملفات عملاء وإشارات شراء وإجراءات متابعة وأدلة تدريب ومعلومات مشتركة مع TellWin.',
+      zh: 'TellWin 从面对面沟通、企业微信等真实客户对话中生成第一方销售情报，包括客户档案、购买信号、异议、跟进建议、辅导依据与客户声音洞察。',
+      en: 'TellWin turns real customer conversations into first-party sales intelligence: buyer signals, objections, follow-up actions, coaching evidence and customer insight.',
+      ar: 'تحوّل TellWin محادثات العملاء الفعلية إلى ذكاء مبيعات من الطرف الأول يشمل إشارات الشراء والاعتراضات والمتابعة وأدلة التدريب ورؤى العملاء.',
+    },
+    keywords: {
+      zh: ['销售情报', '销售智能', '销售对话智能', '销售对话分析', 'AI 销售助手', '客户情报'],
+      en: ['sales intelligence', 'sales intelligence software', 'conversation intelligence', 'first-party sales intelligence', 'AI sales copilot', 'customer intelligence'],
+      ar: ['ذكاء المبيعات', 'برمجيات ذكاء المبيعات', 'ذكاء محادثات المبيعات', 'مساعد مبيعات بالذكاء الاصطناعي'],
     },
   },
   salesCallAnalysis: {

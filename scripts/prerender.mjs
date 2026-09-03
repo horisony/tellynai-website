@@ -51,7 +51,7 @@ function structuredData(seo) {
       '@id': organizationId,
       name: '上海图灵驭界科技有限公司',
       legalName: '上海图灵驭界科技有限公司',
-      alternateName: ['上海图灵驭界有限公司', '上海图灵驭界', '图灵驭界', 'TellWin AI', 'Shanghai Tellyn Frontier Technology Co., Ltd.', 'Shanghai Tellyn Frontier', 'Tellyn Frontier'],
+      alternateName: ['上海图灵驭界有限公司', '上海图灵驭界', '图灵驭界', 'TellWin AI', 'Tellyn AI', 'Shanghai Tellyn Frontier Technology Co., Ltd.', 'Shanghai Tellyn Frontier', 'Tellyn Frontier'],
       url: SITE_ORIGIN,
       logo: {
         '@type': 'ImageObject',
@@ -79,6 +79,7 @@ function structuredData(seo) {
       '@type': 'WebSite',
       '@id': `${SITE_ORIGIN}/#website`,
       name: 'TellWin AI',
+      alternateName: 'Tellyn AI',
       url: SITE_ORIGIN,
       publisher: { '@id': organizationId },
       inLanguage: ['zh-CN', 'en', 'ar'],
@@ -107,6 +108,7 @@ function structuredData(seo) {
       description: seo.localizedDescription,
       url: seo.canonical,
       provider: { '@id': organizationId },
+      serviceType: seo.key === 'salesIntelligence' ? 'First-party sales intelligence from customer conversations' : undefined,
       areaServed: seo.key === 'realEstate' ? ['AE'] : ['CN', 'AE'],
     })
   }
@@ -165,6 +167,7 @@ function buildHtml(seo, appHtml, { canonicalOverride = '' } = {}) {
   return template
     .replace(/<html[^>]*>/, `<html lang="${languageTag}" dir="${direction}">`)
     .replace(/<meta name="description"[^>]*>\s*/g, '')
+    .replace(/<meta name="keywords"[^>]*>\s*/g, '')
     .replace(/<meta property="og:[^>]*>\s*/g, '')
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${seo.localizedTitle}</title>`)
     .replace('</head>', `${head}\n  </head>`)

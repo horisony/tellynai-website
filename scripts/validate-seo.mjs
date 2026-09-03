@@ -52,6 +52,9 @@ for (const page of SEO_PAGES) {
     expect(html.includes(`<html lang="${htmlLanguage}" dir="${direction}">`), `${label}: incorrect html language or direction`)
     expect(html.includes(`<title>${seo.localizedTitle}</title>`), `${label}: missing localized title`)
     expect(html.includes(`<meta name="description" content="${seo.localizedDescription}" />`), `${label}: missing localized description`)
+    if (seo.localizedKeywords.length) {
+      expect(html.includes(`<meta name="keywords" content="${seo.localizedKeywords.join(', ')}" />`), `${label}: missing localized keywords`)
+    }
     expect(html.includes(`<link rel="canonical" href="${seo.canonical}" />`), `${label}: incorrect canonical`)
     expect(html.includes(`<link rel="alternate" hreflang="x-default" href="${expectedDefault}" />`), `${label}: incorrect x-default URL`)
     expect(html.includes('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />'), `${label}: missing font origin preconnect`)

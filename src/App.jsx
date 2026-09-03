@@ -970,6 +970,7 @@ function TellynPage() {
               <strong>TellWin</strong>
               <span>AI Sales Copilot</span>
             </div>
+            <p className="brand-alias-note">品牌说明：部分用户会搜索“Tellyn AI”；官方英文品牌拼写为 TellWin AI，官网为 tellynai.com。</p>
             <h1>
               把每一次销售对话，
               <br />
@@ -1468,7 +1469,18 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
   }, []);
   useEffect(() => {
     const pageKey = isTellWinPage ? "tellwin" : isQixiaoPage ? "qixiao" : path === "/fde" ? "fde" : path === "/training" ? "training" : seoLandingPageKey || "home";
-    document.title = seoForRoute(language, pageKey).localizedTitle;
+    const routeSeo = seoForRoute(language, pageKey);
+    document.title = routeSeo.localizedTitle;
+    const description = document.querySelector('meta[name="description"]');
+    const keywords = document.querySelector('meta[name="keywords"]');
+    const canonical = document.querySelector('link[rel="canonical"]');
+    description?.setAttribute("content", routeSeo.localizedDescription);
+    if (routeSeo.localizedKeywords.length) {
+      keywords?.setAttribute("content", routeSeo.localizedKeywords.join(", "));
+    } else {
+      keywords?.removeAttribute("content");
+    }
+    canonical?.setAttribute("href", routeSeo.canonical);
     if (path === "/" && hash.startsWith("#tellwin")) {
       const anchor = hash === "#tellwin" ? "" : hash;
       window.location.replace(`${localeHref(language, "tellwin")}${anchor}`);
