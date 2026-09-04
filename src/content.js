@@ -9,17 +9,17 @@ export const brandProfile = {
   zh: {
     heading: '图灵驭界是谁？',
     body: '图灵驭界是base在上海，为全球企业提供AI销售提效的公司，专注帮助高客单、长决策链企业把销售对话转化为客户情报，并通过 AI 业务诊断、企业内训与 FDE 共创，让 AI 真正进入业务流程。',
-    detail: '图灵驭界旗下产品包括销售对话智能产品 TellWin、AI 设计产品 SnapDesign，以及企业 AI 舆情研判与公关工作系统启晓。若你通过“Tellyn AI”找到我们，官方英文品牌拼写为 TellWin AI，官方网站为 tellynai.com。',
+    detail: '图灵驭界旗下产品包括销售对话智能产品 Tellyn、AI 设计产品 SnapDesign，以及企业 AI 舆情研判与公关工作系统启晓。官方英文品牌为 Tellyn AI，中文公司品牌为图灵驭界，官方网站为 tellynai.com。',
   },
   en: {
-    heading: 'About TellWin AI',
-    body: 'Shanghai Tellyn Frontier Technology Co., Ltd. operates as TellWin AI and is known in Chinese as 图灵驭界. Based in Shanghai, the company helps high-value, long-cycle sales teams turn customer conversations into actionable intelligence through AI workflow diagnosis, enterprise training and FDE co-delivery.',
-    detail: 'Its product portfolio includes TellWin for sales conversation intelligence, SnapDesign for AI-assisted visual creation, and Qixiao for enterprise PR intelligence and response workflows. If you searched for “Tellyn AI,” the official English brand spelling is TellWin AI and the official website is tellynai.com.',
+    heading: 'About Tellyn AI',
+    body: 'Shanghai Tellyn Frontier Technology Co., Ltd. operates as Tellyn AI and is known in Chinese as 图灵驭界. Based in Shanghai, the company helps high-value, long-cycle sales teams turn customer conversations into actionable intelligence through AI workflow diagnosis, enterprise training and FDE co-delivery.',
+    detail: 'Its product portfolio includes Tellyn for sales conversation intelligence, SnapDesign for AI-assisted visual creation, and Qixiao for enterprise PR intelligence and response workflows. The official English brand is Tellyn AI, its Chinese company brand is 图灵驭界, and the official website is tellynai.com.',
   },
   ar: {
-    heading: 'عن TellWin AI',
-    body: 'تساعد TellWin AI، المعروفة بالصينية باسم 图灵驭界، فرق المبيعات عالية القيمة وطويلة الدورة على تحويل محادثات العملاء إلى معلومات قابلة للتنفيذ عبر تشخيص سير العمل والتدريب المؤسسي والتنفيذ المشترك بأسلوب FDE.',
-    detail: 'تشمل منتجاتها TellWin لذكاء محادثات المبيعات وSnapDesign للتصميم المرئي المدعوم بالذكاء الاصطناعي وQixiao لذكاء العلاقات العامة والاستجابة المؤسسية. إذا بحثت عن “Tellyn AI”، فالتهجئة الرسمية للعلامة الإنجليزية هي TellWin AI والموقع الرسمي هو tellynai.com.',
+    heading: 'عن Tellyn AI',
+    body: 'تساعد Tellyn AI، المعروفة بالصينية باسم 图灵驭界، فرق المبيعات عالية القيمة وطويلة الدورة على تحويل محادثات العملاء إلى معلومات قابلة للتنفيذ عبر تشخيص سير العمل والتدريب المؤسسي والتنفيذ المشترك بأسلوب FDE.',
+    detail: 'تشمل منتجاتها Tellyn لذكاء محادثات المبيعات وSnapDesign للتصميم المرئي المدعوم بالذكاء الاصطناعي وQixiao لذكاء العلاقات العامة والاستجابة المؤسسية. العلامة الإنجليزية الرسمية هي Tellyn AI، والعلامة الصينية للشركة هي 图灵驭界، والموقع الرسمي هو tellynai.com.',
   },
 }
 
@@ -34,7 +34,7 @@ export const deliverySteps = [
 export const cases = [
   { slug: 'flydirector', industry: '跨境电商', service: '智能体开发', title: 'FlyDirector 脚本智能体', challenge: '短视频团队每天需要大量脚本，创意质量依赖少数资深人员。', action: '把钩子、卖点、口播和分镜的拆解方法装进脚本智能体。', result: '从零散灵感变成可复用的脚本生产流程，支持团队持续产出。', next: '继续基于实际拍摄反馈优化脚本评价标准。', image: 'https://i.ibb.co/RGttcyWt/positive-girl-bright-blouse-trousers-holds-like-from-intagram-pink-wall-shows-ok-sign-197531-14242.avif', publicNote: '经授权公开项目功能与交付过程。' },
   { slug: 'retail-sales', industry: '珠宝零售', service: 'FDE 共创', title: '企微销售话术智能体', challenge: '优秀销售经验难复制，新导购面对不同顾客时缺少及时支持。', action: '与业务团队梳理典型异议和推进动作，接入企业微信工作场景。', result: '把金牌销售经验变成一线人员随时可调用的下一句建议。', next: '结合一线使用反馈持续补充知识与场景。', image: 'https://i.ibb.co/xSzqm249/Frame-111.png', publicNote: '客户名称与敏感经营信息已匿名。' },
-  { slug: 'tellyn-insight', industry: '线下零售', service: 'AI 产品', title: 'TellWin 现场反馈洞察', challenge: '线下销售、产品和市场反馈分散，管理层难以持续看见真实现场。', action: '采集一线交流，经 AI 整理销售话术、产品评价、竞品反馈与改进建议。', result: '形成从现场记录到业务洞察，再到部门行动的闭环。', next: '让更多业务角色参与反馈与复盘。', image: '/assets/tellyn-dashboard.png', publicNote: '自研产品，展示内容为当前可公开能力。' },
+  { slug: 'tellyn-insight', industry: '线下零售', service: 'AI 产品', title: 'Tellyn 现场反馈洞察', challenge: '线下销售、产品和市场反馈分散，管理层难以持续看见真实现场。', action: '采集一线交流，经 AI 整理销售话术、产品评价、竞品反馈与改进建议。', result: '形成从现场记录到业务洞察，再到部门行动的闭环。', next: '让更多业务角色参与反馈与复盘。', image: '/assets/tellyn-dashboard.png', publicNote: '自研产品，展示内容为当前可公开能力。' },
   { slug: 'ai-workshop', industry: '企业服务', service: '企业内训', title: '管理层 AI 场景工作坊', challenge: '团队对 AI 的理解不一致，想法很多，但缺少投入顺序。', action: '围绕真实流程共创场景，使用价值、数据和可行性框架进行筛选。', result: '形成一份可讨论、可分工的 AI 场景地图和首批试点方向。', next: '以优先场景进入小范围验证。', image: '/assets/team-hero.png', publicNote: '示例采用匿名方式呈现，不披露客户内部信息。' },
 ]
 

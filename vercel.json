@@ -1,17 +1,23 @@
 {
   "redirects": [
-    { "source": "/tellyn", "destination": "/zh/tellwin/", "permanent": true },
-    { "source": "/tellyn/", "destination": "/zh/tellwin/", "permanent": true },
-    { "source": "/tellyn-ai", "destination": "/en/tellwin/", "permanent": true },
-    { "source": "/tellyn-ai/", "destination": "/en/tellwin/", "permanent": true },
-    { "source": "/zh/tellyn-ai", "destination": "/zh/tellwin/", "permanent": true },
-    { "source": "/zh/tellyn-ai/", "destination": "/zh/tellwin/", "permanent": true },
-    { "source": "/en/tellyn-ai", "destination": "/en/tellwin/", "permanent": true },
-    { "source": "/en/tellyn-ai/", "destination": "/en/tellwin/", "permanent": true },
-    { "source": "/ar/tellyn-ai", "destination": "/ar/tellwin/", "permanent": true },
-    { "source": "/ar/tellyn-ai/", "destination": "/ar/tellwin/", "permanent": true },
-    { "source": "/tellwin", "destination": "/zh/tellwin/", "permanent": true },
-    { "source": "/tellwin/", "destination": "/zh/tellwin/", "permanent": true },
+    { "source": "/tellyn", "destination": "/zh/tellyn/", "permanent": true },
+    { "source": "/tellyn/", "destination": "/zh/tellyn/", "permanent": true },
+    { "source": "/tellyn-ai", "destination": "/en/tellyn/", "permanent": true },
+    { "source": "/tellyn-ai/", "destination": "/en/tellyn/", "permanent": true },
+    { "source": "/zh/tellyn-ai", "destination": "/zh/tellyn/", "permanent": true },
+    { "source": "/zh/tellyn-ai/", "destination": "/zh/tellyn/", "permanent": true },
+    { "source": "/en/tellyn-ai", "destination": "/en/tellyn/", "permanent": true },
+    { "source": "/en/tellyn-ai/", "destination": "/en/tellyn/", "permanent": true },
+    { "source": "/ar/tellyn-ai", "destination": "/ar/tellyn/", "permanent": true },
+    { "source": "/ar/tellyn-ai/", "destination": "/ar/tellyn/", "permanent": true },
+    { "source": "/tellwin", "destination": "/zh/tellyn/", "permanent": true },
+    { "source": "/tellwin/", "destination": "/zh/tellyn/", "permanent": true },
+    { "source": "/zh/tellwin", "destination": "/zh/tellyn/", "permanent": true },
+    { "source": "/zh/tellwin/", "destination": "/zh/tellyn/", "permanent": true },
+    { "source": "/en/tellwin", "destination": "/en/tellyn/", "permanent": true },
+    { "source": "/en/tellwin/", "destination": "/en/tellyn/", "permanent": true },
+    { "source": "/ar/tellwin", "destination": "/ar/tellyn/", "permanent": true },
+    { "source": "/ar/tellwin/", "destination": "/ar/tellyn/", "permanent": true },
     { "source": "/fde", "destination": "/zh/fde/", "permanent": true },
     { "source": "/fde/", "destination": "/zh/fde/", "permanent": true },
     { "source": "/training", "destination": "/zh/training/", "permanent": true },
@@ -34,31 +40,13 @@
     { "source": "/industries/real-estate-sales-ai/", "destination": "/zh/industries/real-estate-sales-ai/", "permanent": true }
   ],
   "rewrites": [
-    {
-      "source": "/customer",
-      "destination": "/customer/index.html"
-    },
-    {
-      "source": "/agent-payload",
-      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/agent-payload"
-    },
-    {
-      "source": "/suggest",
-      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/suggest"
-    },
-    {
-      "source": "/customer-reply",
-      "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/customer-reply"
-    }
+    { "source": "/customer", "destination": "/customer/index.html" },
+    { "source": "/agent-payload", "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/agent-payload" },
+    { "source": "/suggest", "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/suggest" },
+    { "source": "/customer-reply", "destination": "https://sales-words-hifiaudio-1z1lza7qj-baos-projects-8ba40af2.vercel.app/customer-reply" }
   ],
   "headers": [
-    {
-      "source": "/customer/:path*",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
-    },
-    {
-      "source": "/sitemap.xml",
-      "headers": [{ "key": "Content-Type", "value": "application/xml; charset=utf-8" }]
-    }
+    { "source": "/customer/:path*", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow"}] },
+    { "source": "/sitemap.xml", "headers": [{"key": "Content-Type", "value": "application/xml; charset=utf-8"}] }
   ]
 }

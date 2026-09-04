@@ -32,7 +32,7 @@ function structuredData(seo) {
   const faqId = `${seo.canonical}#faq`
   const mainEntityId = `${seo.canonical}#main-entity`
   const productNames = {
-    tellwin: 'TellWin',
+    tellyn: 'Tellyn',
     qixiao: seo.language === 'zh' ? '启晓（Qixiao）' : 'Qixiao',
   }
   const webPage = {
@@ -51,13 +51,13 @@ function structuredData(seo) {
       '@id': organizationId,
       name: '上海图灵驭界科技有限公司',
       legalName: '上海图灵驭界科技有限公司',
-      alternateName: ['上海图灵驭界有限公司', '上海图灵驭界', '图灵驭界', 'TellWin AI', 'Tellyn AI', 'Shanghai Tellyn Frontier Technology Co., Ltd.', 'Shanghai Tellyn Frontier', 'Tellyn Frontier'],
+      alternateName: ['上海图灵驭界有限公司', '上海图灵驭界', '图灵驭界', 'Tellyn AI', 'Shanghai Tellyn Frontier Technology Co., Ltd.', 'Shanghai Tellyn Frontier', 'Tellyn Frontier'],
       url: SITE_ORIGIN,
       logo: {
         '@type': 'ImageObject',
         url: `${SITE_ORIGIN}/assets/tuling-logo.png`,
       },
-      description: '图灵驭界 is based in Shanghai and helps global enterprises improve sales with AI. Shanghai Tellyn Frontier Technology Co., Ltd. operates TellWin AI, whose Chinese company brand is 图灵驭界.',
+      description: '图灵驭界 is based in Shanghai and helps global enterprises improve sales with AI. Shanghai Tellyn Frontier Technology Co., Ltd. operates Tellyn AI, whose Chinese company brand is 图灵驭界.',
       email: 'baolyang@tellynai.com',
       contactPoint: {
         '@type': 'ContactPoint',
@@ -78,8 +78,8 @@ function structuredData(seo) {
     {
       '@type': 'WebSite',
       '@id': `${SITE_ORIGIN}/#website`,
-      name: 'TellWin AI',
-      alternateName: 'Tellyn AI',
+      name: 'Tellyn AI',
+      alternateName: 'Tellyn',
       url: SITE_ORIGIN,
       publisher: { '@id': organizationId },
       inLanguage: ['zh-CN', 'en', 'ar'],
@@ -129,7 +129,7 @@ function structuredData(seo) {
       '@type': 'BreadcrumbList',
       '@id': breadcrumbId,
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'TellWin AI', item: `${SITE_ORIGIN}/${seo.language}/` },
+        { '@type': 'ListItem', position: 1, name: 'Tellyn AI', item: `${SITE_ORIGIN}/${seo.language}/` },
         { '@type': 'ListItem', position: 2, name: seo.localizedTitle, item: seo.canonical },
       ],
     })
@@ -151,13 +151,13 @@ function buildHtml(seo, appHtml, { canonicalOverride = '' } = {}) {
     <meta property="og:description" content="${escapeAttribute(seo.localizedDescription)}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${canonical}" />
-    <meta property="og:site_name" content="TellWin AI" />
+    <meta property="og:site_name" content="Tellyn AI" />
     <meta property="og:locale" content="${seo.language === 'zh' ? 'zh_CN' : seo.language === 'ar' ? 'ar_AE' : 'en_US'}" />
     ${SEO_LANGUAGES.filter((language) => language !== seo.language).map((language) => `<meta property="og:locale:alternate" content="${language === 'zh' ? 'zh_CN' : language === 'ar' ? 'ar_AE' : 'en_US'}" />`).join('\n    ')}
     <meta property="og:image" content="${SITE_ORIGIN}/og.png" />
     <meta property="og:image:width" content="1731" />
     <meta property="og:image:height" content="909" />
-    <meta property="og:image:alt" content="TellWin AI — Enterprise Sales Intelligence" />
+    <meta property="og:image:alt" content="Tellyn AI — Enterprise Sales Intelligence" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeAttribute(seo.localizedTitle)}" />
     <meta name="twitter:description" content="${escapeAttribute(seo.localizedDescription)}" />

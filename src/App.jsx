@@ -28,7 +28,7 @@ const localeHref = (language, path = "/") => {
 const localizedCurrentPath = (language) => {
   if (typeof window === "undefined") return localeHref(language);
   let suffix = window.location.pathname.replace(/^\/(zh|en|ar)(?=\/|$)/, "");
-  if (["/tellwin", "/tellyn"].includes(suffix.replace(/\/$/, "")) || window.location.hash.startsWith("#tellwin")) suffix = "/tellwin";
+  if (["/tellwin", "/tellyn"].includes(suffix.replace(/\/$/, "")) || window.location.hash.startsWith("#tellwin") || window.location.hash.startsWith("#tellyn")) suffix = "/tellyn";
   if (window.location.hash.startsWith("#qixiao")) suffix = "/qixiao";
   return localeHref(language, suffix || "/");
 };
@@ -86,7 +86,7 @@ function Header({ contactHref = "#contact" }) {
           <a href={localeHref(language, "fde")}>FDE 落地</a>
           <a href={localeHref(language, "training")}>企业内训</a>
           <a href={`${localeHref(language)}#cases`}>案例</a>
-          <a href={localeHref(language, "tellwin")}>TellWin</a>
+          <a href={localeHref(language, "tellyn")}>Tellyn</a>
           <a href={localeHref(language, "qixiao")}>启晓</a>
           <a href={contactHref}>联系我们</a>
         </nav>
@@ -566,19 +566,19 @@ function Home() {
             <span className="wecom-sales-cta">体验企微销售分析 ↗</span>
           </a>
         </section>
-        <section className="section-shell tellyn-product" id="tellwin1">
+        <section className="section-shell tellyn-product" id="tellyn1">
           <div className="tellyn-copy">
             <span className="eyebrow">
               <i />
               OUR PRODUCT
             </span>
             <h2>
-              <em>TellWin</em>，把线下现场
+              <em>Tellyn</em>，把线下现场
               <br />
               变成可用的业务数据。
             </h2>
             <p>
-              TellWin 用 AI
+              Tellyn 用 AI
               收集销售、产品和市场的一线反馈，整理为可以被管理者理解、被团队执行的业务洞察。
             </p>
             <div className="tellyn-list">
@@ -587,8 +587,8 @@ function Home() {
               <span>辅助业务决策</span>
             </div>
             <div className="product-actions">
-              <a className="button dark" href={localeHref(language, "tellwin")}>
-                了解 TellWin
+              <a className="button dark" href={localeHref(language, "tellyn")}>
+                了解 Tellyn
               </a>
               <a className="product-text-link" href={localeHref(language, "solutions/sales-conversation-intelligence")}>
                 {{ zh: "了解销售对话分析 →", en: "Explore conversation intelligence →", ar: "استكشف ذكاء المحادثات ←" }[language]}
@@ -598,7 +598,7 @@ function Home() {
           <img
             className="product-shot"
             src="/assets/tellyn-dashboard.png"
-            alt="TellWin 产品界面"
+            alt="Tellyn 产品界面"
             width="2546"
             height="1358"
             loading="lazy"
@@ -809,7 +809,7 @@ function SeoLandingPage({ pageKey }) {
             <p>{copy.intro}</p>
             <div className="hero-actions">
               <a className="button dark" href="#contact">{copy.primaryAction}</a>
-              <a className="button outline" href={isIndustry ? localeHref(language, "solutions/sales-conversation-intelligence") : localeHref(language, "tellwin")}>{copy.secondaryAction}</a>
+              <a className="button outline" href={isIndustry ? localeHref(language, "solutions/sales-conversation-intelligence") : localeHref(language, "tellyn")}>{copy.secondaryAction}</a>
             </div>
           </div>
           <aside className="seo-signal-card" aria-label={copy.valueTitle}>
@@ -867,7 +867,7 @@ function SeoLandingPage({ pageKey }) {
         </section>
 
         <section className="section-shell seo-related-links" aria-label={ui.related}>
-          <a href={localeHref(language, "tellwin")}>{ui.tellwinLink}</a>
+          <a href={localeHref(language, "tellyn")}>{ui.tellynLink}</a>
           <a href={localeHref(language, "fde")}>{ui.fdeLink}</a>
           {relatedLandingPages.map(([key, route, label]) => <a key={key} href={localeHref(language, route)}>{label}</a>)}
         </section>
@@ -961,30 +961,30 @@ function TellynPage() {
   return (
     <Localized>
       <>
-      <Header contactHref="#tellwin-contact" />
+      <Header contactHref="#tellyn-contact" />
       <main className="tellyn-page">
         <section className="tellyn-hero section-shell">
           <div className="tellyn-hero-copy">
             <div className="tellyn-lockup">
-              <img src="/assets/tellyn-mark.png" alt="TellWin" width="157" height="156" />
-              <strong>TellWin</strong>
+              <img src="/assets/tellyn-mark.png" alt="Tellyn" width="157" height="156" />
+              <strong>Tellyn</strong>
               <span>AI Sales Copilot</span>
             </div>
-            <p className="brand-alias-note">品牌说明：部分用户会搜索“Tellyn AI”；官方英文品牌拼写为 TellWin AI，官网为 tellynai.com。</p>
+            <p className="brand-alias-note">品牌说明：官方英文品牌为 Tellyn AI，中文公司品牌为图灵驭界，官网为 tellynai.com。</p>
             <h1>
               把每一次销售对话，
               <br />
               变成企业的<em>客户情报资产</em>。
             </h1>
             <p>
-              TellWin 面向汽车、珠宝、家装、医疗等高客单、长决策链行业，通过 AI
+              Tellyn 面向汽车、珠宝、家装、医疗等高客单、长决策链行业，通过 AI
               录音硬件与行业化 SaaS，把散落在现场和私域里的客户对话，整理成企业可掌握、团队可执行、持续可积累的业务资产。
             </p>
             <div className="hero-actions">
-              <a className="button dark" href="#tellwin-contact">
+              <a className="button dark" href="#tellyn-contact">
                 预约产品演示
               </a>
-              <a className="button outline" href="#tellwin-industries">
+              <a className="button outline" href="#tellyn-industries">
                 了解产品如何工作
               </a>
             </div>
@@ -1033,10 +1033,10 @@ function TellynPage() {
           </div>
         </section>
 
-        <section className="section-shell tellyn-system" id="tellwin-industries">
+        <section className="section-shell tellyn-system" id="tellyn-industries">
           <div className="tellyn-section-head">
-            <span>HOW TELLWIN WORKS</span>
-            <h2>销售正常接待客户，<br />TellWin 完成<em>剩下的工作</em>。</h2>
+            <span>HOW TELLYN WORKS</span>
+            <h2>销售正常接待客户，<br />Tellyn 完成<em>剩下的工作</em>。</h2>
             <p>两条数据管道汇入同一套分析引擎：线下对话通过录音终端采集，线上沟通通过企业微信等业务系统接入，再由 AI 完成结构化、分析与分发。</p>
           </div>
           <div className="system-layers">
@@ -1058,7 +1058,7 @@ function TellynPage() {
             <div className="tellyn-section-head">
               <span>ONE ASSET, THREE TEAMS</span>
               <h2>一份客户情报资产，<br />同时服务<em>三个部门</em>。</h2>
-              <p>TellWin 不止缩短整理时间，更让客户原声从销售现场进入产品与市场决策。这是它与单纯录音、转写和会议纪要工具的本质区别。</p>
+              <p>Tellyn 不止缩短整理时间，更让客户原声从销售现场进入产品与市场决策。这是它与单纯录音、转写和会议纪要工具的本质区别。</p>
             </div>
             <div className="department-grid">
               {departmentValue.map(([title, lead, copy], index) => (
@@ -1143,10 +1143,10 @@ function TellynPage() {
             <div className="tellyn-section-head">
               <span>POSITIONING</span>
               <h2>不是更聪明的录音笔，<br />而是企业的<em>客户情报基础设施</em>。</h2>
-              <p>通用工具解决“记下来”，TellWin 解决“归企业、能分析、可行动、会积累”。行业模板与客户成功方法来自持续交付，并反过来提高标准产品的适配度。</p>
+              <p>通用工具解决“记下来”，Tellyn 解决“归企业、能分析、可行动、会积累”。行业模板与客户成功方法来自持续交付，并反过来提高标准产品的适配度。</p>
             </div>
-            <div className="comparison-table" role="table" aria-label="TellWin 与通用工具对比">
-              <div className="comparison-row comparison-head" role="row"><b>能力维度</b><b>个人效率工具</b><b>通用会议 AI</b><b>TellWin</b></div>
+            <div className="comparison-table" role="table" aria-label="Tellyn 与通用工具对比">
+              <div className="comparison-row comparison-head" role="row"><b>能力维度</b><b>个人效率工具</b><b>通用会议 AI</b><b>Tellyn</b></div>
               {comparison.map((row) => <div className="comparison-row" role="row" key={row[0]}>{row.map((cell, index) => index === 0 ? <b key={`${row[0]}-${index}`}>{cell}</b> : <span key={`${row[0]}-${index}`}>{cell}</span>)}</div>)}
             </div>
           </div>
@@ -1156,7 +1156,7 @@ function TellynPage() {
           <div className="tellyn-section-head">
             <span>COMPOUNDING ADVANTAGE</span>
             <h2>每一次真实交付，<br />都在加深<em>下一次复制的壁垒</em>。</h2>
-            <p>TellWin 用 FDE 保持对行业现场的理解，再把行业知识沉淀到模板、产品和数据中，形成从服务到软件的增强循环。</p>
+            <p>Tellyn 用 FDE 保持对行业现场的理解，再把行业知识沉淀到模板、产品和数据中，形成从服务到软件的增强循环。</p>
           </div>
           <div className="flywheel-grid">
             {flywheel.map(([number, title, copy]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}
@@ -1190,7 +1190,7 @@ function TellynPage() {
           <div className="dashboard-frame">
             <img
               src="/assets/tellyn-dashboard.png"
-              alt="TellWin 销售洞察与经营总览界面"
+              alt="Tellyn 销售洞察与经营总览界面"
               width="2546"
               height="1358"
               loading="lazy"
@@ -1215,7 +1215,7 @@ function TellynPage() {
         </section>
 
       </main>
-      <Contact source="TellWin 产品页" defaultService="AI 产品开发" id="tellwin-contact" />
+      <Contact source="Tellyn 产品页" defaultService="AI 产品开发" id="tellyn-contact" />
       <Footer />
       </>
     </Localized>
@@ -1455,10 +1455,10 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
     "/industries/jewelry-sales-ai": "jewelry",
     "/industries/medical-device-sales-ai": "medicalDevice",
   }[path];
-  const isTellWinHash =
-    path === "/" && (hash === "#tellwin" || hash.startsWith("#tellwin-"));
-  const isTellWinPage =
-    path === "/tellwin" || path === "/tellyn" || isTellWinHash;
+  const isTellynHash =
+    path === "/" && (hash === "#tellwin" || hash === "#tellyn" || hash.startsWith("#tellwin-") || hash.startsWith("#tellyn-"));
+  const isTellynPage =
+    path === "/tellyn" || path === "/tellwin" || isTellynHash;
   const isQixiaoHash = path === "/" && (hash === "#qixiao" || hash.startsWith("#qixiao-"));
   const isQixiaoPage = path === "/qixiao" || isQixiaoHash;
   useEffect(() => {
@@ -1468,7 +1468,7 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
     return () => window.removeEventListener("hashchange", syncHash);
   }, []);
   useEffect(() => {
-    const pageKey = isTellWinPage ? "tellwin" : isQixiaoPage ? "qixiao" : path === "/fde" ? "fde" : path === "/training" ? "training" : seoLandingPageKey || "home";
+    const pageKey = isTellynPage ? "tellyn" : isQixiaoPage ? "qixiao" : path === "/fde" ? "fde" : path === "/training" ? "training" : seoLandingPageKey || "home";
     const routeSeo = seoForRoute(language, pageKey);
     document.title = routeSeo.localizedTitle;
     const description = document.querySelector('meta[name="description"]');
@@ -1481,9 +1481,9 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
       keywords?.removeAttribute("content");
     }
     canonical?.setAttribute("href", routeSeo.canonical);
-    if (path === "/" && hash.startsWith("#tellwin")) {
-      const anchor = hash === "#tellwin" ? "" : hash;
-      window.location.replace(`${localeHref(language, "tellwin")}${anchor}`);
+    if (path === "/" && (hash.startsWith("#tellwin") || hash.startsWith("#tellyn"))) {
+      const anchor = hash === "#tellwin" || hash === "#tellyn" ? "" : hash.replace(/^#tellwin/, "#tellyn");
+      window.location.replace(`${localeHref(language, "tellyn")}${anchor}`);
     } else if (path === "/" && hash.startsWith("#qixiao")) {
       const anchor = hash === "#qixiao" ? "" : hash;
       window.location.replace(`${localeHref(language, "qixiao")}${anchor}`);
@@ -1494,13 +1494,13 @@ export function App({ initialPath = "", initialLanguage = "" } = {}) {
     } else {
       window.scrollTo(0, 0);
     }
-  }, [path, hash, language, isTellWinPage, isQixiaoPage, seoLandingPageKey]);
+  }, [path, hash, language, isTellynPage, isQixiaoPage, seoLandingPageKey]);
   const page =
     path === "/fde" ? (
       <FdePage />
     ) : path === "/training" ? (
       <TrainingPage />
-    ) : isTellWinPage ? (
+    ) : isTellynPage ? (
       <TellynPage />
     ) : isQixiaoPage ? (
       <QixiaoPage />

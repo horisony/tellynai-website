@@ -8,18 +8,18 @@ When implementing from a selected generated mock, treat that image as the source
 
 ## Durable Design Decisions
 
-- The Chinese company introduction must open with: “图灵驭界是base在上海，为全球企业提供AI销售提效的公司。” Keep the following copy explicit that 图灵驭界 is TellWin AI’s Chinese company brand for brand SEO.
-- Chinese brand SEO must strongly associate the exact query “图灵驭界” with `tellynai.com`. Keep the Chinese homepage title and visible company description explicit about the relationship: 图灵驭界 is the Chinese company brand of TellWin AI. Do not remove this exact-match brand wording when revising positioning copy.
+- The Chinese company introduction must open with: “图灵驭界是base在上海，为全球企业提供AI销售提效的公司。” Keep the following copy explicit that 图灵驭界 is Tellyn AI’s Chinese company brand for brand SEO.
+- Chinese brand SEO must strongly associate the exact query “图灵驭界” with `tellynai.com`. Keep the Chinese homepage title and visible company description explicit about the relationship: 图灵驭界 is the Chinese company brand of Tellyn AI. Do not remove this exact-match brand wording when revising positioning copy.
 
 - Use privacy-preserving, cookie-free Vercel Web Analytics for baseline traffic reporting. Never send names, contact details, free-text needs, or other personal information to analytics.
 - Lead follow-up remains in Feishu Base. Store only sanitized campaign attribution, landing path, referrer host/path, current page, and language alongside a user-submitted contact form; GA4 may be added later only with an explicit measurement ID and consent-mode implementation.
 
 - The canonical company website domain remains `tellynai.com`; do not migrate public URLs to `tellwinai.com`.
 - Public SEO pages use crawlable language-prefixed routes (`/zh/`, `/en/`, `/ar/`) with real path-based product and service URLs. Legacy unprefixed and hash-based product links remain compatible through permanent redirects or client-side compatibility handling.
-- The English-facing company brand is “TellWin AI”; keep the existing `tellynai.com` domain for continuity.
-- SEO positioning leads with TellWin as enterprise sales conversation intelligence for high-value, long-cycle sales teams; FDE is the implementation method rather than a separate generic technology claim.
+- The English-facing company brand is “Tellyn AI”; keep the existing `tellynai.com` domain for continuity.
+- SEO positioning leads with Tellyn as enterprise sales conversation intelligence for high-value, long-cycle sales teams; FDE is the implementation method rather than a separate generic technology claim.
 - The first international SEO industry focus is Dubai real estate sales, with complete Chinese, English, and Arabic pages. Copy must distinguish target workflow and planned evaluation from capabilities already verified in production.
-- All public-facing brand and product copy uses the spelling “TellWin”; canonical product experiences use language-prefixed routes such as `/zh/tellwin/`, while legacy `/tellwin`, `/tellyn`, and `/#tellwin` requests remain compatible. Technical identifiers, asset filenames, and email domains may remain unchanged for compatibility.
+- All public-facing brand and product copy uses the spelling “Tellyn”; canonical product experiences use language-prefixed routes such as `/zh/tellyn/`, while legacy `/tellwin`, `/tellyn-ai`, and `/#tellwin` requests remain compatible. Technical identifiers, asset filenames, and email domains may remain unchanged for compatibility.
 - The homepage hero uses a black-and-white hand-drawn team illustration, displayed without a surrounding card or frame.
 - The company website positions Tellyn as an enterprise AI implementation partner, with a service journey of diagnosis, enterprise training, FDE co-delivery, and continuous iteration.
 - Service copy should remain restrained and evidence-led: do not publish unverified ROI, delivery duration, or pricing figures.
@@ -44,11 +44,11 @@ When implementing from a selected generated mock, treat that image as the source
 - On English pages, inline emphasized phrases must retain a visible word space before the `<em>` text; adjacent translated text must never render as joined words.
 - The homepage places a clickable WeCom sales-analysis showcase immediately above the Tellyn product module, using `/assets/wecom-sales-assistant.webp` and linking directly to `https://sales-words-hifiaudio.vercel.app/` for the fastest loading path. The compatibility page at `/customer` may remain available, but the legacy Vercel URL must not redirect away from itself.
 - The WeCom sales-analysis experience must load its Tellyn logo from the bundled `tellyn-logo.png` asset rather than a third-party image host.
-- The TellWin product page should tell a detailed dual-audience story for enterprise buyers and investors: customer pain, product architecture, cross-department value, target industries, timing, business model, differentiation, growth flywheel, paid validation, and product proof. Keep planned or extrapolated metrics clearly separated from verified facts.
-- The full TellWin product experience is path-routed at `/{language}/tellwin/`, with internal anchors such as `#tellwin-industries` and `#tellwin-contact`. Legacy `/#tellwin` links redirect compatibly. The homepage’s compact TellWin product module uses `#tellwin1` so the two destinations remain distinct.
-- On the TellWin product page, keep the large headings in the first two viewport-height sections restrained: the hero and dark problem-statement headings should be visibly smaller than the original oversized treatment on both desktop and mobile.
+- The Tellyn product page should tell a detailed dual-audience story for enterprise buyers and investors: customer pain, product architecture, cross-department value, target industries, timing, business model, differentiation, growth flywheel, paid validation, and product proof. Keep planned or extrapolated metrics clearly separated from verified facts.
+- The full Tellyn product experience is path-routed at `/{language}/tellyn/`, with internal anchors such as `#tellyn-industries` and `#tellyn-contact`. Legacy `/tellwin` and `/#tellwin` links redirect compatibly. The homepage’s compact Tellyn product module uses `#tellyn1` so the two destinations remain distinct.
+- On the Tellyn product page, keep the large headings in the first two viewport-height sections restrained: the hero and dark problem-statement headings should be visibly smaller than the original oversized treatment on both desktop and mobile.
 - Qixiao (启晓) is part of the company product portfolio. Its canonical public product experience uses `/{language}/qixiao/`; `/qixiao` and `/#qixiao` remain compatible. The homepage compact module uses `#qixiao1` so it does not collide with the product page.
 - The Qixiao product story positions it as an enterprise AI public-relations work system spanning discovery, semantic understanding, event assessment, action guidance, and review. Public copy must remain evidence-led and must not expose customer identities, third-party contact details, or unverified impact projections from source sales materials.
 - The Qixiao homepage module and full product page use the website's established warm yellow palette—warm off-white surfaces, yellow accents, and black contrast sections. Do not introduce a blue page theme; blue may remain only inside authentic source product screenshots.
 - The Qixiao homepage module has no standalone section background color; it inherits the homepage background so the product sequence reads as one continuous surface.
-- Homepage product modules appear in this order: TellWin, SnapDesign, then Qixiao, followed directly by FAQ.
+- Homepage product modules appear in this order: Tellyn, SnapDesign, then Qixiao, followed directly by FAQ.

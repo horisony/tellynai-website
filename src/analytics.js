@@ -1,6 +1,6 @@
 import { track } from '@vercel/analytics'
 
-const ATTRIBUTION_KEY = 'tellwin-attribution'
+const ATTRIBUTION_KEY = 'tellyn-attribution'
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
 
 function clean(value, limit = 160) {

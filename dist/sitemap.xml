@@ -22,25 +22,25 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/" />
   </url>
   <url>
-    <loc>https://tellynai.com/zh/tellwin/</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/tellwin/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/tellwin/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/tellwin/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/tellwin/" />
+    <loc>https://tellynai.com/zh/tellyn/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/tellyn/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/tellyn/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/tellyn/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/tellyn/" />
   </url>
   <url>
-    <loc>https://tellynai.com/en/tellwin/</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/tellwin/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/tellwin/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/tellwin/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/tellwin/" />
+    <loc>https://tellynai.com/en/tellyn/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/tellyn/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/tellyn/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/tellyn/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/tellyn/" />
   </url>
   <url>
-    <loc>https://tellynai.com/ar/tellwin/</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/tellwin/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/tellwin/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/tellwin/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/tellwin/" />
+    <loc>https://tellynai.com/ar/tellyn/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tellynai.com/zh/tellyn/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://tellynai.com/en/tellyn/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://tellynai.com/ar/tellyn/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tellynai.com/zh/tellyn/" />
   </url>
   <url>
     <loc>https://tellynai.com/zh/fde/</loc>
