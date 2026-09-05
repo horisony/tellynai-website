@@ -970,7 +970,6 @@ function TellynPage() {
               <strong>Tellyn</strong>
               <span>AI Sales Copilot</span>
             </div>
-            <p className="brand-alias-note">品牌说明：官方英文品牌为 Tellyn AI，中文公司品牌为图灵驭界，官网为 tellynai.com。</p>
             <h1>
               把每一次销售对话，
               <br />
