@@ -396,6 +396,7 @@ function Home() {
     <Localized>
       <>
         <Header />
+        <main className="home-page">
         <section className="hero section-shell" id="top">
           <div className="hero-copy">
             <h1>
@@ -677,6 +678,7 @@ function Home() {
           />
           <Faq items={homeFaqs} />
         </section>
+        </main>
         <Contact />
         <Footer />
       </>
@@ -879,6 +881,7 @@ function SeoLandingPage({ pageKey }) {
 }
 
 function TellynPage() {
+  const { language } = useContext(LocaleContext);
   const problems = [
     ["01", "客户资产跟着销售流动", "客户偏好、沟通历史与关键关系分散在个人设备和记忆里，人员变化时，企业很难完整接续。"],
     ["02", "优秀经验无法规模复制", "成交方法藏在少数人的表达与判断里，新人缺少真实语料，主管也难以定位辅导重点。"],
@@ -983,8 +986,15 @@ function TellynPage() {
               <a className="button dark" href="#tellyn-contact">
                 预约产品演示
               </a>
-              <a className="button outline" href="#tellyn-industries">
-                了解产品如何工作
+              <a className="button outline" href={localeHref(language, "solutions/sales-conversation-intelligence")}>
+                了解销售对话分析
+              </a>
+              <a
+                className="button outline"
+                href="/downloads/tellyn-release-20260908.apk"
+                download="tellyn-release-20260908.apk"
+              >
+                下载 App
               </a>
             </div>
             <div className="tellyn-promise">
@@ -1236,6 +1246,7 @@ function FdePage() {
     <Localized>
       <>
         <Header />
+        <main className="fde-page">
         <PageHero
           kicker="FDE · FORWARD DEPLOYED"
           title={"不是交一份方案，<br />而是一起把 AI <em>做进业务</em>。"}
@@ -1314,6 +1325,7 @@ function FdePage() {
           />
           <Faq items={fdeFaqs} />
         </section>
+        </main>
         <Contact source="FDE 落地页" defaultService="FDE 共创落地" />
         <Footer />
       </>
@@ -1326,6 +1338,7 @@ function TrainingPage() {
     <Localized>
       <>
         <Header />
+        <main className="training-page">
         <PageHero
           kicker="ENTERPRISE AI TRAINING"
           title={"不只学工具，<br />而是带走 <em>下一步行动</em>。"}
@@ -1429,6 +1442,7 @@ function TrainingPage() {
           />
           <Faq items={trainingFaqs} />
         </section>
+        </main>
         <Contact source="企业内训页" defaultService="企业 AI 内训" />
         <Footer />
       </>

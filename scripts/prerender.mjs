@@ -3,6 +3,8 @@ import { dirname, join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { SEO_LANGUAGES, SEO_PAGES, SITE_ORIGIN, seoForRoute, seoPath } from '../src/seo.js'
 import { seoLandingContent } from '../src/seo-content.js'
+import { fdeFaqs, homeFaqs, trainingFaqs } from '../src/content.js'
+import { translateValue } from '../src/i18n.js'
 
 const root = new URL('../', import.meta.url)
 const distDir = new URL('../dist/', import.meta.url)
@@ -23,6 +25,14 @@ function alternateLinks(page) {
   )
   links.push(`<link rel="alternate" hreflang="x-default" href="${xDefaultUrl(page)}" />`)
   return links.join('\n    ')
+}
+
+const faqSources = { home: homeFaqs, fde: fdeFaqs, training: trainingFaqs }
+
+function localizedFaqs(pageKey, language) {
+  const source = faqSources[pageKey] || null
+  if (!source) return null
+  return source.map(([question, answer]) => [translateValue(question, language), translateValue(answer, language)])
 }
 
 function structuredData(seo) {
@@ -89,15 +99,15 @@ function structuredData(seo) {
   if (productNames[seo.key]) {
     webPage.mainEntity = { '@id': mainEntityId }
     graph.push({
-      '@type': 'SoftwareApplication',
+      '@type': 'Product',
       '@id': mainEntityId,
       name: productNames[seo.key],
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Web',
+      category: seo.key === 'tellyn' ? 'Enterprise sales conversation intelligence' : 'Enterprise AI public-relations work system',
       description: seo.localizedDescription,
       url: seo.canonical,
       provider: { '@id': organizationId },
       brand: { '@id': organizationId },
+      isRelatedTo: { '@type': 'SoftwareApplication', name: productNames[seo.key], operatingSystem: 'Web' },
     })
   } else if (['fde', 'training', 'salesIntelligence', 'salesCallAnalysis', 'automotive', 'jewelry', 'medicalDevice', 'realEstate'].includes(seo.key)) {
     webPage.mainEntity = { '@id': mainEntityId }
@@ -113,13 +123,14 @@ function structuredData(seo) {
     })
   }
   const landingCopy = seoLandingContent[seo.key]?.[seo.language]
-  if (landingCopy) {
+  const faqs = landingCopy?.faqs || localizedFaqs(seo.key, seo.language)
+  if (faqs?.length) {
     webPage.breadcrumb = { '@id': breadcrumbId }
     webPage.hasPart = { '@id': faqId }
     graph.push({
       '@type': 'FAQPage',
       '@id': faqId,
-      mainEntity: landingCopy.faqs.map(([question, answer]) => ({
+      mainEntity: faqs.map(([question, answer]) => ({
         '@type': 'Question',
         name: question,
         acceptedAnswer: { '@type': 'Answer', text: answer },

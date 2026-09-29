@@ -4,3 +4,8 @@ node_modules/
 .DS_Store
 .vercel
 dist-ssr/
+
+# Large APK release binaries — served via redirect, never bundled in the repo
+public/downloads/
+dist/downloads/
+*.apk

@@ -38,6 +38,18 @@ function validateStructuredData(html, seo, label) {
     const reference = webPage[relation]?.['@id']
     if (reference) expect(ids.has(reference), `${label}: WebPage ${relation} points to a missing entity`)
   }
+
+  const faq = graph.find((node) => node['@id'] === `${seo.canonical}#faq`)
+  if (['home', 'fde', 'training', 'salesIntelligence', 'salesCallAnalysis', 'automotive', 'jewelry', 'medicalDevice', 'realEstate'].includes(seo.key)) {
+    expect(Boolean(faq), `${label}: FAQPage entity is missing`)
+    expect(faq?.mainEntity?.length > 0, `${label}: FAQPage has no questions`)
+  }
+
+  if (['tellyn', 'qixiao'].includes(seo.key)) {
+    const product = graph.find((node) => node['@id'] === `${seo.canonical}#main-entity`)
+    expect(product?.['@type'] === 'Product', `${label}: product page must expose a Product entity`)
+    expect(product?.brand?.['@id'] === `${SITE_ORIGIN}/#organization`, `${label}: product brand must reference Organization`)
+  }
 }
 
 for (const page of SEO_PAGES) {
@@ -60,6 +72,22 @@ for (const page of SEO_PAGES) {
     expect(html.includes('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />'), `${label}: missing font origin preconnect`)
     expect(html.includes('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'), `${label}: Google Fonts stylesheet must be discoverable from the document head`)
     validateStructuredData(html, seo, label)
+
+    const h1Count = (html.match(/<h1(?:\s[^>]*)?>/g) || []).length
+    expect(h1Count === 1, `${label}: expected exactly one H1, found ${h1Count}`)
+    expect(html.includes('<main'), `${label}: page content must be wrapped in <main>`)
+
+    const requiredLinks = page.key === 'home'
+      ? ['/zh/tellyn/', '/zh/qixiao/', '/zh/fde/', '/zh/training/']
+      : page.key === 'tellyn'
+        ? ['/zh/solutions/sales-conversation-intelligence/', '/zh/fde/']
+        : page.key === 'qixiao'
+          ? ['/zh/tellyn/', '/zh/fde/']
+          : ['/zh/tellyn/', '/zh/fde/']
+    for (const route of requiredLinks) {
+      const localizedRoute = route.replace('/zh/', `/${language}/`)
+      expect(html.includes(`href="${localizedRoute}"`), `${label}: missing internal link ${localizedRoute}`)
+    }
 
     for (const alternate of SEO_LANGUAGES) {
       const hreflang = alternate === 'zh' ? 'zh-Hans' : alternate
