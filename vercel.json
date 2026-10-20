@@ -37,7 +37,8 @@
     { "source": "/industries/medical-device-sales-ai", "destination": "/zh/industries/medical-device-sales-ai/", "permanent": true },
     { "source": "/industries/medical-device-sales-ai/", "destination": "/zh/industries/medical-device-sales-ai/", "permanent": true },
     { "source": "/industries/real-estate-sales-ai", "destination": "/zh/industries/real-estate-sales-ai/", "permanent": true },
-    { "source": "/industries/real-estate-sales-ai/", "destination": "/zh/industries/real-estate-sales-ai/", "permanent": true }
+    { "source": "/industries/real-estate-sales-ai/", "destination": "/zh/industries/real-estate-sales-ai/", "permanent": true },
+    { "source": "/downloads/tellyn-release-20261020.apk", "destination": "https://github.com/horisony/tellyn-app-releases/releases/download/tellyn-app-20261020/tellyn-release-20261020.apk", "permanent": false }
   ],
   "rewrites": [
     { "source": "/customer", "destination": "/customer/index.html" },

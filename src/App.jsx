@@ -983,8 +983,8 @@ function TellynPage() {
               <a className="button dark" href="#tellyn-contact">
                 预约产品演示
               </a>
-              <a className="button outline" href="#tellyn-industries">
-                了解产品如何工作
+              <a className="button outline" href="/downloads/tellyn-release-20261020.apk" download="tellyn-release-20261020.apk">
+                下载 App
               </a>
             </div>
             <div className="tellyn-promise">
